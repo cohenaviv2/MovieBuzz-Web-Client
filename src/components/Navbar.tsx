@@ -6,7 +6,7 @@ import "../styles/Navbar.css";
 function Navbar() {
   return (
     <IconContext.Provider
-      value={{ color: "#fff", size: "30px", className: "nav-icon" }}
+      value={{ color: "#f5f5f5", size: "30px", className: "nav-icon" }}
     >
       <nav className="navbar">
         <ul className="navbar-list">

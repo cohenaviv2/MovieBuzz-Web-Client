@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import "../styles/Grid.css";
 
-function Grid() {
-  return (
-    <div>Grid</div>
-  )
+interface GridProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
 }
 
-export default Grid
+function Grid<T>({ items, renderItem }: GridProps<T>) {
+  return (
+    <div className="grid">
+      {items.map((item, index) => (
+        <div key={index}>{renderItem(item)}</div>
+      ))}
+    </div>
+  );
+}
+
+export default Grid;

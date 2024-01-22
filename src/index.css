@@ -10,16 +10,16 @@
   -moz-osx-font-smoothing: grayscale;
   --text-primary: #f5f5f5;
   --text-secondary: #939393;
-  --bg-primary: #3b1a55;
-  --bg-secondary: #532476;
-  --bg-tertiary: #b350ff;
+  --bg-primary: #551a50;
+  --bg-secondary: #8f25af;
+  --bg-tertiary: #cf3dfc;
   --nav-bg-primary: rgb(30, 30, 30);
   --nav-bg-secondary: rgb(20, 20, 20);
   --page-bg: rgb(68, 65, 65);
   --page-bg-2: rgb(184, 184, 184);  font-synthesis: none;
   --btn-primary: linear-gradient(to right, rgb(23, 144, 243), rgb(33, 153, 250));
   --btn-primary-hover:linear-gradient(to left, rgb(6, 109, 194), rgb(8, 108, 189));
-  --btn-secondary:linear-gradient(to right, var(--bg-tertiary), rgb(160, 36, 255));
+  --btn-secondary:linear-gradient(to right, var(--bg-tertiary), rgb(218, 36, 255));
   --btn-secondary-hover:linear-gradient(to right, rgb(117, 0, 207), rgb(113, 0, 199));
   --btn-trinary:linear-gradient(to right, var(--bg-primary), var(--bg-secondary));
   --btn-trinary-hover:linear-gradient(to right, #271138, #431566);
@@ -41,15 +41,10 @@ body {
   padding: 0;
 }
 
-main {
-  margin-left: 5rem;
-  padding: 1rem;
-}
-
-h1 {
-  font-size: 3.2em;
+/* h1 {
+  font-size: 3em;
   line-height: 1.1;
-}
+} */
 
 /* button {
   border-radius: 8px;

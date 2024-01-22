@@ -64,7 +64,7 @@
 }
 
 .nav-icon {
-  color: var(--bg-secondary);
+  color: var(--bg-primary);
   min-width: 2rem;
   margin: 0 1.5rem;
 }
