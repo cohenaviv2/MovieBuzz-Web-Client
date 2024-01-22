@@ -1,0 +1,115 @@
+.movie-details {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: start;
+  gap: 3rem;
+  background-color: var(--nav-bg-secondary);
+  border-radius: 15px;
+  height: 90%;
+  width: 80%;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  box-shadow: 0 4px 18px var(--text-secondary);
+}
+
+.movie-details-img {
+  margin: 36px 36px;
+  width: 30%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.movie-details-container {
+  display: flex;
+  flex-direction: column;
+  margin: 36px 8px;
+  margin-left: -36px;
+  text-align: left;
+  width: 55%;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: -4%;
+  text-align: center;
+  align-items: center;
+}
+
+.year-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, var(--bg-tertiary), rgb(160, 36, 255));
+    color: var(--text-primary);
+    text-align: center;
+    min-width: 6rem;
+    height: auto;
+    border-radius: 2rem;
+    font-size: 2rem;
+}
+
+.tags-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: -3rem;
+}
+
+.genre-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, rgb(23, 144, 243), rgb(33, 153, 250));
+  color: var(--text-primary);
+  text-align: center;
+  min-width: 10rem;
+  height: 30%;
+  border-radius: 0.5rem;
+}
+
+.lang-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, var(--bg-primary), var(--bg-secondary));
+  color: var(--text-primary);
+  text-align: center;
+  width: 5%;
+  height: auto;
+  border-radius: 2rem;
+}
+
+
+.movie-details-close-btn {
+  margin-right: 10%;
+  top: 22%;
+  background: transparent;
+  height: 3rem;
+}
+
+.movie-details-close-btn:hover {
+  background-color: rgb(49, 48, 48);
+  border-radius: 15px;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+  .movie-details-card {
+    font-size: 1rem;
+    display: inline;
+    align-items: center;
+    width: 80vw;
+  }
+
+  .movie-details-img {
+    height: 20vh;
+    width: 60vw;
+  }
+
+  h5 {
+    width: 80vw;
+  }
+}

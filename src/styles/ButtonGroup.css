@@ -1,0 +1,47 @@
+.btn-group-filter {
+  display: flex;
+  min-width: 100%;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn-group-genre {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-left: -3rem;
+}
+
+.filter-btn {
+  position: relative;
+  right: 0;
+  border-radius: 5px;
+  height: 40%;
+  min-width: 10rem;
+  white-space: nowrap;
+  font-size: 1.3rem;
+  background:var(--btn-primary);
+  transition: box-shadow 0.3s;
+}
+
+.filter-btn:hover {
+  background: var(--btn-primary-hover);
+  box-shadow: 0 4px 18px var(--nav-bg-primary);
+}
+
+.genre-btn {
+  position: relative;
+  border-radius: 15px;
+  font-size: 1.3rem;
+  background: var(--btn-secondary);
+  transition: box-shadow 0.3s;
+  width: auto;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+.genre-btn:hover {
+  background: var(--btn-secondary-hover);
+  box-shadow: 0 4px 18px var(--nav-bg-primary);
+}

@@ -591,3 +591,6 @@ export const TvShowGenres = [
 
 export const MovieFilters = ["Popular", "Now Playing", "Upcoming"];
 export const TvShowFilters = ["Popular", "Top Rated", "On The Air"];
+export const TMDB_NULL_URL = "https://image.tmdb.org/t/p/w500null";
+export const NO_IMG_URL =
+  "https://www.rockettstgeorge.co.uk/cdn/shop/products/no_selection_46a68bcd-4f07-453a-bd6f-b50da3d486d0.jpg?v=1683702587";
