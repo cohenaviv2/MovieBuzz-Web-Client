@@ -8,8 +8,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --text-primary: #939393;
-  --text-secondary: #f5f5f5;
+  --text-primary: #f5f5f5;
+  --text-secondary: #939393;
   --bg-primary: #3b1a55;
   --bg-secondary: #532476;
   --bg-tertiary: #b350ff;
@@ -27,19 +27,23 @@
 
 a {
   font-weight: 500;
-  color: var(--text-primary);
   text-decoration: inherit;
+  color: var(--text-primary);
 }
 a:hover {
   color: var(--text-secondary);
 }
 
 body {
+  color: black;
+  background-color: white;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+}
+
+main {
+  margin-left: 5rem;
+  padding: 1rem;
 }
 
 h1 {

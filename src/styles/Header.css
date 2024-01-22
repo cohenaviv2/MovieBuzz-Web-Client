@@ -1,0 +1,16 @@
+.header {
+  /* background-color: var(--bg-secondary); */
+  background: linear-gradient(to left, var(--bg-secondary), #6b3296);
+  width: 96%;
+  height: 4.95rem;
+  margin-left: 4%;
+  text-align: center;
+  position: fixed;
+  top: 0;
+}
+
+.header-img {
+  width:13rem;
+  height: auto;
+  margin-top: 0.7rem;
+}
