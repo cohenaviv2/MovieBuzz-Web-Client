@@ -1,10 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 :root {
- font-family: "Lato", sans-serif;
-  /* line-height: 1.5; */
-  /* font-weight: 400; */
-  /* font-size: 16px; */
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,7 +16,11 @@
   --page-bg: rgb(68, 65, 65);
   --page-bg-2: rgb(184, 184, 184);
   --btn-primary: linear-gradient(to left, rgb(0, 119, 255), rgb(14, 89, 252));
-  --btn-primary-hover: linear-gradient(to left, rgb(3, 45, 158), rgb(15, 53, 180));
+  --btn-primary-hover: linear-gradient(
+    to left,
+    rgb(3, 45, 158),
+    rgb(15, 53, 180)
+  );
   --btn-secondary: linear-gradient(
     to left,
     var(--bg-tertiary),
@@ -46,9 +48,30 @@ a:hover {
   color: var(--text-secondary);
 }
 
-input, div {
+label {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+h6 {
+  color: var(--text-secondary);
+}
+
+div {
   font-family: "Lato", sans-serif;
   font-weight: bold;
+}
+
+input {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  padding: 8px;
+  border-radius: 8px;
+  height: 90%;
+  font-size: 1.5rem;
+  padding-left: 12px;
 }
 
 body {
@@ -60,7 +83,7 @@ body {
 
 button {
   font-family: "Lato", sans-serif;
-  font-weight: bold;
+  /* font-weight: bold; */
   border-radius: 8px;
   border: none;
   outline: none;

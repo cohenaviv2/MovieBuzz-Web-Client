@@ -11,6 +11,7 @@
   font-size: 1.5rem;
   color: var(--text-secondary);
   box-shadow: 0 4px 18px var(--text-secondary);
+    padding: 0 1.5vw;
 }
 
 .details-container {
@@ -107,6 +108,7 @@
 }
 
 .overview {
+  margin-top: -1rem;
   font-size: 1rem;
   color: var(--text-primary);
 }

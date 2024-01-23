@@ -8,7 +8,7 @@
 .search,
 .chat,
 .profile,
-.movie-details {
+.movie-details,.login {
   margin-left: 5rem;
   display: flex;
   margin-top: 4.95rem;
@@ -27,7 +27,7 @@
 .search,
 .chat,
 .profile,
-.movie-details:first-child {
+.movie-details,.login:first-child {
   font-size: 1.3rem;
   flex-direction: column;
 }

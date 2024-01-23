@@ -6,4 +6,6 @@
   max-height: calc(90vh - 3.2rem);
   background: transparent;
   overflow-x: auto;
+  background-color: rgba(20, 20, 20, 0.253);
+  border-radius: 20px;
 }

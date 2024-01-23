@@ -4,6 +4,7 @@
   height: 8rem;
   width: 90%;
   justify-content: center;
+  gap: 1rem;
 }
 
 .toolbar-title {

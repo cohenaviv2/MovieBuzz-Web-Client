@@ -26,7 +26,7 @@ function ButtonGroup({ buttons, type }: ButtonGroupProps) {
 
   return (
     <div className="toolbar">
-      <div className={type + "-btn-group"}>
+      <div className={type+"-btn-group"}>
         <div className={type + "-btn-container"} ref={wrapperRef}>
           {buttons.map((button, index) => (
             <button

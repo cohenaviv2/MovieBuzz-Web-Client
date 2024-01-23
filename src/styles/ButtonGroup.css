@@ -23,30 +23,31 @@
   align-items: center;
   background-color: var(--nav-bg-secondary);
   border-radius: 16px;
-  border: 4px solid  #25252580;
+  border: 4px solid #25252580;
   height: 70%;
   width: 95%;
   gap: 1.5rem;
+  padding: 0 1.5vw;
 }
 
 .genre-btn-container {
-  display:flexbox;
-  text-align:center;
+  display: flexbox;
+  text-align: center;
   height: 80%;
   overflow: auto;
 }
 
-.genre-btn-container::-webkit-scrollbar{
+.genre-btn-container::-webkit-scrollbar {
   display: none;
 }
 
 .filter-btn {
   height: 60%;
   white-space: nowrap;
-    border: 2px solid  #25252580;
-  font-size: 1.4rem;
+  border: 2px solid #25252580;
+  font-size: 1.5rem;
   background: var(--btn-primary);
-  padding: 0 40px;
+  padding: 0 1.5vw;
 }
 
 .filter-btn:hover {
@@ -56,6 +57,7 @@
 .genre-btn {
   margin: 6px;
   height: 37%;
+  font-weight: 400;
   border-radius: 16px;
   font-size: 1.2rem;
   background: var(--btn-secondary);
@@ -70,11 +72,11 @@
   box-shadow: 0 4px 18px var(--nav-bg-primary);
 }
 
-.scroll-btn-container{
+.scroll-btn-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center ;
+  align-items: center;
   /* gap: 1rem; */
 }
 

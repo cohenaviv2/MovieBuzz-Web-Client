@@ -3,7 +3,7 @@ import * as PiIcons from "react-icons/pi";
 
 export const NavbarData = [
   {
-    title: "Login",
+    title: "Sign In",
     path: "/profile",
     icon: <BiIcons.BiSolidUserCircle />,
     cName: "nav-item",
