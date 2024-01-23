@@ -2,34 +2,19 @@
   display: flex;
   flex-direction: row;
   height: 8rem;
-  width: 100%;
+  width: 90%;
   justify-content: center;
 }
 
 .toolbar-title {
   display: flex;
   align-items: center;
-  justify-content: center; /* Optional: horizontally center text */
+  justify-content: center;
   min-width: 18%;
   height: auto;
   font-weight: bold;
   white-space: nowrap;
   font-size: 3.5rem;
-}
-
-.toolbar-btn-container {
-  display: flex;
-  margin-left: -2rem;
-  justify-content: center;
-}
-
-.toolbar-btn {
-  position: relative;
-  right: inherit;
-  border-radius: 30px;
-  font-size: 1.5rem;
-  background: linear-gradient(to right, #b3b3b3, #9b9b9b);
-  transition: box-shadow 0.3s;
 }
 
 .toolbar-btn:hover {

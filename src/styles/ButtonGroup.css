@@ -1,47 +1,89 @@
-.btn-group-filter {
+.filter-btn-group {
   display: flex;
   min-width: 100%;
   justify-content: center;
-  gap: 2rem;
+  align-items: center;
 }
 
-.btn-group-genre {
+.genre-btn-group {
   display: flex;
-  width: 90%;
   justify-content: center;
-  gap: 0.5rem;
-  margin-left: -3rem;
+  align-items: center;
+  background-color: #25252580;
+  border-radius: 16px;
+  height: 80%;
+  width: 95%;
+  padding: 0 12px;
+  margin-top: 0.8rem;
+}
+
+.filter-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nav-bg-secondary);
+  border-radius: 16px;
+  border: 4px solid  #25252580;
+  height: 70%;
+  width: 95%;
+  gap: 1.5rem;
+}
+
+.genre-btn-container {
+  display:flexbox;
+  text-align:center;
+  height: 80%;
+  overflow: auto;
+}
+
+.genre-btn-container::-webkit-scrollbar{
+  display: none;
 }
 
 .filter-btn {
-  position: relative;
-  right: 0;
-  border-radius: 5px;
-  height: 40%;
-  min-width: 10rem;
+  height: 60%;
   white-space: nowrap;
-  font-size: 1.3rem;
-  background:var(--btn-primary);
-  transition: box-shadow 0.3s;
+    border: 2px solid  #25252580;
+  font-size: 1.4rem;
+  background: var(--btn-primary);
+  padding: 0 40px;
 }
 
 .filter-btn:hover {
   background: var(--btn-primary-hover);
-  box-shadow: 0 4px 18px var(--nav-bg-primary);
 }
 
 .genre-btn {
-  position: relative;
-  border-radius: 15px;
-  font-size: 1.3rem;
+  margin: 6px;
+  height: 37%;
+  border-radius: 16px;
+  font-size: 1.2rem;
   background: var(--btn-secondary);
-  transition: box-shadow 0.3s;
-  width: auto;
-  white-space: nowrap;
-  margin-left: 1rem;
+  white-space: normal;
+  word-wrap: break-word;
+  padding: 0 12px;
+  box-sizing: border-box;
 }
 
 .genre-btn:hover {
   background: var(--btn-secondary-hover);
   box-shadow: 0 4px 18px var(--nav-bg-primary);
+}
+
+.scroll-btn-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center ;
+  /* gap: 1rem; */
+}
+
+.scroll-btn {
+  background: none;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.scroll-btn:hover {
+  color: var(--text-primary);
 }

@@ -1,7 +1,7 @@
-import { IMovieDetails, ITvShow } from "../../services/CommonTypes";
+import "../../styles/movie/MovieDetails.css";
 import { IoClose } from "react-icons/io5";
 import { MovieGenres } from "./MoviesData";
-import "../../styles/movie/MovieDetails.css";
+import { IMovieDetails, ITvShow } from "../../services/CommonTypes";
 
 interface MovieDetailsProps {
   movie: IMovieDetails | ITvShow;
@@ -14,9 +14,9 @@ function MovieDetails({ movie, onClose }: MovieDetailsProps) {
   );
 
   return (
-    <div className="movie-details">
+    <div className="movie-details-card">
       <img src={movie.poster_path} className="movie-details-img"></img>
-      <div className="movie-details-container">
+      <div className="details-container">
         <div className="title-container">
           <h2>{movie.title}</h2>
           <h5 className="year-tag">{movie.year}</h5>
@@ -28,9 +28,9 @@ function MovieDetails({ movie, onClose }: MovieDetailsProps) {
           <h6 className="lang-tag">{movie.language}</h6>
         </div>
         <h4>Overview</h4>
-        <h5 style={{ fontSize: "1rem" }}>{movie.overview}</h5>
+        <div className="overview">{movie.overview}</div>
       </div>
-      <button className="movie-details-close-btn" onClick={onClose}>
+      <button className="movie-details-button" onClick={onClose}>
         <IoClose size="30px" />
       </button>
     </div>

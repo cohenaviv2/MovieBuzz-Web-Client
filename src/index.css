@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 :root {
-  font-family: "Lato", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-size: 16px;
+ font-family: "Lato", sans-serif;
+  /* line-height: 1.5; */
+  /* font-weight: 400; */
+  /* font-size: 16px; */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,13 +16,25 @@
   --nav-bg-primary: rgb(30, 30, 30);
   --nav-bg-secondary: rgb(20, 20, 20);
   --page-bg: rgb(68, 65, 65);
-  --page-bg-2: rgb(184, 184, 184);  font-synthesis: none;
-  --btn-primary: linear-gradient(to right, rgb(23, 144, 243), rgb(33, 153, 250));
-  --btn-primary-hover:linear-gradient(to left, rgb(6, 109, 194), rgb(8, 108, 189));
-  --btn-secondary:linear-gradient(to right, var(--bg-tertiary), rgb(218, 36, 255));
-  --btn-secondary-hover:linear-gradient(to right, rgb(117, 0, 207), rgb(113, 0, 199));
-  --btn-trinary:linear-gradient(to right, var(--bg-primary), var(--bg-secondary));
-  --btn-trinary-hover:linear-gradient(to right, #271138, #431566);
+  --page-bg-2: rgb(184, 184, 184);
+  --btn-primary: linear-gradient(to left, rgb(0, 119, 255), rgb(14, 89, 252));
+  --btn-primary-hover: linear-gradient(to left, rgb(3, 45, 158), rgb(15, 53, 180));
+  --btn-secondary: linear-gradient(
+    to left,
+    var(--bg-tertiary),
+    rgb(187, 0, 224)
+  );
+  --btn-secondary-hover: linear-gradient(
+    to right,
+    rgb(117, 0, 207),
+    rgb(113, 0, 199)
+  );
+  --btn-trinary: linear-gradient(
+    to right,
+    var(--bg-primary),
+    var(--bg-secondary)
+  );
+  --btn-trinary-hover: linear-gradient(to right, #271138, #431566);
 }
 
 a {
@@ -34,6 +46,11 @@ a:hover {
   color: var(--text-secondary);
 }
 
+input, div {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+}
+
 body {
   color: black;
   background-color: white;
@@ -41,29 +58,20 @@ body {
   padding: 0;
 }
 
-/* h1 {
-  font-size: 3em;
-  line-height: 1.1;
-} */
-
-/* button {
+button {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  transition: box-shadow 0.3s;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  box-shadow: 0 0 20px var(--page-bg);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
 
 div::-webkit-scrollbar {
   width: 0.5rem;

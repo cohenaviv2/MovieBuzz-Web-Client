@@ -1,4 +1,4 @@
-.movie-details {
+.movie-details-card {
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -13,20 +13,22 @@
   box-shadow: 0 4px 18px var(--text-secondary);
 }
 
-.movie-details-img {
-  margin: 36px 36px;
-  width: 30%;
-  height: auto;
-  border-radius: 0.5rem;
-}
-
-.movie-details-container {
+.details-container {
+  /* margin-top: 2rem; */
   display: flex;
   flex-direction: column;
   margin: 36px 8px;
   margin-left: -36px;
   text-align: left;
   width: 55%;
+}
+
+.tags-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-top: -3rem;
 }
 
 .title-container {
@@ -39,23 +41,16 @@
 }
 
 .year-tag {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right, var(--bg-tertiary), rgb(160, 36, 255));
-    color: var(--text-primary);
-    text-align: center;
-    min-width: 6rem;
-    height: auto;
-    border-radius: 2rem;
-    font-size: 2rem;
-}
-
-.tags-container {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  margin-top: -3rem;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, var(--bg-tertiary), rgb(160, 36, 255));
+  color: var(--text-primary);
+  text-align: center;
+  min-width: 6rem;
+  height: auto;
+  border-radius: 2rem;
+  font-size: 2rem;
 }
 
 .genre-tag {
@@ -65,9 +60,10 @@
   background: linear-gradient(to right, rgb(23, 144, 243), rgb(33, 153, 250));
   color: var(--text-primary);
   text-align: center;
-  min-width: 10rem;
+  /* min-width: 10rem; */
+  padding: 0 2rem;
   height: 30%;
-  border-radius: 0.5rem;
+  border-radius: 8px;
 }
 
 .lang-tag {
@@ -78,24 +74,43 @@
   color: var(--text-primary);
   text-align: center;
   width: 5%;
-  height: auto;
+  height: 25%;
   border-radius: 2rem;
+  /* margin-top: 2.3rem; */
 }
 
+.movie-details-img {
+  margin: 36px 36px;
+  width: 30%;
+  height: auto;
+  /* margin-left: 3rem; */
+  /* margin-top: 3rem; */
+  /* border: 2px solid var(--text-secondary); */
+  border-radius: 0.5rem;
+}
 
-.movie-details-close-btn {
-  margin-right: 10%;
-  top: 22%;
+.movie-details-button {
+  /* margin-right: 10%; */
+  /* top: 22%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
   background: transparent;
+  margin-top: 2rem;
   height: 3rem;
 }
 
-.movie-details-close-btn:hover {
+.movie-details-button:hover {
   background-color: rgb(49, 48, 48);
   border-radius: 15px;
 }
 
-/* Small screens */
+.overview {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
 @media only screen and (max-width: 600px) {
   .movie-details-card {
     font-size: 1rem;
