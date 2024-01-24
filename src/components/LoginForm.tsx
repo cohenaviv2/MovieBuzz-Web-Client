@@ -2,6 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
+import { HiMiniPencilSquare } from "react-icons/hi2";
 import "../styles/LoginForm.css";
 
 const loginSchema = z.object({
@@ -35,14 +36,17 @@ function LoginForm() {
     <div className="login-form">
       <h6>Don't have an account?</h6>
       <div className="signup-container">
-        <button className="signup-btn">Sign Up</button>
+        <button className="signup-btn">
+          <HiMiniPencilSquare size="25px" style={{ margin: "0 10px" }} />
+          Sign Up
+        </button>
         <button className="google-btn" type="button">
           Continue with
           <FcGoogle size="30px" style={{ margin: "0 10px" }} />
           Google
         </button>
       </div>
-      <h6>Or</h6>
+      <h6>or</h6>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="login-container">
           <div className="login-header">Login</div>

@@ -1,6 +1,6 @@
 .header {
   /* background-color: var(--bg-secondary); */
-  background: linear-gradient(to left, var(--bg-secondary), #6b3296);
+  background: var(--header-bg);
   width: 96%;
   height: 4.95rem;
   margin-left: 4%;

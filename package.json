@@ -12,11 +12,13 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "dotenv": "^16.3.2",
+    "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.3",
+    "sass-loader": "^14.0.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -28,6 +30,7 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "sass": "^1.70.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   }

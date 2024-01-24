@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  padding: 4px;
+  padding: 6px;
   background-color: var(--page-bg-2);
   position: relative;
 }
@@ -16,22 +16,21 @@
   width: 40vw;
   height: 90%;
   font-size: 1.5rem;
-  padding-left: 12px;
 }
 
 .search-input::placeholder {
-  color: rgb(201, 201, 201);
+  color: rgb(214, 214, 214);
   font-weight: 400;
 }
 
 .search-btn {
   background: var(--bg-secondary);
   color: var(--text-primary);
-  height: 40px;
+  height: 70%;
   width: 60px;
   border-radius: 8px;
   position: absolute;
-  right: 8px; /* Adjust this value as needed */
+  right: 9px; /* Adjust this value as needed */
 }
 
 .search-btn:hover {

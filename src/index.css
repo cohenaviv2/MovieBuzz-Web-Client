@@ -37,6 +37,7 @@
     var(--bg-secondary)
   );
   --btn-trinary-hover: linear-gradient(to right, #271138, #431566);
+  --header-bg: linear-gradient(to left, var(--bg-secondary), #6b3296);
 }
 
 a {

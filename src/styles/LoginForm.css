@@ -19,8 +19,9 @@
 }
 
 .login-header {
-    margin-top: -1.5rem;
-    margin-bottom: 1rem;
+  margin-top: -1.5rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
 }
 
 .signup-container {
@@ -43,12 +44,15 @@
 }
 
 .signup-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
   background: var(--btn-secondary);
   width: 15vw;
   height: 6vh;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .signup-btn:hover {
@@ -59,9 +63,9 @@
 .login-btn {
   margin-top: 1rem;
   background: var(--btn-primary);
-  width: 15vw;
+  min-width: 12rem;
   height: 6vh;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
@@ -76,7 +80,7 @@
   background: linear-gradient(to right, #03830a, #037009);
   width: 15vw;
   height: 6vh;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   /* margin-bottom: 3rem; */
 }

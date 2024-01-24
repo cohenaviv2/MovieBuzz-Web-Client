@@ -8,14 +8,17 @@
 .search,
 .chat,
 .profile,
-.movie-details,.login {
+.movie-details,
+.login,
+.movie,
+.tv {
   margin-left: 5rem;
   display: flex;
   margin-top: 4.95rem;
   height: calc(100vh - 4.95rem);
   width: calc(100vw - 5rem);
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   font-size: 3rem;
   background-color: var(--page-bg);
   color: var(--text-primary);
@@ -27,7 +30,10 @@
 .search,
 .chat,
 .profile,
-.movie-details,.login:first-child {
+.movie-details,
+.login,
+.movie,
+.tv:first-child {
   font-size: 1.3rem;
   flex-direction: column;
 }
@@ -67,7 +73,10 @@
   .search,
   .chat,
   .profile,
-  .movie-details {
+  .movie-details,
+  .login,
+  .movie,
+  .tv {
     margin-left: 0;
     width: 100vw;
   }

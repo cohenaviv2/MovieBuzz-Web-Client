@@ -8,8 +8,9 @@ import Search from "./pages/Search";
 import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
-import "./App.css";
 import { useState } from "react";
+import "./App.css";
+import MovieDetails from "./components/movie/MovieDetails";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,6 +27,8 @@ function App() {
           <Route path="/tv" Component={TvShows} />
           <Route path="/chat" Component={Chat} />
           <Route path="/profile" Component={isLoggedIn ? Profile : Login} />
+          <Route path="/movie/:id" Component={MovieDetails} />
+          <Route path="/tv/:id" Component={MovieDetails} />
         </Routes>
       </Router>
     </>
