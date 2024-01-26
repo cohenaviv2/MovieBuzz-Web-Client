@@ -43,10 +43,10 @@
 a {
   font-weight: 500;
   text-decoration: inherit;
-  color: var(--text-primary);
+ color: var(--text-secondary);
 }
 a:hover {
-  color: var(--text-secondary);
+   color: var(--text-primary);
 }
 
 label {

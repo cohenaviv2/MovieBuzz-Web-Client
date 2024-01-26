@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import { useState } from "react";
 import "./App.css";
 import MovieDetails from "./components/movie/MovieDetails";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +28,7 @@ function App() {
           <Route path="/tv" Component={TvShows} />
           <Route path="/chat" Component={Chat} />
           <Route path="/profile" Component={isLoggedIn ? Profile : Login} />
+          <Route path="/signup" Component={SignUp} />
           <Route path="/movie/:id" Component={MovieDetails} />
           <Route path="/tv/:id" Component={MovieDetails} />
         </Routes>

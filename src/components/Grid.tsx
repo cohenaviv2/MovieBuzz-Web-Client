@@ -4,11 +4,12 @@ import "../styles/Grid.css";
 interface GridProps<T> {
   items: T[];
   renderItem: (item: T) => React.ReactNode;
+  type: "movie" | "post";
 }
 
-function Grid<T>({ items, renderItem }: GridProps<T>) {
+function Grid<T>({ items, renderItem,type }: GridProps<T>) {
   return (
-    <div className="grid">
+    <div className={type+"-grid"}>
       {items.map((item, index) => (
         <div key={index}>{renderItem(item)}</div>
       ))}

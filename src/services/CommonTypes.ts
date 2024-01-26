@@ -10,6 +10,7 @@ export interface IUser {
 }
 
 export interface IPost {
+  _id?:string;
   ownerId: string;
   ownerName?: string;
   ownerImageUrl?: string;
@@ -21,7 +22,7 @@ export interface IPost {
   tmdbTitle?: string;
   tmdbImageUrl?: string;
   numOfComments?: number;
-  createdAt?: Date;
+  createdAt?: Date | string;
 }
 
 export interface IComment {

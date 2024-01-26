@@ -2,8 +2,9 @@ import { FieldValues, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
-import { HiMiniPencilSquare } from "react-icons/hi2";
+// import { HiMiniPencilSquare } from "react-icons/hi2";
 import "../styles/LoginForm.css";
+import { Link } from "react-router-dom";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -36,10 +37,12 @@ function LoginForm() {
     <div className="login-form">
       <h6>Don't have an account?</h6>
       <div className="signup-container">
-        <button className="signup-btn">
-          <HiMiniPencilSquare size="25px" style={{ margin: "0 10px" }} />
-          Sign Up
-        </button>
+        <Link to="/signup">
+          <button className="signup-btn">
+            {/* <HiMiniPencilSquare size="20px" style={{ margin: "0 5px" }} /> */}
+            Sign Up
+          </button>
+        </Link>
         <button className="google-btn" type="button">
           Continue with
           <FcGoogle size="30px" style={{ margin: "0 10px" }} />

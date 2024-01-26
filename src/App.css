@@ -11,7 +11,8 @@
 .movie-details,
 .login,
 .movie,
-.tv {
+.tv,
+.signup {
   margin-left: 5rem;
   display: flex;
   margin-top: 4.95rem;
@@ -33,7 +34,8 @@
 .movie-details,
 .login,
 .movie,
-.tv:first-child {
+.tv,
+.signup:first-child {
   font-size: 1.3rem;
   flex-direction: column;
 }
@@ -76,7 +78,8 @@
   .movie-details,
   .login,
   .movie,
-  .tv {
+  .tv,
+  .signup {
     margin-left: 0;
     width: 100vw;
   }

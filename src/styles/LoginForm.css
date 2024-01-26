@@ -14,7 +14,7 @@
   gap: 1rem;
   background-color: rgba(184, 184, 184, 0.116);
   border-radius: 12px;
-  width: 25vw;
+  width: 22vw;
   padding: 4vh 1vw;
 }
 
@@ -33,14 +33,15 @@
   align-items: center;
   background-color: rgba(184, 184, 184, 0.116);
   border-radius: 12px;
-  width: 20vw;
-  height: 20vh;
+  width: 18vw;
+  height: 18vh;
   /* padding: 1vw 1vw; */
 }
 
 .login-input {
   min-width: 70%;
   text-align: center;
+  font-size: 1.3rem;
 }
 
 .signup-btn {
@@ -49,14 +50,14 @@
   align-items: center;
   margin-bottom: 1rem;
   background: var(--btn-secondary);
-  width: 15vw;
-  height: 6vh;
+  width: 13vw;
+  height: 5vh;
   font-weight: bold;
   font-size: 1.3rem;
 }
 
 .signup-btn:hover {
-  background: var(--btn-secondary-hover);
+  background: linear-gradient(to left, #ca2cfa, #c41bf8);
   box-shadow: 0 4px 18px var(--nav-bg-primary);
 }
 
@@ -64,7 +65,7 @@
   margin-top: 1rem;
   background: var(--btn-primary);
   min-width: 12rem;
-  height: 6vh;
+  height: 5vh;
   font-size: 1.3rem;
   font-weight: bold;
 }
@@ -78,8 +79,8 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #03830a, #037009);
-  width: 15vw;
-  height: 6vh;
+  width: 13vw;
+  height:5vh;
   font-size: 1.1rem;
   font-weight: bold;
   /* margin-bottom: 3rem; */

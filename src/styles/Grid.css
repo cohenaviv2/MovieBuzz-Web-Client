@@ -1,8 +1,20 @@
-.grid {
+.movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 8px;
   max-width: calc(100vw - 4rem);
+  max-height: calc(90vh - 3.2rem);
+  background: transparent;
+  overflow-x: auto;
+  background-color: rgba(20, 20, 20, 0.253);
+  border-radius: 20px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  /* gap: 8px; */
+  max-width: calc(100vw - 0.5rem);
   max-height: calc(90vh - 3.2rem);
   background: transparent;
   overflow-x: auto;

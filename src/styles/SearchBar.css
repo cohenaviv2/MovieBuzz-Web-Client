@@ -6,6 +6,7 @@
   padding: 6px;
   background-color: var(--page-bg-2);
   position: relative;
+  margin-top: 2rem;
 }
 
 .search-input {
@@ -13,9 +14,9 @@
   outline: none;
   padding: 8px;
   border-radius: 8px;
-  width: 40vw;
+  width: 35vw;
   height: 90%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .search-input::placeholder {
@@ -24,6 +25,9 @@
 }
 
 .search-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--bg-secondary);
   color: var(--text-primary);
   height: 70%;

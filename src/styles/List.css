@@ -1,0 +1,30 @@
+.list-container {
+  display: flex;
+  align-items: center;
+  /* gap: 0.rem; */
+}
+
+.list {
+  display: flex;
+  gap: 1rem;
+  max-width: calc(100vw - 30rem);
+  max-height: calc(100vh - 20rem);
+  background: transparent;
+  overflow-x: auto;
+  background-color: rgba(20, 20, 20, 0.253);
+  border-radius: 20px;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+  height:  0.5rem;
+}
+
+.arrow-btn {
+  height: 40%;
+  background:  rgba(128, 128, 128, 0.233);
+}
+
+.arrow-btn:hover {
+  box-shadow: 0 0 10px rgba(175, 175, 175, 0.589);
+}
