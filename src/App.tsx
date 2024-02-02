@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Header from "./components/Header";
+import Navbar from "./components/Navbar/Navbar";
+import Header from "./components/Header/Header";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import TvShows from "./pages/TvShows";
@@ -9,9 +9,9 @@ import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import { useState } from "react";
-import "./App.css";
-import MovieDetails from "./components/movie/MovieDetails";
+import MovieDetails from "./components/movie/MovieDetails/MovieDetails";
 import SignUp from "./pages/SignUp";
+// import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Grid.css";
+import styles from "./Grid.module.scss"
 
 interface GridProps<T> {
   items: T[];
@@ -7,9 +7,9 @@ interface GridProps<T> {
   type: "movie" | "post";
 }
 
-function Grid<T>({ items, renderItem,type }: GridProps<T>) {
+function Grid<T>({ items, renderItem, type }: GridProps<T>) {
   return (
-    <div className={type+"-grid"}>
+    <div className={type == "movie" ? styles.movieGrid : styles.postGrid}>
       {items.map((item, index) => (
         <div key={index}>{renderItem(item)}</div>
       ))}

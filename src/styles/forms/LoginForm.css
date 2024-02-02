@@ -6,12 +6,11 @@
 
 .login-container {
   display: flex;
-  margin-top: -1rem;
   border: 3px solid rgba(56, 53, 53, 0.603);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   background-color: rgba(184, 184, 184, 0.116);
   border-radius: 12px;
   width: 22vw;
@@ -21,11 +20,27 @@
 .login-header {
   margin-top: -1.5rem;
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
+.input-box {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.input-box label{
+  text-align: start;
+}
+
+.input-box input{
+  font-size: 1.2rem;
+  height: 1.7rem;
+}
+
+
+
 .signup-container {
-  margin-top: -1rem;
   display: flex;
   border: 3px solid rgba(56, 53, 53, 0.603);
   flex-direction: column;
@@ -33,15 +48,15 @@
   align-items: center;
   background-color: rgba(184, 184, 184, 0.116);
   border-radius: 12px;
-  width: 18vw;
+  width: 22vw;
+  padding: 0 1vw;
   height: 18vh;
   /* padding: 1vw 1vw; */
 }
 
 .login-input {
   min-width: 70%;
-  text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .signup-btn {
@@ -57,8 +72,8 @@
 }
 
 .signup-btn:hover {
-  background: linear-gradient(to left, #ca2cfa, #c41bf8);
-  box-shadow: 0 4px 18px var(--nav-bg-primary);
+  background: linear-gradient(to left, #b31ee0, #b317e2);
+  /* box-shadow: 0 4px 18px var(--nav-bg-primary); */
 }
 
 .login-btn {
@@ -91,7 +106,7 @@
 }
 
 .error {
-  margin-top: -0.8rem;
+  /* margin-top: -0.8rem; */
   color: red;
   font-size: 1rem;
   font-weight: 100;

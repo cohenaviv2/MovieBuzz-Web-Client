@@ -1,11 +1,11 @@
-import ButtonGroup, { Button } from "../ButtonGroup";
+import ButtonGroup, { Button } from "../../ButtonGroup/ButtonGroup";
 import {
   MovieGenres,
   MovieFilters,
   TvShowFilters,
   TvShowGenres,
-} from "./MoviesData";
-import "../../styles/movie/MovieToolbar.css";
+} from "../MoviesData";
+import styles from "./MovieToolbar.module.scss"
 
 interface ToolbarProps {
   type: "movies" | "tv";
@@ -17,7 +17,11 @@ function MovieToolbar({ type }: ToolbarProps) {
   const filterList = type == "movies" ? MovieFilters : TvShowFilters;
   const genreList = type == "movies" ? MovieGenres : TvShowGenres;
 
-  function createButton(label: string, onClick: () => void, cName: string):Button {
+  function createButton(
+    label: string,
+    onClick: () => void,
+    cName: string
+  ): Button {
     return {
       label,
       onClick,
@@ -41,8 +45,8 @@ function MovieToolbar({ type }: ToolbarProps) {
 
   return (
     <>
-      <div className="toolbar">
-        <div className="toolbar-title">{title}</div>
+      <div className={styles.toolbar}>
+        <div className={styles.toolbarTitle}>{title}</div>
         <ButtonGroup type="filter" buttons={filterButtons} />
         <ButtonGroup type="genre" buttons={genreButtons} />
       </div>

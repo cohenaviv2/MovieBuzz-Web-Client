@@ -1,16 +1,17 @@
 import React, { useRef } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import "../styles/List.css";
+import styles from "./List.module.scss"
 
 interface ListProps<T> {
   items: T[];
   renderItem: (item: T) => React.ReactNode;
+  type: "movie" | "post";
 }
 
-function List<T>({ items, renderItem }: ListProps<T>) {
+function List<T>({ items, renderItem,type }: ListProps<T>) {
   const listRef = useRef<HTMLDivElement>(null);
-  const scrollSpeed = 150;
+  const scrollSpeed = type == "post" ?350 : 200;
 
   const scrollLeft = () => {
     if (listRef.current) {
@@ -25,17 +26,17 @@ function List<T>({ items, renderItem }: ListProps<T>) {
   };
 
   return (
-    <div className="list-container">
-      <button className="arrow-btn" onClick={scrollLeft}>
-        <MdKeyboardArrowLeft size="25px" />
+    <div className={styles.listContainer}>
+      <button className={styles.arrowBtn} onClick={scrollLeft}>
+        <MdKeyboardArrowLeft size="30px" />
       </button>
-      <div className="list" ref={listRef}>
+      <div className={styles.list} ref={listRef}>
         {items.map((item, index) => (
           <div key={index}>{renderItem(item)}</div>
         ))}
       </div>
-      <button className="arrow-btn" onClick={scrollRight}>
-        <MdKeyboardArrowRight size="25px" />
+      <button className={styles.arrowBtn} onClick={scrollRight}>
+        <MdKeyboardArrowRight size="30px" />
       </button>
     </div>
   );

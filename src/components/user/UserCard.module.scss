@@ -1,0 +1,18 @@
+@import "../../styles/containers";
+
+.userCard {
+  @extend .HBox;
+  gap: 0.7rem;
+  height: 3rem;
+  width: 10rem;
+}
+
+.userImg {
+  width: 22%;
+  height: 70%;
+  border-radius: 100%;
+}
+
+.userTitle {
+  font-size: 1rem;
+}

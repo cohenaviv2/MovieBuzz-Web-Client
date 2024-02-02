@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
-import "../styles/ButtonGroup.css";
+import styles from "./ButtonGroup.module.scss"
 
 export interface Button {
   label: string;
@@ -25,9 +25,18 @@ function ButtonGroup({ buttons, type }: ButtonGroupProps) {
   };
 
   return (
-    <div className="toolbar">
-      <div className={type+"-btn-group"}>
-        <div className={type + "-btn-container"} ref={wrapperRef}>
+    <div className={styles.toolbar}>
+      <div
+        className={
+          type == "filter" ? styles.filterBtnGroup : styles.genreBtnGroup
+        }
+      >
+        <div
+          className={
+            type == "filter" ? styles.filterBtnContainer : styles.genreBtnContainer
+          }
+          ref={wrapperRef}
+        >
           {buttons.map((button, index) => (
             <button
               className={button.cName}
@@ -39,15 +48,15 @@ function ButtonGroup({ buttons, type }: ButtonGroupProps) {
           ))}
         </div>
         {type == "genre" && (
-          <div className="scroll-btn-container">
+          <div className={styles.scrollBtnContainer}>
             <button
-              className="scroll-btn"
+              className={styles.scrollBtn}
               onClick={() => handleScroll(-scrollOffset)}
             >
               <MdOutlineKeyboardArrowUp size="30px" />
             </button>
             <button
-              className="scroll-btn"
+              className={styles.scrollBtn}
               onClick={() => handleScroll(scrollOffset)}
             >
               <MdOutlineKeyboardArrowDown size="30px" />

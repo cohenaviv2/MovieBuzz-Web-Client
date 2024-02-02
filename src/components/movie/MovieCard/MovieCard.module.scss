@@ -1,0 +1,36 @@
+.movieCard {
+  text-align: center;
+  background-color: var(--nav-bg-secondary);
+  padding: 12px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+  border-radius: 15px;
+  height: 14rem;
+  width: 8rem;
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.movieCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 18px var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.imgContainer {
+  width: 100%;
+  height: 80%;
+  margin-bottom: 5%;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+}
+
+.cardTitle {
+  font-size: 0.9rem;
+}

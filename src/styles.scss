@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
+#root {
+  max-width: 1280px;
+}
+
 :root {
   font-family: "Lato", sans-serif;
   font-size: 16px;
@@ -39,19 +43,25 @@
   );
   --btn-trinary-hover: linear-gradient(to right, #271138, #431566);
   --header-bg: linear-gradient(to left, var(--bg-secondary), #8e11b4);
-  --post-bg: linear-gradient(to right, var(--nav-bg-secondary),  var(--nav-bg-primary));
+  --post-bg: linear-gradient(
+    to right,
+    var(--nav-bg-secondary),
+    var(--nav-bg-primary)
+  );
 }
 
 a {
   font-weight: 500;
   text-decoration: inherit;
   color: var(--text-secondary);
-}
-a:hover {
-  color: var(--text-primary);
+
+  &:hover {
+    color: var(--text-primary);
+  }
 }
 
-label, h6 {
+label,
+h6 {
   color: var(--text-secondary);
   font-size: 1rem;
 }
@@ -59,6 +69,21 @@ label, h6 {
 div {
   font-family: "Lato", sans-serif;
   font-weight: bold;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--nav-bg-secondary);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgb(47, 47, 47);
+    border: 2px solid var(--nav-bg-secondary);
+  }
 }
 
 input {
@@ -71,11 +96,11 @@ input {
   height: 90%;
   font-size: 1.5rem;
   padding-left: 12px;
-}
 
-input::placeholder {
-  color: var(--page-bg-2);
-  font-size: 1.1rem;
+  &::placeholder {
+    color: var(--page-bg-2);
+    font-size: 1.1rem;
+  }
 }
 
 body {
@@ -94,26 +119,6 @@ button {
   color: var(--text-primary);
   transition: box-shadow 0.2s;
   cursor: pointer;
-}
-
-div::-webkit-scrollbar {
-  width: 0.5rem;
-}
-
-div::-webkit-scrollbar-track {
-  background: var(--nav-bg-secondary);
-  border-radius: 10px;
-}
-
-div::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: rgb(47, 47, 47);
-  border: 2px solid var(--nav-bg-secondary);
-}
-
-
-#root {
-  max-width: 1280px;
 }
 
 .home,
@@ -137,26 +142,11 @@ div::-webkit-scrollbar-thumb {
   font-size: 3rem;
   background-color: var(--page-bg);
   color: var(--text-primary);
-}
 
-.signup {
-  justify-content: center;
-  align-items: start;
-}
-
-.home,
-.movies,
-.tv-shows,
-.search,
-.chat,
-.profile,
-.movie-details,
-.login,
-.movie,
-.tv,
-.signup:first-child {
-  font-size: 1.3rem;
-  flex-direction: column;
+  &:first-child {
+    font-size: 1.3rem;
+    flex-direction: column;
+  }
 }
 
 /* Small screens */
@@ -167,23 +157,22 @@ div::-webkit-scrollbar-thumb {
     height: 5rem;
   }
 
-  .nav-item:first-child {
+  .navItem:first-child {
     margin-bottom: 0;
   }
 
-  .navbar-list {
+  .navbarList {
     flex-direction: row;
   }
 
-  .nav-link {
+  .navLink {
     justify-content: center;
     transition: none;
   }
 
-  .navbar:hover .nav-text {
+  .navbar:hover .navText {
     display: none;
   }
-
 
   .home,
   .movies,
@@ -200,7 +189,7 @@ div::-webkit-scrollbar-thumb {
     width: 100vw;
   }
 
-  .scrollable-grid {
+  .scrollableGrid {
     max-width: 100vw;
     margin: 0;
   }
@@ -217,14 +206,16 @@ div::-webkit-scrollbar-thumb {
     top: 0;
     width: 5rem;
     height: 100vh;
+
+    &:hover {
+      width: 16rem;
+    }
   }
 
-  .navbar:hover {
-    width: 16rem;
-  }
-
-  .navbar:hover .nav-text {
+  .navbar:hover .navText {
     display: inline;
     transition: opacity 250ms;
   }
 }
+
+

@@ -1,0 +1,65 @@
+.signup-form {
+  text-align: center;
+}
+
+.signup-header {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.name-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.name-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: start;
+}
+
+.name-input {
+  width: 12rem;
+  height: 1.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-file {
+  display: none;
+}
+
+.custom-file-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--text-secondary);
+  background-size: cover;
+  color: #333; /* Text color */
+  border: none;
+  width: 2.8rem;
+  height: 4rem;
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 100%; /* Rounded corners */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.custom-file-icon {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.fav-title {
+    margin-top: 1rem;
+    color: var(--page-bg-2);
+}
+
+.fav-input {
+    text-align: center;
+    border: 2px solid var(--text-primary);
+    background-color: #e180ff;
+    margin-bottom: 0.5rem;
+}

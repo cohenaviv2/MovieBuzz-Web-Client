@@ -1,4 +1,4 @@
-.search-bar {
+.searchBar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,7 @@
   margin-top: 2rem;
 }
 
-.search-input {
+.searchInput {
   border: none;
   outline: none;
   /* padding: 8px; */
@@ -21,11 +21,11 @@
   font-size: 1.2rem;
 }
 
-.search-header {
+.searchHeader {
   font-size: 3.5rem;
 }
 
-.input-container {
+.inputContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@
   position: relative;
 }
 
-.search-btn {
+.searchBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,6 +47,6 @@
   right: 45px;
 }
 
-.search-btn:hover {
+.searchBtn:hover {
   background: var(--btn-secondary-hover);
 }

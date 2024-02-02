@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
-import "../styles/SearchBar.css";
+import styles from "./SearchBar.module.scss"
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
@@ -19,19 +19,20 @@ function SearchBar({ onSearch }: SearchBarProps) {
   };
 
   return (
-    <form className="search-bar" onSubmit={handleSubmit}>
-      <div className="input-container">
+    <form className={styles.searchBar} onSubmit={handleSubmit}>
+      {searchTerm == "" && <div className={styles.searchHeader}>Search</div>}
+      <div className={styles.inputContainer}>
         <input
-        className="search-input"
+          className={styles.searchInput}
           type="text"
           placeholder="Movies, TV Shows, Posts..."
           value={searchTerm}
           onChange={handleInputChange}
         />
+        <button className={styles.searchBtn} type="submit">
+          <PiMagnifyingGlassBold size="25px" />
+        </button>
       </div>
-      <button className="search-btn" type="submit">
-        <PiMagnifyingGlassBold size="25px" />
-      </button>
     </form>
   );
 }

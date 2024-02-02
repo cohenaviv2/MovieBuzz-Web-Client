@@ -1,0 +1,11 @@
+.HBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.VBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

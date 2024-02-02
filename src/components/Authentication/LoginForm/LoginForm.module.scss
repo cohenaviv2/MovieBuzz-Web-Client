@@ -1,0 +1,113 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginContainer {
+  display: flex;
+  border: 3px solid rgba(56, 53, 53, 0.603);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: rgba(184, 184, 184, 0.116);
+  border-radius: 12px;
+  width: 22vw;
+  padding: 4vh 1vw;
+}
+
+.loginHeader {
+  margin-top: -1.5rem;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.inputBox label{
+  text-align: start;
+}
+
+.inputBox input{
+  font-size: 1.2rem;
+  height: 1.7rem;
+}
+
+
+
+.signupContainer {
+  display: flex;
+  border: 3px solid rgba(56, 53, 53, 0.603);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(184, 184, 184, 0.116);
+  border-radius: 12px;
+  width: 22vw;
+  padding: 0 1vw;
+  height: 18vh;
+  /* padding: 1vw 1vw; */
+}
+
+.loginInput {
+  min-width: 70%;
+  font-size: 1.2rem;
+}
+
+.signupBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  background: var(--btn-secondary);
+  width: 13vw;
+  height: 5vh;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.signupBtn:hover {
+  background: linear-gradient(to left, #b31ee0, #b317e2);
+  /* box-shadow: 0 4px 18px var(--nav-bg-primary); */
+}
+
+.loginBtn {
+  margin-top: 1rem;
+  background: var(--btn-primary);
+  min-width: 12rem;
+  height: 5vh;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.loginBtn:hover {
+  background: linear-gradient(to left, rgb(0, 92, 197), rgb(12, 73, 206));
+}
+
+.googleBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #03830a, #037009);
+  width: 13vw;
+  height:5vh;
+  font-size: 1.1rem;
+  font-weight: bold;
+  /* margin-bottom: 3rem; */
+}
+
+.googleBtn:hover {
+  background: linear-gradient(to right, #007506, #006905);
+}
+
+.error {
+  /* margin-top: -0.8rem; */
+  color: red;
+  font-size: 1rem;
+  font-weight: 100;
+}

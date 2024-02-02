@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import MovieCard from "../components/movie/MovieCard";
-import SearchBar from "../components/SearchBar";
-import List from "../components/List";
+import MovieCard from "../components/movie/MovieCard/MovieCard.tsx";
+import SearchBar from "../components/SearchBar/SearchBar.tsx";
+import List from "../components/List/List.tsx";
 import { IMovie, IPost, ITvShow } from "../services/CommonTypes";
 import {
   frozenMovieSearchRes,
   frozenPostsSearchRes,
   frozenTvSeachRes,
-} from "../components/movie/MoviesData";
+} from "../components/movie/MoviesData.ts";
 import "../styles/Search.css";
-import PostCard from "../components/post/PostCard";
+import PostCard from "../components/Post/PostCard/PostCard.tsx";
 
 function Search() {
   const [searchTerm, setSearchTerms] = useState(false);
@@ -28,12 +28,13 @@ function Search() {
 
   return (
     <div className="search">
-      {!searchTerm && <h1>Search</h1>}
+      {/* {!searchTerm && <h1>Search</h1>} */}
       <SearchBar onSearch={handleSearch} />
       {searchTerm && (
         <div className="search-res">
           Posts
           <List
+            type="post"
             items={postList}
             renderItem={(post) => (
               <Link to={`/post/${post._id}`} key={post._id}>
@@ -43,6 +44,7 @@ function Search() {
           />
           Movies
           <List
+            type="movie"
             items={movieList}
             renderItem={(movie) => (
               <Link to={`/movie/${movie.id}`} key={movie.id}>
@@ -52,6 +54,7 @@ function Search() {
           />
           TV Shows
           <List
+            type="movie"
             items={tvShowList}
             renderItem={(tvShow) => (
               <Link to={`/tv/${tvShow.id}`} key={tvShow.id}>

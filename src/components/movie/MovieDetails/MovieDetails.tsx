@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { IMovie, ITvShow } from "../../services/CommonTypes";
-import { MovieGenres, MoviesData } from "./MoviesData";
+import { IMovie, ITvShow } from "../../../services/CommonTypes";
+import { MovieGenres, MoviesData } from "../MoviesData";
+import { TvShowsData } from "../TvShowsData";
 import { IoClose } from "react-icons/io5";
-import "../../styles/movie/MovieDetails.css";
-import { TvShowsData } from "./TvShowsData";
+import styles from "./MovieDetails.module.scss"
 
 function MovieDetails() {
   const { id } = useParams();
@@ -35,26 +35,26 @@ function MovieDetails() {
   };
 
   return (
-    <div className="movie" style={{justifyContent:"center"}}>
-      <div className="movie-details-card">
-        <img src={movie?.poster_path} className="movie-details-img"></img>
-        <div className="details-container">
-          <div className="title-container">
+    <div className={styles.movie} style={{justifyContent:"center"}}>
+      <div className={styles.movieDetailsCard}>
+        <img src={movie?.poster_path} className={styles.movieDetailsImg}></img>
+        <div className={styles.detailsContaimer}>
+          <div className={styles.titleContainer}>
             <h2>{movie?.title}</h2>
-            <h5 className="year-tag">{movie?.year}</h5>
+            <h5 className={styles.yearTag}>{movie?.year}</h5>
           </div>
-          <div className="tags-container">
+          <div className={styles.tagsContainer}>
             {genres?.map((genre, index) => (
-              <h5 key={index} className="genre-tag">
+              <h5 key={index} className={styles.genreTag}>
                 {genre}
               </h5>
             ))}
-            <h6 className="lang-tag">{movie?.language}</h6>
+            <h6 className={styles.langTag}>{movie?.language}</h6>
           </div>
           <h4>Overview</h4>
-          <div className="overview">{movie?.overview}</div>
+          <div className={styles.overview}>{movie?.overview}</div>
         </div>
-        <button className="movie-details-button" onClick={handleGoBack}>
+        <button className={styles.movieDetailsBtn} onClick={handleGoBack}>
           <IoClose size="30px" />
         </button>
       </div>

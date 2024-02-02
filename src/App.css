@@ -15,14 +15,19 @@
 .signup {
   margin-left: 5rem;
   display: flex;
-  margin-top: 4.95rem;
-  height: calc(100vh - 4.95rem);
+  margin-top: 4rem;
+  height: calc(100vh - 4rem);
   width: calc(100vw - 5rem);
   align-items: center;
   justify-content: start;
   font-size: 3rem;
   background-color: var(--page-bg);
   color: var(--text-primary);
+}
+
+.signup {
+  justify-content: center;
+  align-items: start;
 }
 
 .home,
@@ -65,9 +70,6 @@
     display: none;
   }
 
-  main {
-    margin: 0;
-  }
 
   .home,
   .movies,

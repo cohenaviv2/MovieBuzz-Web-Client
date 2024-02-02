@@ -1,8 +1,8 @@
-import { IPost } from "../../services/CommonTypes";
-import UserCard from "../user/UserCard";
+import { IPost } from "../../../services/CommonTypes";
+import UserCard from "../../User/UserCard";
 import { FaStar } from "react-icons/fa6";
 import { FaCommentAlt } from "react-icons/fa";
-import "../../styles/post/PostCard.css";
+import styles from "./PostCard.module.scss"
 
 interface PostCardProps {
   post: IPost;
@@ -10,44 +10,44 @@ interface PostCardProps {
 
 function PostCard({ post }: PostCardProps) {
   return (
-    <div className="post-card">
-      <div className="movie-container">
-        <div className="movie-img-container">
+    <div className={styles.postCard}>   
+      <div className={styles.movieContainer}>
+        <div className={styles.movieImgContainer}>
           <img
             src={post.tmdbImageUrl}
             alt={post.tmdbTitle}
-            className="post-img"
+            className={styles.postImg}
           />
           {post.tmdbTitle}
         </div>
       </div>
-      <div className="post-container">
-        <div className="user-container">
+      <div className={styles.postContainer}>
+        <div className={styles.userContainer}>
           <UserCard
             userId={post.ownerId}
             fullName={post.ownerName as string}
             imageUrl={post.ownerImageUrl as string}
           />
         </div>
-        <div className="post-details">
-          <div className="details-container">
-            <div className="text-container">{post.text}</div>
-            <div className="rate-container">
-              <div className="rate-box">
-                <FaStar size="25px" className="rate-icon" />
+        <div className={styles.postDetails}>
+          <div className={styles.detailsContainer}>
+            <div className={styles.textContainer}>{post.text}</div>
+            <div className={styles.rateContainer}>
+              <div className={styles.rateBox}>
+                <FaStar size="25px" className={styles.rateIcon} />
                 {post.rating}
               </div>
-              <div className="comments-box">
+              <div className={styles.commentsBox}>
                 <FaCommentAlt size="20px" style={{ marginTop: "5px" }} />
                 {post.numOfComments}
               </div>
             </div>
           </div>
-          <div className="post-img-container">
+          <div className={styles.postImgContainer}>
             <img
               src={post.imageUrl}
               alt={post.ownerName}
-              className="post-img"
+              className={styles.postImg}
             />
           </div>
         </div>

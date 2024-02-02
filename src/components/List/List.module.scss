@@ -1,4 +1,4 @@
-.list-container {
+.listContainer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -21,12 +21,11 @@
   height: 0.5rem;
 }
 
-.arrow-btn {
+.arrowBtn {
   background: var(--header-bg);
   height: 40%;
-  
 }
 
-.arrow-btn:hover {
+.arrowBtn:hover {
   box-shadow: 0 0 10px rgba(175, 175, 175, 0.589);
 }

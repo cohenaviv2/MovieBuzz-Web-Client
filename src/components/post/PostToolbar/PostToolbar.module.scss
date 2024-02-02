@@ -1,4 +1,4 @@
-.post-toolbar {
+.postToolbar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   gap: 2rem;
 }
 
-.new-post-btn {
+.newPostBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,12 +19,12 @@
   white-space: nowrap;
 }
 
-.new-post-btn:hover {
+.newPostBtn:hover {
   background: var(--btn-secondary-hover);
   box-shadow: 0 0 8px var(--text-secondary);
 }
 
-.post-filter-btn {
+.postFilterBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +39,7 @@
   border: 2px solid #25252580;
 }
 
-.post-filter-btn:hover {
+.postFilterBtn:hover {
   background: linear-gradient(to left, #7a39ac, #9c44df);
   box-shadow: 0 0 8px var(--text-secondary);
 }
