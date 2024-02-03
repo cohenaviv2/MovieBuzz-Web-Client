@@ -12,18 +12,12 @@ function Navbar() {
   };
 
   return (
-    <IconContext.Provider
-      value={{ color: "#f5f5f5", size: "30px", className: styles.navIcon }}
-    >
+    <IconContext.Provider value={{ size: "30px", className: styles.navIcon }}>
       <nav className={styles.navbar}>
         <ul className={styles.navbarList}>
           {NavbarData.map((item, index) => {
             return (
-              <li
-                key={index}
-                className={item.cName}
-                onClick={() => handlePathClick(item.title)}
-              >
+              <li key={index} className={item.cName} onClick={() => handlePathClick(item.title)}>
                 <Link to={item.path} className={styles.navLink}>
                   {item.title == selectedPath ? item.selectedIcon : item.icon}
                   <span className={item.cNameTxt}>{item.title}</span>

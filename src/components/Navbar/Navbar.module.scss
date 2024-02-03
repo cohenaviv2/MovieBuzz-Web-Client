@@ -1,70 +1,66 @@
+@import "../../styles/styles.scss";
+@import "../../styles/containers.scss";
+
 .navbar {
   position: fixed;
-  background-color: var(--nav-bg-secondary);
+  background-color: $nav-bg-secondary;
   transition: width 250ms ease;
   z-index: 1000;
-}
 
-.navbar:hover {
-  background: linear-gradient(
-    to left,
-    var(--nav-bg-primary),
-    var(--nav-bg-secondary)
-  );
-}
+  &:hover {
+    background: linear-gradient(to left,$nav-bg-primary,$nav-bg-secondary);
+  }
 
-.navbar:hover .navText {
-  display: block;
+  &:hover .navText {
+    display: block;
+  }
 }
 
 .navbarList {
+  @extend .VBox;
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: 100%;
 }
 
 .navItem {
   width: 100%;
-}
 
-.navItem:first-child {
-  margin-bottom: 10rem;
+  &:first-child {
+    margin-bottom: 10rem;
+  }
 }
 
 .navLink {
-  display: flex;
-  border-radius: 18px;
-  align-items: center;
+  @extend .HBox;
   height: 5rem;
-  color: var(--text-secondary);
+  border-radius: 18px;
+  color: $text-secondary;
   text-decoration: none;
-  filter: grayscale(100%) opacity(0.7);
+  filter: grayscale(100%) brightness(110%);
   transition: 250ms;
-}
 
-.navLink:hover {
-  filter: grayscale(0%) opacity(1);
-  color: var(--text-primary);
-  background-color: rgb(19, 19, 19);
-}
+  &:hover {
+    filter: grayscale(0%) opacity(1);
+    color: $text-primary;
+    background-color: rgb(19, 19, 19);
+  }
 
-.navLink:hover .navIcon {
-  min-height: 2rem;
+  &:hover .navIcon {
+    min-height: 2rem;    
+  }
 }
 
 .navText {
   display: none;
   font-weight: bold;
-  /* margin-left: 1rem; */
   min-width: 150px;
   font-size: 1.3rem;
 }
 
 .navIcon {
+  fill: $bg-secondary;
   min-width: 2rem;
   margin: 0 1.5rem;
 }

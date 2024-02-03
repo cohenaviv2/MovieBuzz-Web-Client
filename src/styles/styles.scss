@@ -1,4 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import "./containers.scss";
+
+$text-primary: #f5f5f5;
+$text-secondary: #939393;
+$text-tertiary: rgb(105, 98, 98);
+$bg-primary: #551a50;
+$bg-secondary: #8f25af;
+$bg-tertiary: #cf3dfc;
+$nav-bg-primary: rgb(5, 5, 5);
+$nav-bg-secondary: rgb(0, 0, 0);
+$page-bg: rgb(27, 27, 27);
+$page-bg-2: rgb(184, 184, 184);
+/* gradients */
+$btn-primary: linear-gradient(to left, rgb(0, 119, 255), rgb(14, 89, 252));
+$btn-primary-hover: linear-gradient(to left, rgb(14, 73, 235), rgb(19, 71, 243));
+$btn-secondary: linear-gradient(to left, $bg-tertiary, rgb(187, 0, 224));
+$btn-secondary-hover: linear-gradient(to right, rgb(173, 0, 207), rgb(159, 0, 199));
+$btn-trinary: linear-gradient(to right, #72188d, #700c8f);
+$btn-trinary-hover: linear-gradient(to right, #520a68, #490b5c);
+$header-bg: linear-gradient(to left, $bg-secondary, #8e11b4);
+$post-bg: linear-gradient(to right, $nav-bg-secondary, $nav-bg-primary);
 
 #root {
   max-width: 1280px;
@@ -10,60 +31,31 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --text-primary: #f5f5f5;
-  --text-secondary: #939393;
-  --text-tertiary: rgb(105, 98, 98);
-  --bg-primary: #551a50;
-  --bg-secondary: #8f25af;
-  --bg-tertiary: #cf3dfc;
-  --nav-bg-primary: rgb(5, 5, 5);
-  --nav-bg-secondary: rgb(0, 0, 0);
-  --page-bg: rgb(27, 27, 27);
-  --page-bg-2: rgb(184, 184, 184);
-  --btn-primary: linear-gradient(to left, rgb(0, 119, 255), rgb(14, 89, 252));
-  --btn-primary-hover: linear-gradient(
-    to left,
-    rgb(1, 55, 206),
-    rgb(20, 66, 216)
-  );
-  --btn-secondary: linear-gradient(
-    to left,
-    var(--bg-tertiary),
-    rgb(187, 0, 224)
-  );
-  --btn-secondary-hover: linear-gradient(
-    to right,
-    rgb(173, 0, 207),
-    rgb(159, 0, 199)
-  );
-  --btn-trinary: linear-gradient(
-    to right,
-    var(--bg-primary),
-    var(--bg-secondary)
-  );
-  --btn-trinary-hover: linear-gradient(to right, #271138, #431566);
-  --header-bg: linear-gradient(to left, var(--bg-secondary), #8e11b4);
-  --post-bg: linear-gradient(
-    to right,
-    var(--nav-bg-secondary),
-    var(--nav-bg-primary)
-  );
 }
 
 a {
-  font-weight: 500;
+  font-weight: bold;
   text-decoration: inherit;
-  color: var(--text-secondary);
+  color: $text-secondary;
 
   &:hover {
-    color: var(--text-primary);
+    color: $text-primary;
   }
 }
 
 label,
 h6 {
-  color: var(--text-secondary);
+  color: $text-secondary;
   font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1.5rem;
 }
 
 div {
@@ -75,14 +67,14 @@ div {
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--nav-bg-secondary);
+    background: $nav-bg-secondary;
     border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: rgb(47, 47, 47);
-    border: 2px solid var(--nav-bg-secondary);
+    border: 2px solid $nav-bg-secondary;
   }
 }
 
@@ -93,13 +85,13 @@ input {
   outline: none;
   padding: 8px;
   border-radius: 8px;
-  height: 90%;
+  height: 1.8rem;
   font-size: 1.5rem;
   padding-left: 12px;
 
   &::placeholder {
-    color: var(--page-bg-2);
-    font-size: 1.1rem;
+    color: $page-bg-2;
+    font-size: 1rem;
   }
 }
 
@@ -111,12 +103,15 @@ body {
 }
 
 button {
+  @extend .HBox;
+  justify-content: center;
   font-family: "Lato", sans-serif;
-  /* font-weight: bold; */
+  font-weight: bold;
+  font-size: 1.3rem;
   border-radius: 8px;
   border: none;
   outline: none;
-  color: var(--text-primary);
+  color: $text-primary;
   transition: box-shadow 0.2s;
   cursor: pointer;
 }
@@ -132,16 +127,14 @@ button {
 .movie,
 .tv,
 .signup {
+  @extend .VBox;
   margin-left: 5rem;
-  display: flex;
   margin-top: 4rem;
   height: calc(100vh - 4rem);
   width: calc(100vw - 5rem);
-  align-items: center;
-  justify-content: start;
+  background-color: $page-bg;
   font-size: 3rem;
-  background-color: var(--page-bg);
-  color: var(--text-primary);
+  color: $text-primary;
 
   &:first-child {
     font-size: 1.3rem;
@@ -217,5 +210,3 @@ button {
     transition: opacity 250ms;
   }
 }
-
-

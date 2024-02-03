@@ -1,16 +1,46 @@
-.signupForm {
-  text-align: center;
+@import "../../../styles/styles.scss";
+@import "../../../styles/containers.scss";
+
+.signupContainer {
+  @extend .VBox;
+  background-color: red;
+  height: 70%;
+  padding: 16px;
+  background-color: rgba(184, 184, 184, 0.116);
+  border-radius: 12px;
+  border: 3px solid rgba(56, 53, 53, 0.603);
+  gap: 1rem;
 }
 
-.signupHeader {
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+.formContainer {
+  @extend .FormBox;
+}
+
+.imgNameContainer {
+  @extend .HBox;
+  width: 100%;
+  height: 6rem;
 }
 
 .nameContainer {
-  display: flex;
-  gap: 1.5rem;
+  @extend .FormBox;
+  justify-content: center;
+}
+
+.imgContainer {
+  @extend .VBox;
+  width: 35%;
+  height: 100%;
+}
+
+.signupBtn {
+  margin-top: 2rem;
+  background: $btn-trinary;
+  width: 16rem;
+  min-height: 3rem;
+  &:hover {
+    background: $btn-trinary-hover;
+  }
 }
 
 .nameBox {
@@ -32,34 +62,27 @@
 }
 
 .customFileInput {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @extend .VBox;
   justify-content: center;
-  background-color: var(--text-secondary);
+  background-color: $text-secondary;
   background-size: cover;
-  color: #333; /* Text color */
-  border: none;
-  width: 2.8rem;
-  height: 4rem;
-  padding: 10px 20px; /* Adjust padding as needed */
-  border-radius: 100%; /* Rounded corners */
-  cursor: pointer; /* Show pointer cursor on hover */
+  min-width: 85%;
+  min-height:85%;
+  border-radius: 100%;
+  cursor: pointer;
 }
 
-.customFileIcon {
-  color: var(--text-primary);
-  margin-bottom: 1rem;
+.imgIcon {
+  font-size: 30px;
+  fill: #333;
 }
 
 .favTitle {
   margin-top: 1rem;
-  color: var(--page-bg-2);
+  color:#FFCF37;
 }
 
 .favInput {
-  text-align: center;
-  border: 2px solid var(--text-primary);
-  background-color: #e180ff;
-  margin-bottom: 0.5rem;
+  border: 2px solid $text-primary;
+  background-color: $bg-secondary;
 }

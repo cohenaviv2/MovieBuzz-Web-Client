@@ -1,16 +1,19 @@
+@import "../../styles/styles.scss";
+@import "../../styles/containers.scss";
+
 .header {
-  /* background-color: var(--bg-secondary); */
-  background: var(--header-bg);
+  @extend .VBox;
+  justify-content: center;
+  background: $header-bg;
   width: 96%;
-  height: 4rem;
   margin-left: 4%;
-  text-align: center;
+  height: 4rem;
   position: fixed;
   top: 0;
 }
 
 .headerImg {
-  width:11rem;
+  width: 12rem;
   height: auto;
-  margin-top: 0.7rem;
+  margin-top: 0.4rem;
 }
