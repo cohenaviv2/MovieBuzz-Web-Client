@@ -12,7 +12,7 @@
 
 .FormBox {
   @extend .VBox;
-  gap: 1.5rem;
+  gap: 1rem;
   width: 24rem;
   height: 12rem;
   input {
@@ -21,6 +21,13 @@
   }
   label {
     width: 80%;
-    margin-bottom: -1rem;
+    margin-bottom: -0.5rem;
   }
+}
+
+.StyledBox {
+  padding: 16px;
+  background-color: rgba(184, 184, 184, 0.116);
+  border-radius: 12px;
+  border: 3px solid rgba(56, 53, 53, 0.603);
 }

@@ -1,7 +1,7 @@
-import MovieToolbar from "../components/movie/MovieToolbar/MovieToolbar.tsx";
+import MovieToolbar from "../components/Movie/MovieToolbar/MovieToolbar.tsx";
 import Grid from "../components/Grid/Grid.tsx";
-import MovieCard from "../components/movie/MovieCard/MovieCard.tsx";
-import { MoviesData } from "../components/movie/MoviesData.ts";
+import MovieCard from "../components/Movie/MovieCard/MovieCard.tsx";
+import { MoviesData } from "../components/Movie/MoviesData.tsx";
 import { Link } from "react-router-dom";
 
 function Movies() {

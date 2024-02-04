@@ -1,11 +1,7 @@
-import ButtonGroup, { Button } from "../../ButtonGroup/ButtonGroup";
-import {
-  MovieGenres,
-  MovieFilters,
-  TvShowFilters,
-  TvShowGenres,
-} from "../MoviesData";
-import styles from "./MovieToolbar.module.scss"
+import ButtonGroup from "../../ButtonGroup/ButtonGroup";
+import { createButton } from "../../ButtonGroup/ButtonData";
+import { MovieFilterButton, MovieGenreButtons, TvShowFilterButton, TvShowGenreButtons } from "../MoviesData";
+import styles from "./MovieToolbar.module.scss";
 
 interface ToolbarProps {
   type: "movies" | "tv";
@@ -14,26 +10,11 @@ interface ToolbarProps {
 function MovieToolbar({ type }: ToolbarProps) {
   const title = type == "movies" ? "Movies" : "TV Shows";
 
-  const filterList = type == "movies" ? MovieFilters : TvShowFilters;
-  const genreList = type == "movies" ? MovieGenres : TvShowGenres;
+  const filterBtnList = type == "movies" ? MovieFilterButton : TvShowFilterButton;
+  const genreBtnList = type == "movies" ? MovieGenreButtons : TvShowGenreButtons;
 
-  function createButton(
-    label: string,
-    onClick: () => void,
-    cName: string
-  ): Button {
-    return {
-      label,
-      onClick,
-      cName,
-    };
-  }
-  const filterButtons = filterList.map((filter) =>
-    createButton(filter, () => handleFilterClick(filter), "filter-btn")
-  );
-  const genreButtons = (genreList || []).map((genre) =>
-    createButton(genre.name, () => handleGenreClick(genre.name), "genre-btn")
-  );
+  const filterButtons = filterBtnList.map((filter) => createButton(filter.label, () => handleFilterClick(filter.label), filter.cName, filter.icon));
+  const genreButtons = genreBtnList.map((genre) => createButton(genre.label, () => handleGenreClick(genre.label), genre.cName,genre.icon));
 
   function handleGenreClick(genre: string) {
     console.log(genre);
@@ -46,7 +27,7 @@ function MovieToolbar({ type }: ToolbarProps) {
   return (
     <>
       <div className={styles.toolbar}>
-        <div className={styles.toolbarTitle}>{title}</div>
+        <h3>{title}</h3>
         <ButtonGroup type="filter" buttons={filterButtons} />
         <ButtonGroup type="genre" buttons={genreButtons} />
       </div>

@@ -1,82 +1,61 @@
-@import "../../../styles/containers";
+@import "../../../styles/styles.scss";
+@import "../../../styles/containers.scss";
 
 .postCard {
   @extend .HBox;
-  justify-content: start;
-  border: 2px solid #25252580;
-  background: var(--post-bg);
-  padding: 12px;
-  border-radius: 15px;
-  margin: 16px;
+  gap: 1rem;
   height: 12rem;
   width: 30rem;
-  color: var(--text-secondary);
+  background: $post-bg;
+  border-radius: 16px;
+  padding: 12px;
+  color: $text-secondary;
+  font-size: 0.9rem;
   transition: transform 0.2s, box-shadow 0.2s;
-  font-size: 0.8rem;
 
   &:hover {
     transform: scale(1.02);
-    box-shadow: 0 4px 18px var(--text-secondary);
-    color: var(--text-primary);
-  }
-}
+    box-shadow: 0 4px 18px $text-secondary;
+    color: $text-primary;
 
-.movieImgContainer {
-  @extend .VBox;
-  justify-content: center;
-  gap: 1rem;
-  height: 11rem;
-  border-radius: 12px;
-  border: 2px solid #25252580;
+    .rateIcon {
+      color: $bg-tertiary;
+    }
+
+    .commentIcon {
+      color:$page-bg-2;
+    }
+  }
 }
 
 .movieContainer {
   @extend .VBox;
-  margin-right: 1rem;
-  width: 25%;
-}
-
-.postImgContainer {
-  @extend .HBox;
   justify-content: center;
+  gap: 1rem;
+  width: 25%;
   height: 100%;
-  width: 60%;
-  overflow: hidden;
-  margin-top: -50px;
-}
+  border-radius: 12px;
+  border: 2px solid #25252580;
 
-.postImg {
-  width: 80%;
-  height: auto;
-  border-radius: 6px;
+  img {
+    width: 90%;
+    height: auto;
+    border-radius: 6px;
+  }
 }
 
 .postContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  width: 75%;
+  @extend .VBox;
+  gap: 1rem;
+  width: 50%;
   height: 100%;
-}
-
-.userContainer {
-  height: 24%;
 }
 
 .postDetails {
   @extend .HBox;
-
-  justify-content: end;
-  height: 76%;
-}
-
-.detailsContainer {
+  justify-content: center;
+  height: 85%;
   width: 100%;
-}
-
-.textContainer {
-  min-height: 6rem;
-  font-size: 0.9rem;
 }
 
 .rateContainer {
@@ -84,7 +63,8 @@
   justify-content: center;
   font-size: 1.2rem;
   gap: 2rem;
-  height: 50%;
+  height: 30%;
+  width: 100%;
 }
 
 .rateBox {
@@ -94,7 +74,8 @@
 }
 
 .rateIcon {
-  color: var(--bg-secondary);
+  color: $bg-secondary;
+  font-size: 25px;
 }
 
 .commentsBox {
@@ -102,3 +83,22 @@
   justify-content: center;
   gap: 0.4rem;
 }
+
+.commentIcon {
+  color: $text-tertiary;
+  margin-top: 0.2rem;
+}
+
+.postImgContainer {
+  @extend .HBox;
+  justify-content: center;
+  height: 100%;
+  width: 25%;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+  }
+}
+

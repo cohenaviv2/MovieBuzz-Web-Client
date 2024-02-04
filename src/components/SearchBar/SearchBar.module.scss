@@ -1,52 +1,32 @@
+@import "../../styles/styles.scss";
+@import "../../styles/containers.scss";
+
 .searchBar {
-  display: flex;
-  align-items: center;
+  @extend .HBox;
+  @extend .StyledBox;
   justify-content: center;
-  border-radius: 8px;
-  padding: 4px;
-  width: 60%;
-  height: 6rem;
-  padding: 16px;
-  position: relative;
+  gap: 1rem;
+  width: 50%;
+  // height: 6rem;
   margin-top: 2rem;
+  margin-bottom: auto;
 }
 
 .searchInput {
-  border: none;
-  outline: none;
-  /* padding: 8px; */
-  border-radius: 6px;
   width: 35vw;
   height: 1.8rem;
   font-size: 1.2rem;
 }
 
-.searchHeader {
-  font-size: 3.5rem;
-}
-
-.inputContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 70%;
-  height: 100%;
-  position: relative;
-}
-
 .searchBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--btn-secondary);
-  color: var(--text-primary);
-  height: 40px;
-  width: 70px;
-  border-radius: 8px;
+  background: $header-bg;
+  height: 2.5rem;
+  width: 4rem;
   position: absolute;
-  right: 45px;
+  right: 32.1rem;
+
+  &:hover {
+    background: $btn-secondary-hover;
+  }
 }
 
-.searchBtn:hover {
-  background: var(--btn-secondary-hover);
-}

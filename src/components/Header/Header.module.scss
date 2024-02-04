@@ -5,10 +5,10 @@
   @extend .VBox;
   justify-content: center;
   background: $header-bg;
-  width: 96%;
-  margin-left: 4%;
+  width: 100vw;
+  // margin-left: 4%;
   height: 4rem;
-  position: fixed;
+  position: absolute ;
   top: 0;
 }
 

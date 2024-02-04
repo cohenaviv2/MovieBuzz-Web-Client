@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./UserCard.module.scss"
+import styles from "./UserCard.module.scss";
 
 interface UserProps {
   userId: string;
@@ -7,13 +7,13 @@ interface UserProps {
   imageUrl: string;
 }
 
-function UserCard({ userId,fullName, imageUrl }: UserProps) {
+function UserCard({ userId, fullName, imageUrl }: UserProps) {
   return (
     // <Link to={`/users/${userId}`}>
-      <div className={styles.userCard}>
-        <img src={imageUrl} alt={fullName} className={styles.userImg} />
-        <div className={styles.userTitle}>{fullName}</div>
-      </div>
+    <div className={styles.userCard}>
+      <img src={imageUrl} alt={fullName} />
+      {fullName}
+    </div>
     // </Link>
   );
 }

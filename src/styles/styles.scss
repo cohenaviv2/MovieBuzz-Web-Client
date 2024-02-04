@@ -11,15 +11,17 @@ $nav-bg-primary: rgb(5, 5, 5);
 $nav-bg-secondary: rgb(0, 0, 0);
 $page-bg: rgb(27, 27, 27);
 $page-bg-2: rgb(184, 184, 184);
+$group-bg:rgb(24, 24, 24);
+$logo-bg:#FFCF37;
 /* gradients */
 $btn-primary: linear-gradient(to left, rgb(0, 119, 255), rgb(14, 89, 252));
 $btn-primary-hover: linear-gradient(to left, rgb(14, 73, 235), rgb(19, 71, 243));
 $btn-secondary: linear-gradient(to left, $bg-tertiary, rgb(187, 0, 224));
-$btn-secondary-hover: linear-gradient(to right, rgb(173, 0, 207), rgb(159, 0, 199));
+$btn-secondary-hover: linear-gradient(to right, rgb(182, 2, 218), rgb(172, 2, 214));
 $btn-trinary: linear-gradient(to right, #72188d, #700c8f);
-$btn-trinary-hover: linear-gradient(to right, #520a68, #490b5c);
+$btn-trinary-hover: linear-gradient(to right, #680f83, #5c0e74);
 $header-bg: linear-gradient(to left, $bg-secondary, #8e11b4);
-$post-bg: linear-gradient(to right, $nav-bg-secondary, $nav-bg-primary);
+$post-bg: linear-gradient(to top, $nav-bg-secondary,$nav-bg-primary);
 
 #root {
   max-width: 1280px;
@@ -113,6 +115,7 @@ button {
   outline: none;
   color: $text-primary;
   transition: box-shadow 0.2s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 
@@ -128,10 +131,13 @@ button {
 .tv,
 .signup {
   @extend .VBox;
-  margin-left: 5rem;
+  justify-content: center;
+  gap: 1rem;
+  // margin-left: 5rem;
   margin-top: 4rem;
   height: calc(100vh - 4rem);
-  width: calc(100vw - 5rem);
+  // width: calc(100vw - 5rem);
+  width: 100vw;
   background-color: $page-bg;
   font-size: 3rem;
   color: $text-primary;
@@ -196,9 +202,9 @@ button {
 /* Large screens */
 @media only screen and (min-width: 600px) {
   .navbar {
-    top: 0;
+    // top: 0;
     width: 5rem;
-    height: 100vh;
+    height: calc(100vh - 4rem);
 
     &:hover {
       width: 16rem;

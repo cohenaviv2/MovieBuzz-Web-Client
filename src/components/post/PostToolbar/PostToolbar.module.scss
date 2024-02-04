@@ -1,45 +1,43 @@
+@import "../../../styles/styles.scss";
+@import "../../../styles/containers.scss";
+// @import url("https://fonts.googleapis.com/css?family=Pacifico");
+
 .postToolbar {
-  display: flex;
+  @extend .HBox;
   justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
   width: 85%;
-  gap: 2rem;
+  gap: 10vw
 }
 
 .newPostBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 16px;
   gap: 0.5rem;
   font-size: 1.2rem;
   height: 3rem;
-  width: 9rem;
-  background: var(--header-bg);
+  padding: 0 0.8rem;
+  background: $btn-secondary;
   white-space: nowrap;
-}
 
-.newPostBtn:hover {
-  background: var(--btn-secondary-hover);
-  box-shadow: 0 0 8px var(--text-secondary);
+  &:hover {
+    background: $btn-secondary-hover;
+    box-shadow: 0 0 8px $text-secondary;
+  }
 }
 
 .postFilterBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 16px;
   gap: 0.5rem;
-  font-size: 1.3rem;
-  height: 3rem;
-  /* width: 10rem; */
-  padding: 0 1.3vw;
-  background: var(--btn-secondary);
+  border-radius: 16px;
+  font-size: 1.4rem;
+  height: 3.3rem;
+  padding: 0 2rem;
+  background: $header-bg;
   white-space: nowrap;
-  border: 2px solid #25252580;
-}
+  border: 2px solid $bg-primary;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
-.postFilterBtn:hover {
-  background: linear-gradient(to left, #7a39ac, #9c44df);
-  box-shadow: 0 0 8px var(--text-secondary);
+  &:hover {
+    background: $btn-trinary-hover;
+    box-shadow: 0 0 8px $text-tertiary;
+  }
 }

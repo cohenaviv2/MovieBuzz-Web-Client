@@ -71,13 +71,13 @@ function SignUpForm() {
               </div>
             </div>
             <label htmlFor="email">Email Address</label>
-            <input {...register("email")} id="email" type="email" onClick={() => handleInputClick("email")} />
+            <input {...register("email")} id="email" type="email" autoComplete="username" onClick={() => handleInputClick("email")} />
             {errors.email && <div className={styles.error}>{errors.email.message}</div>}
             <label htmlFor="password">Password</label>
-            <input {...register("password")} id="password" type="password" onClick={() => handleInputClick("password")} />
+            <input {...register("password")} id="password" type="password" autoComplete="new-password" onClick={() => handleInputClick("password")} />
             {errors.password && <div className={styles.error}>{errors.password.message}</div>}
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <input {...register("confirmPassword")} id="confirmPassword" type="password" onClick={() => handleInputClick("confirmPassword")} />
+            <input {...register("confirmPassword")} id="confirmPassword" type="password" autoComplete="new-password" onClick={() => handleInputClick("confirmPassword")} />
             {errors.confirmPassword && <div className={styles.error}>{errors.confirmPassword.message}</div>}
             <label className={styles.favTitle} htmlFor="favorite">
               What is your favorite Movie/TV Show?

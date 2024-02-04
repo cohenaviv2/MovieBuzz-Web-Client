@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
-import styles from "./SearchBar.module.scss"
+import styles from "./SearchBar.module.scss";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
@@ -8,6 +8,7 @@ interface SearchBarProps {
 
 function SearchBar({ onSearch }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [submited,setSubmited] = useState(false);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -15,24 +16,17 @@ function SearchBar({ onSearch }: SearchBarProps) {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmited(true);
     onSearch(searchTerm);
   };
 
   return (
-    <form className={styles.searchBar} onSubmit={handleSubmit}>
-      {searchTerm == "" && <div className={styles.searchHeader}>Search</div>}
-      <div className={styles.inputContainer}>
-        <input
-          className={styles.searchInput}
-          type="text"
-          placeholder="Movies, TV Shows, Posts..."
-          value={searchTerm}
-          onChange={handleInputChange}
-        />
-        <button className={styles.searchBtn} type="submit">
-          <PiMagnifyingGlassBold size="25px" />
-        </button>
-      </div>
+    <form className={styles.searchBar} style={{height:submited ? "3rem" : "6rem"}} onSubmit={handleSubmit}>
+      <h3>Search</h3>
+      <input className={styles.searchInput} type="text" placeholder="Movies, TV Shows, Posts..." value={searchTerm} onChange={handleInputChange} />
+      <button className={styles.searchBtn} type="submit">
+        <PiMagnifyingGlassBold size="25px" />
+      </button>
     </form>
   );
 }

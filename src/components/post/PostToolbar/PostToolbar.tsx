@@ -1,19 +1,17 @@
 import { FaPlus } from "react-icons/fa";
-import ButtonGroup, {Button} from "../../ButtonGroup/ButtonGroup";
+import ButtonGroup from "../../ButtonGroup/ButtonGroup";
+import { Button } from "../../ButtonGroup/ButtonData";
 import { PostFilters } from "../PostsData";
 import { Link } from "react-router-dom";
-import styles from "./PostToolbar.module.scss"
+import styles from "./PostToolbar.module.scss";
 
 function PostToolbar() {
-  function createButton(
-    label: string,
-    onClick: () => void,
-    cName: string
-  ): Button {
+  function createButton(label: string, onClick: () => void, cName: string, icon:JSX.Element): Button {
     return {
       label,
       onClick,
       cName,
+      icon,
     };
   }
 
@@ -21,11 +19,11 @@ function PostToolbar() {
     console.log(filter);
   }
 
-  const filterButtons = PostFilters.map((filter) => createButton(filter.label,()=>handleFilterClick(filter.label),filter.cName));
+  const filterButtons = PostFilters.map((filter) => createButton(filter.label, () => handleFilterClick(filter.label), filter.cName,filter.icon));
 
   return (
     <div className={styles.postToolbar}>
-      <h1 style={{ fontSize: "3rem" }}>Home</h1>
+      <h3>Home</h3>
       <ButtonGroup buttons={filterButtons} type="filter" />
       <Link to="/search">
         <button className={styles.newPostBtn}>

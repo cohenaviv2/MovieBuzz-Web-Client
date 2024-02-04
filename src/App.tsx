@@ -22,11 +22,11 @@ function App() {
         <Header />
         <Navbar />
         <Routes>
-          {/* <Route path="/" Component={Home} /> */}
-          {/* <Route path="/search" Component={Search} /> */}
-          {/* <Route path="/movies" Component={Movies} /> */}
-          {/* <Route path="/tv" Component={TvShows} /> */}
-          {/* <Route path="/chat" Component={Chat} /> */}
+          <Route path="/" Component={Home} />
+          <Route path="/search" Component={Search} />
+          <Route path="/movies" Component={Movies} />
+          <Route path="/tv" Component={TvShows} />
+          <Route path="/chat" Component={Chat} />
           <Route path="/profile" Component={isLoggedIn ? Profile : Login} />
           <Route path="/signup" Component={SignUp} />
           {/* <Route path="/movie/:id" Component={MovieDetails} /> */}

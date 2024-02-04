@@ -1,14 +1,44 @@
 @import "../../../styles/styles.scss";
 @import "../../../styles/containers.scss";
 
+.loginContainer {
+  @extend .VBox;
+  @extend .StyledBox;
+  margin-bottom: -1rem;
+  gap: 1rem;
+  width: 24rem;
+
+  h3 {
+    margin-top: -0.5rem
+  }
+}
+
+.formContainer {
+  @extend .FormBox;
+}
+
+.loginBtn {
+  background: $btn-secondary;
+  width: 16rem;
+  height: 3rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  &:hover {
+    background: $btn-secondary-hover;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
 .signupContainer {
   @extend .VBox;
+  @extend .StyledBox;
+  margin-top: -1rem;
   gap: 1rem;
-  justify-content: center;
-  padding: 16px;
-  background-color: rgba(184, 184, 184, 0.116);
-  border-radius: 12px;
-  border: 3px solid rgba(56, 53, 53, 0.603);
   width: 24rem;
 }
 
@@ -29,43 +59,4 @@
   &:hover {
     background: linear-gradient(to right, #007506, #006905);
   }
-}
-
-
-.loginContainer {
-  @extend .VBox;
-  gap: 1rem;
-  justify-content: center;
-  padding: 16px;
-  background-color: rgba(184, 184, 184, 0.116);
-  border-radius: 12px;
-  border: 3px solid rgba(56, 53, 53, 0.603);
-  width: 24rem;
-  height: 35%;
-
-  h4 {
-    margin-top: -1rem
-  }
-}
-
-.formContainer {
-  @extend .FormBox;
-}
-
-.loginBtn {
-  margin-top: 1rem;
-  background: $btn-secondary;
-  width: 16rem;
-  height: 3rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-  &:hover {
-    background: $btn-secondary-hover;
-  }
-}
-
-.error {
-  color: red;
-  font-size: 1rem;
-  font-weight: 100;
 }

@@ -1,31 +1,33 @@
+@import "../../styles/styles.scss";
+@import "../../styles/containers.scss";
+
 .listContainer {
-  display: flex;
-  align-items: center;
+  @extend .HBox;
   gap: 0.5rem;
 }
 
 .list {
-  display: flex;
-  gap: 1rem;
+  @extend .HBox;
+  @extend .StyledBox;
+  gap: 2rem;
   max-width: calc(100vw - 30rem);
   max-height: calc(100vh - 20rem);
-  background: transparent;
+  // background: transparent;
   overflow-x: auto;
   scroll-behavior: smooth;
-  background-color: rgb(37, 37, 37);
-  border-radius: 20px;
-}
 
-.list::-webkit-scrollbar {
-  display: none;
-  height: 0.5rem;
+  &::-webkit-scrollbar {
+    // display: none;
+    height: 0.5rem;
+  }
+
 }
 
 .arrowBtn {
-  background: var(--header-bg);
+  background: $header-bg;
   height: 40%;
-}
-
-.arrowBtn:hover {
-  box-shadow: 0 0 10px rgba(175, 175, 175, 0.589);
+  width: 2.3rem;
+  &:hover {
+    box-shadow: 0 0 10px rgba(175, 175, 175, 0.589);
+  }
 }

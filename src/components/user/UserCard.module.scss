@@ -1,18 +1,17 @@
-@import "../../styles/containers";
+@import "../../styles/styles.scss";
+@import "../../styles/containers.scss";
 
 .userCard {
   @extend .HBox;
   gap: 0.7rem;
   height: 3rem;
   width: 10rem;
-}
-
-.userImg {
-  width: 22%;
-  height: 70%;
-  border-radius: 100%;
-}
-
-.userTitle {
   font-size: 1rem;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+  }
 }
+

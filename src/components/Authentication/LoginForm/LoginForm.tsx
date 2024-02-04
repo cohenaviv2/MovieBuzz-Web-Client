@@ -25,20 +25,8 @@ function LoginForm() {
 
   return (
     <>
-      <h6>Don't have an account?</h6>
-      <div className={styles.signupContainer}>
-        <Link to="/signup">
-          <button className={styles.signupBtn}>Sign Up</button>
-        </Link>
-        <button className={styles.googleBtn}>
-          Continue with
-          <FcGoogle size="30px" style={{ margin: "0 10px" }} />
-          Google
-        </button>
-      </div>
-      <h6>or</h6>
       <div className={styles.loginContainer}>
-        <h4>Login</h4>
+        <h3>Login</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formContainer}>
             <input {...register("email")} id="email" type="email" placeholder="Email Address" autoComplete="email" />
@@ -48,6 +36,17 @@ function LoginForm() {
             <button className={styles.loginBtn}>Login</button>
           </div>
         </form>
+      </div>
+      <h6>Don't have an account?</h6>
+      <div className={styles.signupContainer}>
+        <button className={styles.googleBtn}>
+          Continue with
+          <FcGoogle size="25px" style={{ margin: "0 10px" }} />
+          Google
+        </button>
+        <Link to="/signup">
+          <button className={styles.signupBtn}>Sign Up</button>
+        </Link>
       </div>
     </>
   );
