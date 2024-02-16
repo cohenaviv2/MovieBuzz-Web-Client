@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
@@ -8,26 +9,25 @@ import Search from "./pages/Search";
 import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
-import { useState } from "react";
-import MovieDetails from "./components/Movie/MovieDetails/MovieDetails";
 import SignUp from "./pages/SignUp";
-// import "./App.css";
+import MovieDetails from "./components/Movie/MovieDetails/MovieDetails";
+import { IUser } from "./services/Types";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profile, setProfile] = useState<IUser | null>(null);
 
   return (
     <>
       <Router>
         <Header />
-        <Navbar />
+        <Navbar profile={profile} />
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/search" Component={Search} />
           <Route path="/movies" Component={Movies} />
           <Route path="/tv" Component={TvShows} />
           <Route path="/chat" Component={Chat} />
-          <Route path="/profile" Component={isLoggedIn ? Profile : Login} />
+          <Route path="/profile" element={profile ? <Profile profile={profile} /> : <Login setProfile={setProfile} />} />
           <Route path="/signup" Component={SignUp} />
           <Route path="/movie/:id" Component={MovieDetails} />
           <Route path="/tv/:id" Component={MovieDetails} />

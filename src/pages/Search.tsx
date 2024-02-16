@@ -3,14 +3,10 @@ import { Link } from "react-router-dom";
 import MovieCard from "../components/Movie/MovieCard/MovieCard";
 import SearchBar from "../components/SearchBar/SearchBar";
 import List from "../components/List/List";
-import { IMovie, IPost, ITvShow } from "../services/CommonTypes";
-import {
-  frozenMovieSearchRes,
-  frozenPostsSearchRes,
-  frozenTvSeachRes,
-} from "../components/Movie/MoviesData";
-import "../styles/Search.css";
+import { IMovie, IPost, ITvShow } from "../services/Types";
+import { frozenMovieSearchRes, frozenPostsSearchRes, frozenTvSeachRes } from "../components/Movie/MoviesData";
 import PostCard from "../components/Post/PostCard/PostCard";
+import styles from "../components/SearchBar/SearchBar.module.scss";
 
 function Search() {
   const [searchTerm, setSearchTerms] = useState(false);
@@ -31,7 +27,7 @@ function Search() {
       {/* {!searchTerm && <h1>Search</h1>} */}
       <SearchBar onSearch={handleSearch} />
       {searchTerm && (
-        <div className="search-res">
+        <div className={styles.searchRes}>
           <h2>Movies</h2>
           <List
             type="movie"

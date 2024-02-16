@@ -1,5 +1,7 @@
+import { movieFilter } from "../../services/MovieService";
+
 export interface Button {
-  label: string;
+  label: movieFilter | string;
   onClick: () => void;
   cName: string;
   icon?: JSX.Element;

@@ -26,24 +26,23 @@
   // border: 3px solid $nav-bg-primary;
 
   &:hover {
-    background: $btn-secondary-hover;
+    background: $btn-secondary;
     box-shadow: 0 0 8px $text-tertiary;
-
   }
 }
 
 .filterIcon {
   font-size: 20px;
   color: $logo-bg;
-  }
+}
 
 .genreBtnGroup {
   @extend .HBox;
   justify-content: center;
   // background-color: $nav-bg-secondary;
-    background: $group-bg;
+  background: $group-bg;
   border-radius: 16px;
-  height: 40%;
+  height: 43%;
   width: 30vw;
   padding: 8px 8px;
   border: 3px solid #2525259a;
@@ -64,9 +63,9 @@
 }
 
 .genreBtn {
-  border-radius: 16px;
+  border-radius: 8px;
   font-size: 1rem;
-  background: $btn-secondary;
+  background: $btn-primary;
   border: 1.5px solid #25252580;
   white-space: normal;
   word-wrap: break-word;
@@ -74,8 +73,8 @@
   box-sizing: border-box;
 
   &:hover {
-    background: $btn-secondary-hover;
-    box-shadow: 0 0 18px rgba(175, 175, 175, 0.589);
+    background: $btn-primary-hover;
+    box-shadow: 0 0 2px rgba(175, 175, 175, 0.589);
   }
 }
 
@@ -92,3 +91,5 @@
     color: $text-primary;
   }
 }
+
+

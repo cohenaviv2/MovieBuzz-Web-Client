@@ -4,7 +4,6 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import styles from "./ButtonGroup.module.scss";
 
-
 interface ButtonGroupProps {
   buttons: Button[];
   type: "filter" | "genre";

@@ -19,13 +19,26 @@
 
 .searchBtn {
   background: $header-bg;
-  height: 2.4rem;
+  height: 2.5rem;
   width: 6rem;
-  margin-left: -105px;
+  margin-left: -102px;
   // position: absolute;
   // left: 6%;
 
   &:hover {
     background: $btn-secondary-hover;
   }
+}
+
+.searchRes {
+    margin-top:1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-primary);
+    text-align: center;
+    overflow: auto;
+    width: 95%;
+    font-size: 2rem;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { IMovie, ITvShow } from "../../../services/CommonTypes";
+import { IMovie, ITvShow } from "../../../services/Types";
 import { MoviesData, genres } from "../../Movie/MoviesData";
 import { TvShowsData } from "../../Movie/TvShowsData"
 import { IoClose } from "react-icons/io5";

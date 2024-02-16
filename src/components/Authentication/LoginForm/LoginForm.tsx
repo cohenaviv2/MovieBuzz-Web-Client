@@ -4,6 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import styles from "./LoginForm.module.scss";
+import { IUser } from "../../../services/Types";
+import { profile as tempProfile } from "../../Post/PostsData";
+
+export interface LoginProps {
+  setProfile: (value: React.SetStateAction<IUser | null>) => void;
+}
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -12,7 +18,7 @@ const loginSchema = z.object({
 
 type FormData = z.infer<typeof loginSchema>;
 
-function LoginForm() {
+function LoginForm({ setProfile }: LoginProps) {
   const {
     register,
     handleSubmit,
@@ -21,6 +27,7 @@ function LoginForm() {
 
   function onSubmit(data: FieldValues) {
     console.log(data);
+    setProfile(tempProfile);
   }
 
   return (

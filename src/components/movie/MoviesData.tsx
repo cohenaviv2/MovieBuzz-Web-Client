@@ -1,4 +1,4 @@
-import { IMovie } from "../../services/CommonTypes";
+import { IMovie } from "../../services/Types";
 
 export const MoviesData: IMovie[] = [
   {

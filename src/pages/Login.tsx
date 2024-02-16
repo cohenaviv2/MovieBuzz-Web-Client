@@ -1,9 +1,10 @@
-import LoginForm from "../components/Authentication/LoginForm/LoginForm";
+import LoginForm, { LoginProps } from "../components/Authentication/LoginForm/LoginForm";
 
-function Login() {
+
+function Login({ setProfile }: LoginProps) {
   return (
     <div className="login">
-      <LoginForm />
+      <LoginForm setProfile={setProfile} />
     </div>
   );
 }

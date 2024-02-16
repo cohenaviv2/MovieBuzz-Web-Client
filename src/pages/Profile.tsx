@@ -1,16 +1,15 @@
-import { IUser } from "../services/CommonTypes";
-import { profile } from "../components/Post/PostsData";
+import { IUser } from "../services/Types";
 import { frozenPostsSearchRes } from "../components/Movie/MoviesData";
 import styles from "../components/Authentication/SignUpForm/SignUpForm.module.scss";
 import PostCard from "../components/Post/PostCard/PostCard";
 import { Link } from "react-router-dom";
-import List from "../components/List/List";
- 
-interface ProfileProps {
-  user: IUser;
+import Grid from "../components/Grid/Grid";
+
+export interface ProfileProps {
+  profile: IUser;
 }
 
-function Profile({user}:ProfileProps) {
+function Profile({profile}:ProfileProps) {
     
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -35,8 +34,8 @@ function Profile({user}:ProfileProps) {
         <h6>{profile.email}</h6>
         <h6>My favorite Movie/Tv Show:</h6>
       </div>
-      {/* <h4>My Posts</h4> */}
-      <List
+      <h5>My Posts</h5>
+      <Grid
         type="post"
         items={frozenPostsSearchRes}
         renderItem={(post) => (

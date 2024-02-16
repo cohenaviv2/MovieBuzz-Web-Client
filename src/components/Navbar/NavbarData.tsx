@@ -52,3 +52,9 @@ export const NavbarData = [
     cNameTxt: styles.navText,
   },
 ];
+
+const ProfileIcon = (imageUrl: string) => {
+  return <img src={imageUrl} alt="Profile" className={styles.profileIcon} />;
+};
+
+export default ProfileIcon;

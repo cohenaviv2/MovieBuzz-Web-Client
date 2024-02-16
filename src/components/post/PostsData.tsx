@@ -1,7 +1,7 @@
 import * as FaIcons from "react-icons/fa6";
 import styles from "../Post/PostToolbar/PostToolbar.module.scss";
 import iconStyle from "../ButtonGroup/ButtonGroup.module.scss";
-import { IUser } from "../../services/CommonTypes";
+import { IUser } from "../../services/Types";
 
 export const PostFilters = [
   {

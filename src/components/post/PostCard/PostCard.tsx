@@ -1,5 +1,5 @@
-import { IPost } from "../../../services/CommonTypes";
-import UserCard from "../../User/UserCard";
+import { IPost } from "../../../services/Types";
+import UserCard from "../../User/UserCard/UserCard";
 import { FaStar } from "react-icons/fa6";
 import { FaCommentAlt } from "react-icons/fa";
 import styles from "./PostCard.module.scss";

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styles from "./UserCard.module.scss";
 
 interface UserProps {
@@ -7,7 +7,7 @@ interface UserProps {
   imageUrl: string;
 }
 
-function UserCard({ userId, fullName, imageUrl }: UserProps) {
+function UserCard({ fullName, imageUrl }: UserProps) {
   return (
     // <Link to={`/users/${userId}`}>
     <div className={styles.userCard}>
