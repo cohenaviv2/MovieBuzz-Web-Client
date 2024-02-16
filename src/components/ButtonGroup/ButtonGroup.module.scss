@@ -21,36 +21,42 @@
   font-size: 1.4rem;
   height: 3.3rem;
   padding: 0 2rem;
-  background: $btn-primary;
+  background: $post-bg;
   white-space: nowrap;
-  border: 2px solid #2000d36c;
+  // border: 3px solid $nav-bg-primary;
 
   &:hover {
-    background: $btn-primary-hover;
+    background: $btn-secondary-hover;
     box-shadow: 0 0 8px $text-tertiary;
+
   }
 }
+
+.filterIcon {
+  font-size: 20px;
+  color: $logo-bg;
+  }
 
 .genreBtnGroup {
   @extend .HBox;
   justify-content: center;
-  background-color: $nav-bg-secondary;
+  // background-color: $nav-bg-secondary;
+    background: $group-bg;
   border-radius: 16px;
-  height: 50%;
-  width: 40rem;
-  padding: 10px 16px;
+  height: 40%;
+  width: 30vw;
+  padding: 8px 8px;
   border: 3px solid #2525259a;
 }
 
 .genreBtnContainer {
   @extend .HBox;
   justify-content: center;
-  // padding-top: 0.5rem;
   flex-wrap: wrap;
   overflow: auto;
   scroll-behavior: smooth;
-  gap: 0.8rem;
-  height: 95%;
+  gap: 0.5rem;
+  height: 100%;
 
   &::-webkit-scrollbar {
     display: none;
@@ -58,14 +64,13 @@
 }
 
 .genreBtn {
-  height: 2rem;
   border-radius: 16px;
   font-size: 1rem;
   background: $btn-secondary;
   border: 1.5px solid #25252580;
   white-space: normal;
   word-wrap: break-word;
-  padding: 0 16px;
+  padding: 4px 16px;
   box-sizing: border-box;
 
   &:hover {

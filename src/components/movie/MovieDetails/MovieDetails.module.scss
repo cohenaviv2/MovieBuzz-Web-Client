@@ -1,124 +1,151 @@
-.movieDetailsCard {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: start;
-  gap: 3rem;
-  background-color: var(--nav-bg-secondary);
-  border-radius: 15px;
-  height: 90%;
+@import "../../../styles/styles.scss";
+@import "../../../styles/containers.scss";
+
+.detailsCard {
+  @extend .HBox;
+  background-color: $nav-bg-secondary;
+  gap: 1rem;
+  border-radius: 16px;
+  height: 80%;
   width: 80%;
+  margin-left: 5rem;
   font-size: 1.5rem;
-  color: var(--text-secondary);
-  box-shadow: 0 4px 18px var(--text-secondary);
-  padding: 0 1.5vw;
+  box-shadow: 0 4px 18px $text-secondary;
+  padding: 16px 16px;
+
+  h5 {
+    margin: 0 8px;
+  }
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.imgContainer {
+  @extend .VBox;
+  justify-content: center;
+  height: 90%;
+  width: 30%;
+
+  img {
+    width: 90%;
+    height: auto;
+    border-radius: 16px;
+  }
 }
 
 .detailsContainer {
-  display: flex;
-  flex-direction: column;
-  margin: 36px 8px;
-  margin-left: -36px;
-  text-align: left;
-  width: 55%;
-}
-
-.tagsContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  margin-top: -3rem;
+  @extend .VBox;
+  height: 85%;
+  width: 60%;
 }
 
 .titleContainer {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  margin-top: -4%;
-  text-align: center;
-  align-items: center;
+  @extend .HBox;
+  width: 100%;
+  height: 20%;
+  margin-bottom: 1rem;
+}
+
+.tagsContainer {
+  @extend .HBox;
+  width: 100%;
+  height: 10%;
 }
 
 .yearTag {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to right, var(--bg-tertiary), rgb(160, 36, 255));
-  color: var(--text-primary);
-  text-align: center;
-  min-width: 6rem;
-  height: auto;
-  border-radius: 2rem;
-  font-size: 2rem;
+  background: $btn-secondary;
+  border-radius: 32px;
+  padding: 4px 16px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .genreTag {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to right, rgb(23, 144, 243), rgb(33, 153, 250));
-  color: var(--text-primary);
-  text-align: center;
-  padding: 0 2rem;
-  height: 30%;
+  background: $btn-primary;
   border-radius: 8px;
+  padding: 4px 24px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .langTag {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to right, var(--bg-primary), var(--bg-secondary));
-  color: var(--text-primary);
-  text-align: center;
-  width: 5%;
-  height: 25%;
-  border-radius: 2rem;
+  background: $btn-trinary;
+  border-radius: 24px;
+  border-radius: 24px;
+  padding: 4px 16px;
+  color: $text-secondary;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-.movieDetailsImg {
-  margin: 36px 36px;
-  width: 30%;
-  height: auto;
-  border-radius: 0.5rem;
+.overviewContainer {
+  @extend .VBox;
+  width: 100%;
+  height: 50%;
+  align-items: start;
+
+  h6 {
+    margin-top: 0rem;
+  }
 }
 
-.movieDetailsBtn {
-  display: flex;
-  align-items: center;
+.buttonsContainer {
+  @extend .HBox;
+  @extend .StyledBox;
   justify-content: center;
-  width: 3rem;
+  background: transparent;
+  width: 100%;
+  height: 10%;
+  gap: 1rem;
+}
+
+.newPostBtn {
+  border-radius: 16px;
+  gap: 0.8rem;
+  font-size: 1.5rem;
+  padding: 12px 26px;
+  background: $btn-secondary;
+  white-space: nowrap;
+
+  &:hover {
+    background: $btn-secondary-hover;
+    box-shadow: 0 0 8px $text-secondary;
+  }
+}
+
+.getPostsBtn {
+  border-radius: 8px;
+  gap: 0.8rem;
+  font-size: 1.5rem;
+  padding: 12px 26px;
+  background: $btn-trinary;
+  white-space: nowrap;
+
+  &:hover {
+    background: $btn-trinary-hover;
+    box-shadow: 0 0 8px $text-secondary;
+  }
+  
+}
+
+.postIcon {
+  color: $logo-bg;
+}
+
+.closeBtnContainer {
+  @extend .VBox;
+  height: 100%;
+  width: 10%;
+}
+
+.closeBtn {
   background: transparent;
   margin-top: 2rem;
-  height: 3rem;
-}
+  font-size: 45px;
+  padding: 8px 8px;
 
-.movieDetailsBtn:hover {
-  background-color: rgb(49, 48, 48);
-  border-radius: 15px;
-}
-
-.overview {
-  margin-top: -1rem;
-  font-size: 1rem;
-  color: var(--text-primary);
-}
-
-@media only screen and (max-width: 600px) {
-  .movieDetailsCard {
-    font-size: 1rem;
-    display: inline;
-    align-items: center;
-    width: 80vw;
-  }
-
-  .movieDetailsImg {
-    height: 20vh;
-    width: 60vw;
-  }
-
-  h5 {
-    width: 80vw;
+  &:hover {
+    background-color: rgb(49, 48, 48);
+    border-radius: 15px;
+    // box-shadow: 0 0 8px $text-tertiary;
   }
 }

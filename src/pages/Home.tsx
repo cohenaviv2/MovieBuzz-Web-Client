@@ -1,8 +1,8 @@
-import PostToolbar from "../components/Post/PostToolbar/PostToolbar.tsx";
-import PostCard from "../components/Post/PostCard/PostCard.tsx";
-import Grid from "../components/Grid/Grid.tsx";
+import PostToolbar from "../components/Post/PostToolbar/PostToolbar";
+import PostCard from "../components/Post/PostCard/PostCard";
+import Grid from "../components/Grid/Grid";
 import { Link } from "react-router-dom";
-import { frozenPostsSearchRes } from "../components/Movie/MoviesData.tsx";
+import { frozenPostsSearchRes } from "../components/Movie/MoviesData";
 
 function Home() {
   return (

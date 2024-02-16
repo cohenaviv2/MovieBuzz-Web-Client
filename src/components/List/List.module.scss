@@ -10,7 +10,7 @@
   @extend .HBox;
   @extend .StyledBox;
   gap: 2rem;
-  max-width: calc(100vw - 30rem);
+  max-width: calc(100vw - 25rem);
   max-height: calc(100vh - 20rem);
   // background: transparent;
   overflow-x: auto;
@@ -25,7 +25,7 @@
 
 .arrowBtn {
   background: $header-bg;
-  height: 40%;
+  height: 30%;
   width: 2.3rem;
   &:hover {
     box-shadow: 0 0 10px rgba(175, 175, 175, 0.589);

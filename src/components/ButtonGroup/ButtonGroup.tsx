@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Button } from "./ButtonData";
+import { Button } from "./ButtonUtils";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import styles from "./ButtonGroup.module.scss";

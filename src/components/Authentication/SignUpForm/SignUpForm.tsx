@@ -55,8 +55,8 @@ function SignUpForm() {
     <>
       <h3>Sign Up</h3>
       <div className={styles.signupContainer}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.formContainer}>
+        <div className={styles.detailsContainer}>
+          <div className={styles.submitContainer}>
             <div className={styles.imgNameContainer}>
               <div className={styles.imgContainer}>
                 <label htmlFor="image" className={styles.customFileInput} style={{ backgroundImage: `url(${selectedImageUrl})` }}>
@@ -66,24 +66,29 @@ function SignUpForm() {
               </div>
               <div className={styles.nameContainer}>
                 <label htmlFor="fullName">Full Name</label>
-                <input {...register("fullName")} id="fullName" type="text" className={styles.nameInput} onClick={() => handleInputClick("fullName")} />
+                <input {...register("fullName")} id="fullName" type="text" className={styles.nameInput} onClick={() => errors.fullName && handleInputClick("fullName")} />
                 {errors.fullName && <div className={styles.error}>{errors.fullName.message}</div>}
               </div>
             </div>
+            <label htmlFor="favorite">Favorite Movie / TV Show</label>
+            <input id="favorite" type="text" />
+          </div>
+          <button className={styles.signupBtn} onClick={handleSubmit(onSubmit)}>
+            Sign Up
+          </button>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.formContainer}>
             <label htmlFor="email">Email Address</label>
-            <input {...register("email")} id="email" type="email" autoComplete="username" onClick={() => handleInputClick("email")} />
+            <input {...register("email")} id="email" type="email" autoComplete="username" onClick={() => errors.email && handleInputClick("email")} />
             {errors.email && <div className={styles.error}>{errors.email.message}</div>}
             <label htmlFor="password">Password</label>
-            <input {...register("password")} id="password" type="password" autoComplete="new-password" onClick={() => handleInputClick("password")} />
+            <input {...register("password")} id="password" type="password" autoComplete="new-password" onClick={() => errors.password && handleInputClick("password")} />
+            {!errors.password && <h6>Password must contains at least 8 characters, including letters and numbers.</h6>}
             {errors.password && <div className={styles.error}>{errors.password.message}</div>}
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <input {...register("confirmPassword")} id="confirmPassword" type="password" autoComplete="new-password" onClick={() => handleInputClick("confirmPassword")} />
+            <input {...register("confirmPassword")} id="confirmPassword" type="password" autoComplete="new-password" onClick={() => errors.confirmPassword && handleInputClick("confirmPassword")} />
             {errors.confirmPassword && <div className={styles.error}>{errors.confirmPassword.message}</div>}
-            <label className={styles.favTitle} htmlFor="favorite">
-              What is your favorite Movie/TV Show?
-            </label>
-            <input id="favorite" type="text" className={styles.favInput} />
-            <button className={styles.signupBtn}>Sign Me Up</button>
           </div>
         </form>
       </div>

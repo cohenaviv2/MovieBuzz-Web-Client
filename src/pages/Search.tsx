@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import MovieCard from "../components/Movie/MovieCard/MovieCard.tsx";
-import SearchBar from "../components/SearchBar/SearchBar.tsx";
-import List from "../components/List/List.tsx";
+import MovieCard from "../components/Movie/MovieCard/MovieCard";
+import SearchBar from "../components/SearchBar/SearchBar";
+import List from "../components/List/List";
 import { IMovie, IPost, ITvShow } from "../services/CommonTypes";
 import {
   frozenMovieSearchRes,
   frozenPostsSearchRes,
   frozenTvSeachRes,
-} from "../components/Movie/MoviesData.tsx";
+} from "../components/Movie/MoviesData";
 import "../styles/Search.css";
-import PostCard from "../components/Post/PostCard/PostCard.tsx";
+import PostCard from "../components/Post/PostCard/PostCard";
 
 function Search() {
   const [searchTerm, setSearchTerms] = useState(false);
@@ -32,7 +32,7 @@ function Search() {
       <SearchBar onSearch={handleSearch} />
       {searchTerm && (
         <div className="search-res">
-          Movies
+          <h2>Movies</h2>
           <List
             type="movie"
             items={movieList}
@@ -42,7 +42,7 @@ function Search() {
               </Link>
             )}
           />
-          TV Shows
+          <h2>TV Shows</h2>
           <List
             type="movie"
             items={tvShowList}
@@ -52,7 +52,7 @@ function Search() {
               </Link>
             )}
           />
-          Posts
+          <h2>Posts</h2>
           <List
             type="post"
             items={postList}

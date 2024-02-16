@@ -1,5 +1,5 @@
 import ButtonGroup from "../../ButtonGroup/ButtonGroup";
-import { createButton } from "../../ButtonGroup/ButtonData";
+import { createButton } from "../../ButtonGroup/ButtonUtils";
 import { MovieFilterButton, MovieGenreButtons, TvShowFilterButton, TvShowGenreButtons } from "../MoviesData";
 import styles from "./MovieToolbar.module.scss";
 

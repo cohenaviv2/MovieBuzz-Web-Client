@@ -385,7 +385,8 @@ export const MoviesData: IMovie[] = [
   },
 ];
 
-export const MovieGenres = [
+
+export const genres = [
   {
     id: 28,
     name: "Action",
@@ -462,44 +463,13 @@ export const MovieGenres = [
     id: 37,
     name: "Western",
   },
-];
-
-export const TvShowGenres = [
   {
     id: 10759,
     name: "Action & Adventure",
   },
   {
-    id: 16,
-    name: "Animation",
-  },
-  {
-    id: 35,
-    name: "Comedy",
-  },
-  {
-    id: 80,
-    name: "Crime",
-  },
-  {
-    id: 99,
-    name: "Documentary",
-  },
-  {
-    id: 18,
-    name: "Drama",
-  },
-  {
-    id: 10751,
-    name: "Family",
-  },
-  {
     id: 10762,
     name: "Kids",
-  },
-  {
-    id: 9648,
-    name: "Mystery",
   },
   {
     id: 10763,
@@ -525,11 +495,8 @@ export const TvShowGenres = [
     id: 10768,
     name: "War & Politics",
   },
-  {
-    id: 37,
-    name: "Western",
-  },
 ];
+
 
 // export const MovieFilters = ["Popular", "Now Playing", "Upcoming"];
 // export const TvShowFilters = ["On The Air", "Popular", "Top Rated"];
@@ -1050,28 +1017,26 @@ export const user = {
 
 import * as FaIcons from "react-icons/fa6";
 import styles from "../ButtonGroup/ButtonGroup.module.scss";
-import { Button } from "../ButtonGroup/ButtonData";
-
-const iconSize = 20;
+import { Button } from "../ButtonGroup/ButtonUtils";
 
 export const MovieFilterButton: Button[] = [
   {
     label: "Popular",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaStar size={iconSize} />,
+    icon: <FaIcons.FaHeart />,
   },
   {
     label: "Now Playing",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaClapperboard size={iconSize} />,
+    icon: <FaIcons.FaClapperboard  />,
   },
   {
     label: "Upcoming",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaSquareArrowUpRight size={iconSize} />,
+    icon: <FaIcons.FaSquareArrowUpRight  />,
   },
 ];
 
@@ -1080,19 +1045,19 @@ export const TvShowFilterButton: Button[] = [
     label: "On The Air",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaTowerBroadcast size={iconSize} />,
+    icon: <FaIcons.FaTowerCell  />,
   },
   {
     label: "Popular",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaStar size={iconSize} />,
+    icon: <FaIcons.FaHeart  />,
   },
   {
     label: "Top Rated",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaFireFlameSimple size={iconSize} />,
+    icon: <FaIcons.FaFireFlameSimple  />,
   },
 ];
 

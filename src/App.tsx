@@ -9,7 +9,7 @@ import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import { useState } from "react";
-import MovieDetails from "./components/movie/MovieDetails/MovieDetails";
+import MovieDetails from "./components/Movie/MovieDetails/MovieDetails";
 import SignUp from "./pages/SignUp";
 // import "./App.css";
 
@@ -29,8 +29,8 @@ function App() {
           <Route path="/chat" Component={Chat} />
           <Route path="/profile" Component={isLoggedIn ? Profile : Login} />
           <Route path="/signup" Component={SignUp} />
-          {/* <Route path="/movie/:id" Component={MovieDetails} /> */}
-          {/* <Route path="/tv/:id" Component={MovieDetails} /> */}
+          <Route path="/movie/:id" Component={MovieDetails} />
+          <Route path="/tv/:id" Component={MovieDetails} />
         </Routes>
       </Router>
     </>

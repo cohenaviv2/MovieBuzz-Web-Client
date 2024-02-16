@@ -1,3 +1,4 @@
+
 .HBox {
   display: flex;
   flex-direction: row;
@@ -10,19 +11,36 @@
   align-items: center;
 }
 
+.GridBox {
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  width: 85%;
+  height: 80%;
+  margin-left: 5rem;
+  border-radius: 20px;
+  background-color: rgb(37, 37, 37);
+  padding: 16px 26px;
+}
+
 .FormBox {
   @extend .VBox;
   gap: 1rem;
   width: 24rem;
   height: 12rem;
+  flex-wrap: wrap;
   input {
     font-size: 1.2rem;
     width: 80%;
   }
   label {
     width: 80%;
-    margin-bottom: -0.5rem;
+    margin-bottom: -0.8rem;
   }
+
+
 }
 
 .StyledBox {

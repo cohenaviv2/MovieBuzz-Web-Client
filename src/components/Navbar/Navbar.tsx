@@ -12,7 +12,7 @@ function Navbar() {
   };
 
   return (
-    <IconContext.Provider value={{ size: "30px", className: styles.navIcon }}>
+    <IconContext.Provider value={{ className: styles.navIcon }}>
       <nav className={styles.navbar}>
         <ul className={styles.navbarList}>
           {NavbarData.map((item, index) => {

@@ -11,8 +11,10 @@ $nav-bg-primary: rgb(5, 5, 5);
 $nav-bg-secondary: rgb(0, 0, 0);
 $page-bg: rgb(27, 27, 27);
 $page-bg-2: rgb(184, 184, 184);
-$group-bg:rgb(24, 24, 24);
-$logo-bg:#FFCF37;
+$group-bg: rgb(24, 24, 24);
+$logo-bg: #FFCF37;
+$logo-bg-hover: #75673a;
+$ph-bg: #b0b0b0;
 /* gradients */
 $btn-primary: linear-gradient(to left, rgb(0, 119, 255), rgb(14, 89, 252));
 $btn-primary-hover: linear-gradient(to left, rgb(14, 73, 235), rgb(19, 71, 243));
@@ -21,7 +23,7 @@ $btn-secondary-hover: linear-gradient(to right, rgb(182, 2, 218), rgb(172, 2, 21
 $btn-trinary: linear-gradient(to right, #72188d, #700c8f);
 $btn-trinary-hover: linear-gradient(to right, #680f83, #5c0e74);
 $header-bg: linear-gradient(to left, $bg-secondary, #8e11b4);
-$post-bg: linear-gradient(to top, $nav-bg-secondary,$nav-bg-primary);
+$post-bg: linear-gradient(to top, $nav-bg-secondary, $nav-bg-primary);
 
 #root {
   max-width: 1280px;
@@ -92,7 +94,7 @@ input {
   padding-left: 12px;
 
   &::placeholder {
-    color: $page-bg-2;
+    color: $ph-bg;
     font-size: 1rem;
   }
 }
@@ -115,7 +117,7 @@ button {
   outline: none;
   color: $text-primary;
   transition: box-shadow 0.2s;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 
@@ -125,7 +127,6 @@ button {
 .search,
 .chat,
 .profile,
-.movie-details,
 .login,
 .movie,
 .tv,
@@ -133,18 +134,17 @@ button {
   @extend .VBox;
   justify-content: center;
   gap: 1rem;
-  // margin-left: 5rem;
   margin-top: 4rem;
   height: calc(100vh - 4rem);
-  // width: calc(100vw - 5rem);
   width: 100vw;
   background-color: $page-bg;
   font-size: 3rem;
   color: $text-primary;
+  overflow: auto;
+
 
   &:first-child {
-    font-size: 1.3rem;
-    flex-direction: column;
+   top: 0;
   }
 }
 
@@ -179,7 +179,6 @@ button {
   .search,
   .chat,
   .profile,
-  .movie-details,
   .login,
   .movie,
   .tv,

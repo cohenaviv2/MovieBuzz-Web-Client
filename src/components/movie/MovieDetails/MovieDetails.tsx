@@ -1,62 +1,77 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { IMovie, ITvShow } from "../../../services/CommonTypes";
-import { MovieGenres, MoviesData } from "../MoviesData";
-import { TvShowsData } from "../TvShowsData";
+import { MoviesData, genres } from "../../Movie/MoviesData";
+import { TvShowsData } from "../../Movie/TvShowsData"
 import { IoClose } from "react-icons/io5";
-import styles from "./MovieDetails.module.scss"
+import { FaPlus } from "react-icons/fa";
+import { BsFillPostcardFill } from "react-icons/bs";
+import styles from "./MovieDetails.module.scss";
 
 function MovieDetails() {
   const { id } = useParams();
-  const [movie, setMovie] = useState<IMovie | ITvShow | null>();
+  const [movie, setMovie] = useState<IMovie | ITvShow>();
   const navigate = useNavigate();
   const currentPath = useLocation().pathname;
 
   useEffect(() => {
     if (currentPath.startsWith("/movie")) {
-        const selectedMovie = MoviesData.find(
-          (movie) => movie.id === parseInt(id as string)
-        );
-        setMovie(selectedMovie);
+      const selectedMovie = MoviesData.find((movie) => movie.id === parseInt(id as string));
+      setMovie(selectedMovie);
     } else if (currentPath.startsWith("/tv")) {
-      const selectedTvShow = TvShowsData.find(
-        (show) => show.id === parseInt(id as string)
-      );
+      const selectedTvShow = TvShowsData.find((show) => show.id === parseInt(id as string));
       setMovie(selectedTvShow);
     }
   }, [id, currentPath]);
+  
 
-  const genres = movie?.genre_ids.map(
-    (genre_id) => MovieGenres.find((item) => item.id === genre_id)?.name
-  );
+  const genreList = movie?.genre_ids.map((genreId) => genres.find((genre) => genre.id === genreId)!.name);
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate(-1); 
   };
 
   return (
-    <div className={styles.movie} style={{justifyContent:"center"}}>
-      <div className={styles.movieDetailsCard}>
-        <img src={movie?.poster_path} className={styles.movieDetailsImg}></img>
-        <div className={styles.detailsContaimer}>
+    <div className="movie">
+      <div className={styles.detailsCard}>
+        <div className={styles.imgContainer}>
+          <img src={movie?.poster_path} alt={movie?.title} />
+        </div>
+        <div className={styles.detailsContainer}>
           <div className={styles.titleContainer}>
-            <h2>{movie?.title}</h2>
-            <h5 className={styles.yearTag}>{movie?.year}</h5>
+            <h1>{movie?.title}</h1>
+            <h2 className={styles.yearTag}>{movie?.year}</h2>
           </div>
           <div className={styles.tagsContainer}>
-            {genres?.map((genre, index) => (
+            {genreList?.map((genre, index) => (
               <h5 key={index} className={styles.genreTag}>
                 {genre}
               </h5>
             ))}
-            <h6 className={styles.langTag}>{movie?.language}</h6>
+            <h5 className={styles.langTag}>{movie?.language}</h5>
           </div>
-          <h4>Overview</h4>
-          <div className={styles.overview}>{movie?.overview}</div>
+          <div className={styles.overviewContainer}>
+            <h3>Overview</h3>
+            <h6>{movie?.overview}</h6>
+          </div>
+          <div className={styles.buttonsContainer}>
+            <button className={styles.getPostsBtn} onClick={handleGoBack}>
+              <BsFillPostcardFill className={styles.postIcon} />
+              Show Posts
+            </button>
+            <label>You can see posts related to this content</label>
+            <button className={styles.newPostBtn} onClick={handleGoBack}>
+              <FaPlus />
+              Create Post
+            </button>
+            <label>You can create post about this content</label>
+          </div>
         </div>
-        <button className={styles.movieDetailsBtn} onClick={handleGoBack}>
-          <IoClose size="30px" />
-        </button>
+        <div className={styles.closeBtnContainer}>
+          <button className={styles.closeBtn} onClick={handleGoBack}>
+            <IoClose />
+          </button>
+        </div>
       </div>
     </div>
   );

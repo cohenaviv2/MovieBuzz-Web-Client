@@ -1,6 +1,4 @@
 import React, { useRef } from "react";
-// import { MdKeyboardArrowRight } from "react-icons/md";
-// import { MdKeyboardArrowLeft } from "react-icons/md";
 import { RiArrowRightSFill } from "react-icons/ri";
 import { RiArrowLeftSFill } from "react-icons/ri";
 import styles from "./List.module.scss";

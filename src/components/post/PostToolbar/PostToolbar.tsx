@@ -1,12 +1,13 @@
-import { FaPlus } from "react-icons/fa";
-import ButtonGroup from "../../ButtonGroup/ButtonGroup";
-import { Button } from "../../ButtonGroup/ButtonData";
-import { PostFilters } from "../PostsData";
 import { Link } from "react-router-dom";
+import ButtonGroup from "../../ButtonGroup/ButtonGroup";
+import { Button } from "../../ButtonGroup/ButtonUtils";
+import { PostFilters } from "../PostsData";
+import { FaPlus } from "react-icons/fa";
+import { GiFallingStar } from "react-icons/gi";
 import styles from "./PostToolbar.module.scss";
 
 function PostToolbar() {
-  function createButton(label: string, onClick: () => void, cName: string, icon:JSX.Element): Button {
+  function createButton(label: string, onClick: () => void, cName: string, icon: JSX.Element): Button {
     return {
       label,
       onClick,
@@ -19,11 +20,15 @@ function PostToolbar() {
     console.log(filter);
   }
 
-  const filterButtons = PostFilters.map((filter) => createButton(filter.label, () => handleFilterClick(filter.label), filter.cName,filter.icon));
+  const filterButtons = PostFilters.map((filter) => createButton(filter.label, () => handleFilterClick(filter.label), filter.cName, filter.icon));
 
   return (
     <div className={styles.postToolbar}>
       <h3>Home</h3>
+      <div className={styles.textContainer}>
+        <GiFallingStar />
+        Explore user-rated movies & TV posts
+      </div>
       <ButtonGroup buttons={filterButtons} type="filter" />
       <Link to="/search">
         <button className={styles.newPostBtn}>

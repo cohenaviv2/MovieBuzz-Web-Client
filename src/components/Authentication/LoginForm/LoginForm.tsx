@@ -39,14 +39,14 @@ function LoginForm() {
       </div>
       <h6>Don't have an account?</h6>
       <div className={styles.signupContainer}>
+        <Link to="/signup">
+          <button className={styles.signupBtn}>Sign Up</button>
+        </Link>
         <button className={styles.googleBtn}>
           Continue with
           <FcGoogle size="25px" style={{ margin: "0 10px" }} />
           Google
         </button>
-        <Link to="/signup">
-          <button className={styles.signupBtn}>Sign Up</button>
-        </Link>
       </div>
     </>
   );

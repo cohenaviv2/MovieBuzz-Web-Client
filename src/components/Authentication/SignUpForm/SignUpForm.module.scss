@@ -2,20 +2,48 @@
 @import "../../../styles/containers.scss";
 
 .signupContainer {
-  @extend .VBox;
+  @extend .HBox;
   @extend .StyledBox;
-  gap: 1rem;
+  width: 55%;
 }
 
 .formContainer {
   @extend .FormBox;
   height: auto;
+
+  h6 {
+    margin: 0;
+    // margin-top: -0.9rem;
+    width: 85%;
+    font-size: 0.9rem;
+    color: $bg-secondary;
+    font-weight: 100;
+  }
+}
+
+.detailsContainer {
+  @extend .VBox;
+  height: 90%;
+  padding: 16px 16px;
+
+  label {
+    margin-bottom: -0.5rem;
+  }
+}
+
+.submitContainer {
+  @extend .VBox;
+  @extend .StyledBox;
+  background: transparent;
+  width: 24rem;
+  gap: 1rem;
 }
 
 .imgNameContainer {
   @extend .HBox;
-  width: 100%;
-  height: 6rem;
+  gap: 0.8rem;
+  width: 90%;
+  height: 5rem;
 }
 
 .nameContainer {
@@ -25,17 +53,17 @@
 
 .imgContainer {
   @extend .VBox;
-  width: 35%;
+  width: 40%;
   height: 100%;
 }
 
 .signupBtn {
   margin-top: 2rem;
-  background: $btn-trinary;
-  width: 16rem;
+  background: $btn-primary;
+  padding: 0 6rem;
   min-height: 3rem;
   &:hover {
-    background: $btn-trinary-hover;
+    background: $btn-primary-hover;
   }
 }
 
@@ -47,10 +75,9 @@
 }
 
 .nameInput {
-  width: 12rem;
+  min-width: 12.5rem;
   height: 1.5rem;
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
 }
 
 .inputFile {
@@ -60,25 +87,35 @@
 .customFileInput {
   @extend .VBox;
   justify-content: center;
-  background-color: $text-secondary;
+  background-color: $bg-secondary;
+  // background-color: $text-secondary;
   background-size: cover;
-  min-width: 85%;
-  min-height:85%;
+  min-width: 95%;
+  min-height: 100%;
   border-radius: 100%;
   cursor: pointer;
 }
 
 .imgIcon {
   font-size: 30px;
-  fill: #333;
+  // fill: #333;
+  fill: $logo-bg;
 }
 
 .favTitle {
   margin-top: 1rem;
-  color:$logo-bg;
+  color: $logo-bg;
 }
 
 .favInput {
   border: 2px solid $text-primary;
   background-color: $bg-secondary;
+  color: $logo-bg;
+}
+
+.error {
+  color: red;
+  margin-top: -0.5rem;
+  font-size: 1rem;
+  font-weight: 100;
 }
