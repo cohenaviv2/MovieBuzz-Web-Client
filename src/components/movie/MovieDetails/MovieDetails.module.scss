@@ -39,12 +39,17 @@
   @extend .VBox;
   height: 85%;
   width: 60%;
+
+    h3 {
+    margin-top: 0rem;
+    margin-bottom:-1rem;
+  }
 }
 
 .titleContainer {
   @extend .HBox;
   width: 100%;
-  height: 20%;
+  height: 30%;
   margin-bottom: 1rem;
 }
 
@@ -81,11 +86,8 @@
   @extend .VBox;
   width: 100%;
   height: 50%;
-  align-items: start;
+  overflow: auto;
 
-  h6 {
-    margin-top: 0rem;
-  }
 }
 
 .buttonsContainer {

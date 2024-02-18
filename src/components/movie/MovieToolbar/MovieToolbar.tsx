@@ -1,6 +1,7 @@
 import ButtonGroup from "../../ButtonGroup/ButtonGroup";
 import { createButton } from "../../ButtonGroup/ButtonUtils";
 import { MovieFilterButton, MovieGenreButtons, TvShowFilterButton, TvShowGenreButtons } from "../MoviesData";
+import { genres } from "../genres";
 import styles from "./MovieToolbar.module.scss";
 
 interface ToolbarProps {
@@ -14,8 +15,8 @@ function MovieToolbar({ type, handleFilterSelection }: ToolbarProps) {
   const filterBtnList = type == "movies" ? MovieFilterButton : TvShowFilterButton;
   const genreBtnList = type == "movies" ? MovieGenreButtons : TvShowGenreButtons;
 
-  const filterButtons = filterBtnList.map((filter) => createButton(filter.label, () => handleFilterSelection(filter.label.toLowerCase().replace(" ", "-")), filter.cName, filter.icon));
-  const genreButtons = genreBtnList.map((genre) => createButton(genre.label, () => handleGenreClick(genre.label), genre.cName, genre.icon));
+  const filterButtons = filterBtnList.map((btn) => createButton(btn.label, () => handleFilterSelection(btn.path!), btn.cName, btn.path, btn.icon));
+  const genreButtons = genreBtnList.map((btn) => createButton(btn.label, () => handleFilterSelection(btn.label), btn.cName, btn.path, btn.icon));
 
   function handleGenreClick(genre: string) {
     console.log(genre);

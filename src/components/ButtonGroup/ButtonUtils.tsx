@@ -5,13 +5,15 @@ export interface Button {
   onClick: () => void;
   cName: string;
   icon?: JSX.Element;
+  path?:string;
 }
 
-export function createButton(label: string, onClick: () => void, cName: string, icon?: JSX.Element): Button {
+export function createButton(label: string, onClick: () => void, cName: string,path?:string, icon?: JSX.Element): Button {
   return {
     label,
     onClick,
     cName,
     icon,
+    path,
   };
 }

@@ -22,23 +22,20 @@
   height: 2.5rem;
   width: 6rem;
   margin-left: -102px;
-  // position: absolute;
-  // left: 6%;
 
   &:hover {
     background: $btn-secondary-hover;
+    box-shadow: 0 0 10px rgba(175, 175, 175, 0.589);
   }
 }
 
 .searchRes {
-    margin-top:1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    color: var(--text-primary);
-    text-align: center;
-    overflow: auto;
-    width: 95%;
-    font-size: 2rem;
+  @extend .VBox;
+  gap: 1rem;
+  width: 90%;
+  margin-left: 5rem;
+  color: var(--text-primary);
+  text-align: center;
+  overflow: auto;
+  font-size: 2rem;
 }

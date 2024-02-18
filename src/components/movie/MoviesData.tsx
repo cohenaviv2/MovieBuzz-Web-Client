@@ -385,8 +385,7 @@ export const MoviesData: IMovie[] = [
   },
 ];
 
-
-export const genres = [
+export const genreList = [
   {
     id: 28,
     name: "Action",
@@ -497,6 +496,35 @@ export const genres = [
   },
 ];
 
+export const genres: { [key: number]: string } = {
+  12: "Adventure",
+  14: "Fantasy",
+  16: "Animation",
+  18: "Drama",
+  27: "Horror",
+  28: "Action",
+  35: "Comedy",
+  36: "History",
+  37: "Western",
+  53: "Thriller",
+  80: "Crime",
+  99: "Documentary",
+  878: "Science Fiction",
+  9648: "Mystery",
+  10402: "Music",
+  10749: "Romance",
+  10751: "Family",
+  10752: "War",
+  10759: "Action & Adventure",
+  10762: "Kids",
+  10763: "News",
+  10764: "Reality",
+  10765: "Sci-Fi & Fantasy",
+  10766: "Soap",
+  10767: "Talk",
+  10768: "War & Politics",
+  10770: "TV Movie",
+};
 
 // export const MovieFilters = ["Popular", "Now Playing", "Upcoming"];
 // export const TvShowFilters = ["On The Air", "Popular", "Top Rated"];
@@ -1025,18 +1053,21 @@ export const MovieFilterButton: Button[] = [
     onClick: () => null,
     cName: styles.filterBtn,
     icon: <FaIcons.FaHeart />,
+    path: "popular",
   },
   {
     label: "Now Playing",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaClapperboard  />,
+    icon: <FaIcons.FaClapperboard />,
+    path: "now-playing",
   },
   {
     label: "Upcoming",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaSquareArrowUpRight  />,
+    icon: <FaIcons.FaSquareArrowUpRight />,
+    path: "upcoming",
   },
 ];
 
@@ -1045,19 +1076,22 @@ export const TvShowFilterButton: Button[] = [
     label: "On The Air",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaTowerCell  />,
+    icon: <FaIcons.FaTowerCell />,
+    path: "on-the-air",
   },
   {
     label: "Popular",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaHeart  />,
+    icon: <FaIcons.FaHeart />,
+    path: "popular",
   },
   {
     label: "Top Rated",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaFireFlameSimple  />,
+    icon: <FaIcons.FaFireFlameSimple />,
+    path: "top-rated",
   },
 ];
 
