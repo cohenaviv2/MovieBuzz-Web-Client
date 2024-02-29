@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { IMovie, IMovieDetails, ITvShow } from "../../../services/Types";
-import { MoviesData, genres } from "../../Movie/MoviesData";
-import { TvShowsData } from "../../Movie/TvShowsData";
 import { IoClose } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { BsFillPostcardFill } from "react-icons/bs";
 import styles from "./MovieDetails.module.scss";
-import MovieService, { CanceledError } from "../../../services/MovieService";
+import { movieService, CanceledError } from "../../../services/MovieService";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -20,9 +18,7 @@ function MovieDetails() {
   useEffect(() => {
     setIsLoading(true);
     if (currentPath.startsWith("/movie")) {
-      // const selectedMovie = MoviesData.find((movie) => movie.id === parseInt(id as string));
-      // setMovie(selectedMovie);
-      const { request, cancel } = MovieService.getMovieById(parseInt(id!));
+      const { request, cancel } = movieService.getById(parseInt(id!));
       request
         .then((res) => {
           console.log(res.data);

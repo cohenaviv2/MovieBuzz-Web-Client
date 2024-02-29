@@ -24,7 +24,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
 
   return (
     <form className={styles.searchBar} style={{ height: submited ? "3rem" : "6rem" }} onSubmit={handleSubmit}>
-      <h3>Search</h3>
+      <h4>Search</h4>
       <input className={styles.searchInput} type="text" placeholder="Movies, TV Shows, Posts..." value={searchTerm} onChange={handleInputChange} />
       <button className={styles.searchBtn} type="submit">
         <PiMagnifyingGlassBold size="25px" />

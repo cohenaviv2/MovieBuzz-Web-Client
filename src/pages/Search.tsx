@@ -4,11 +4,9 @@ import MovieCard from "../components/Movie/MovieCard/MovieCard";
 import SearchBar from "../components/SearchBar/SearchBar";
 import List from "../components/List/List";
 import { IMovie, IPost, ITvShow } from "../services/Types";
-import { frozenMovieSearchRes, frozenPostsSearchRes, frozenTvSeachRes } from "../components/Movie/MoviesData";
 import PostCard from "../components/Post/PostCard/PostCard";
 import styles from "../components/SearchBar/SearchBar.module.scss";
-import MovieService, { CanceledError } from "../services/MovieService";
-import TvShowsService from "../services/TvShowsService";
+import { movieService ,tvShowsService, CanceledError } from "../services/MovieService";
 
 function Search() {
   const [isSearchTerm, setIsSearchTerms] = useState(false);
@@ -37,7 +35,7 @@ function Search() {
   };
 
   function searchMovies() {
-    const { request, cancel } = MovieService.searchMovies(query);
+    const { request, cancel } = movieService.search(query);
     request
       .then((res) => {
         setMovieList(res.data);
@@ -53,7 +51,7 @@ function Search() {
   }
 
   function searchTvShows() {
-    const { request, cancel } = TvShowsService.searchTvShows(query);
+    const { request, cancel } = tvShowsService.search(query);
     request
       .then((res) => {
         setTvShowList(res.data);

@@ -1,52 +1,50 @@
 import { genres } from "../components/Movie/genres";
-import { IMovieDetails } from "./Types";
+import { IMovieDetails, IMovie, ITvShow } from "./Types";
 import apiClient, { CanceledError } from "./api-client";
 export { CanceledError };
 
-export interface IMovie {
-  id: number;
-  title: string;
-  poster_path: string;
-  overview: string;
-  year: string;
-  genre_ids: number[];
-  language: string;
-}
-
+export type ServicePath = "movies/" | "tv/";
+export const movieFilters = ["popular", "now-playing", "upcoming"];
+export const tvShowFilters = ["on-the-air", "popular", "top-rated"];
 export type movieFilter = "popular" | "now-playing" | "upcoming";
 
 class MovieService {
-  path = "movies/";
+  path: ServicePath;
+  constructor(servicePath: ServicePath) {
+    this.path = servicePath;
+  }
 
-  getMovies(filter: string, page: number = 1) {
-    if (filter === "popular" || filter === "now-playing" || filter === "upcoming") {
+  get(filter: string, page: number = 1) {
+    if (movieFilters.includes(filter) || tvShowFilters.includes(filter)) {
       const controller = new AbortController();
-      const request = apiClient.get<IMovie[]>(this.path + filter, { params: { page }, signal: controller.signal });
+      const request = apiClient.get<IMovie[] | ITvShow[]>(this.path + filter, { params: { page }, signal: controller.signal });
       return { request, cancel: () => controller.abort() };
     } else {
-      return this.getMovieByGenreId(filter, page);
+      return this.getByGenreId(filter, page);
     }
   }
 
-  searchMovies(query: string, page: number = 1) {
+  search(query: string, page: number = 1) {
     const controller = new AbortController();
-    const request = apiClient.get<IMovie[]>(this.path + "search", { params: { query, page }, signal: controller.signal });
+    const request = apiClient.get<IMovie[] | ITvShow[]>(this.path + "search", { params: { query, page }, signal: controller.signal });
     return { request, cancel: () => controller.abort() };
   }
 
-  getMovieById(movieId: number, page: number = 1) {
+  getById(movieId: number, page: number = 1) {
     const controller = new AbortController();
     const request = apiClient.get<IMovieDetails>(this.path + `by-id/${movieId}`, { params: { page } });
     return { request, cancel: () => controller.abort() };
   }
 
-  getMovieByGenreId(genreName: string, page: number = 1) {
+  getByGenreId(genreName: string, page: number = 1) {
     const controller = new AbortController();
-    const genreId = genres.find((genre) => genre.name == genreName)!.id;
-    console.log("genre Id: " + genreId);
-    const request = apiClient.get<IMovie[]>(this.path + `by-genre/${genreId}`, { params: { page } });
+    const genreId = genres.find((genre) => genre.name === genreName)!.id;
+    console.log("genre Name: " + genreName);
+    const request = apiClient.get<IMovie[] | ITvShow[]>(this.path + `by-genre/${genreId}`, { params: { page } });
     return { request, cancel: () => controller.abort() };
   }
 }
 
-export default new MovieService();
+export const movieService = new MovieService("movies/");
+export const tvShowsService = new MovieService("tv/");
+
