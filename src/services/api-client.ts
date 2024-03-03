@@ -1,6 +1,6 @@
-import axios, { CanceledError } from "axios";
+import axios, { CanceledError, AxiosError } from "axios";
 
-export { CanceledError };
+export { CanceledError, AxiosError };
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 

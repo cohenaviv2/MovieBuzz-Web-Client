@@ -34,8 +34,13 @@
   gap: 1rem;
   width: 90%;
   margin-left: 5rem;
+  margin-top: -1rem;
   color: var(--text-primary);
   text-align: center;
   overflow: auto;
   font-size: 2rem;
+}
+
+.resContainer {
+  height: 18rem;
 }

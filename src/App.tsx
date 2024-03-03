@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import MovieDetails from "./components/Movie/MovieDetails/MovieDetails";
 import { IUser } from "./services/Types";
+import TvShowDetails from "./components/Movie/TvShowDetails/TvShowDetails";
 
 function App() {
   const [profile, setProfile] = useState<IUser | null>(null);
@@ -30,7 +31,7 @@ function App() {
           <Route path="/profile" element={profile ? <Profile profile={profile} /> : <Login setProfile={setProfile} />} />
           <Route path="/signup" Component={SignUp} />
           <Route path="/movie/:id" Component={MovieDetails} />
-          <Route path="/tv/:id" Component={MovieDetails} />
+          <Route path="/tv/:id" Component={TvShowDetails} />
         </Routes>
       </Router>
     </>

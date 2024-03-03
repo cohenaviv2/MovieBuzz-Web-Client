@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react";
-import { movieService, movieFilters, CanceledError } from "../services/MovieService";
+import { moviesService, movieFilters, CanceledError, AxiosError } from "../services/MovieService";
 import { IMovie } from "../services/Types";
 
-function useMovies(initialPage = 1) {
+function useMovies() {
   const [movies, setMovies] = useState<IMovie[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<AxiosError>();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(movieFilters[0]);
-  const [page, setPage] = useState(initialPage);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     setIsLoading(true);
-    console.log("filter changed: " + selectedFilter);
-
-    const { request, cancel } = movieService.get(selectedFilter, page);
+    const { request, cancel } = moviesService.get(selectedFilter, page);
     request
       .then((res) => {
         const movies = res.data as IMovie[];
@@ -30,12 +28,27 @@ function useMovies(initialPage = 1) {
     return () => cancel();
   }, [selectedFilter, page]);
 
+  const handleFilterSelection = (filter: string) => {
+    setSelectedFilter(filter);
+    setPage(1);
+  };
+
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
   return {
     movies,
     error,
     isLoading,
-    setPage,
-    setSelectedFilter,
+    handleFilterSelection,
+    page,
+    handleNextPage,
+    handlePrevPage,
   };
 }
 

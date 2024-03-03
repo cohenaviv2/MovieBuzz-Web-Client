@@ -1,7 +1,7 @@
 import { genres } from "../components/Movie/genres";
-import { IMovieDetails, IMovie, ITvShow } from "./Types";
-import apiClient, { CanceledError } from "./api-client";
-export { CanceledError };
+import { IMovieDetails, IMovie, ITvShow, ITvShowDetails } from "./Types";
+import apiClient, { CanceledError, AxiosError } from "./api-client";
+export { CanceledError, AxiosError };
 
 export type ServicePath = "movies/" | "tv/";
 export const movieFilters = ["popular", "now-playing", "upcoming"];
@@ -30,9 +30,10 @@ class MovieService {
     return { request, cancel: () => controller.abort() };
   }
 
-  getById(movieId: number, page: number = 1) {
+  getById(movieId: string, page: number = 1) {
     const controller = new AbortController();
-    const request = apiClient.get<IMovieDetails>(this.path + `by-id/${movieId}`, { params: { page } });
+    const request = apiClient.get<IMovieDetails | ITvShowDetails>(this.path + `by-id/${movieId}`, { params: { page } });
+    console.log(this.path + `by-id/${movieId}`);
     return { request, cancel: () => controller.abort() };
   }
 
@@ -45,6 +46,7 @@ class MovieService {
   }
 }
 
-export const movieService = new MovieService("movies/");
-export const tvShowsService = new MovieService("tv/");
+const moviesService = new MovieService("movies/");
+const tvShowsService = new MovieService("tv/");
 
+export { moviesService, tvShowsService };

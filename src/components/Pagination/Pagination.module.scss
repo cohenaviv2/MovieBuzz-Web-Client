@@ -1,0 +1,39 @@
+@import "../../styles/styles.scss";
+@import "../../styles/containers.scss";
+
+.paginationContainer {
+  @extend .HBox;
+  gap: 0.5rem;
+  height: 3rem;
+    margin-left: 5rem;
+}
+
+.pageContainer {
+  @extend .HBox;
+  font-family: "Lato", sans-serif;
+  justify-content: center;
+  background-color: $nav-bg-primary;
+  color: $text-secondary;
+  border-radius: 8px;
+  height: 2.5rem;
+  width: 3rem;
+  font-size: 1.2rem;
+}
+
+.paginationBtn {
+  background: $post-bg;
+  height: 2.5rem;
+  width: 3.5rem;
+
+  &:hover {
+    background: $header-bg;
+    box-shadow: 0 0 3px $text-tertiary;
+  }
+}
+
+.paginationIcon {
+  font-size: 2rem;
+  fill: $text-primary;
+}
+
+

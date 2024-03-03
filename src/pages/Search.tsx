@@ -6,7 +6,8 @@ import List from "../components/List/List";
 import { IMovie, IPost, ITvShow } from "../services/Types";
 import PostCard from "../components/Post/PostCard/PostCard";
 import styles from "../components/SearchBar/SearchBar.module.scss";
-import { movieService ,tvShowsService, CanceledError } from "../services/MovieService";
+import { moviesService, tvShowsService, CanceledError } from "../services/MovieService";
+import Spinner from "../components/Spinner/Spinner";
 
 function Search() {
   const [isSearchTerm, setIsSearchTerms] = useState(false);
@@ -14,7 +15,7 @@ function Search() {
   const [movieList, setMovieList] = useState<IMovie[]>([]);
   const [tvShowList, setTvShowList] = useState<ITvShow[]>([]);
   const [postList, setPostList] = useState<IPost[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
   useEffect(() => {
@@ -35,7 +36,7 @@ function Search() {
   };
 
   function searchMovies() {
-    const { request, cancel } = movieService.search(query);
+    const { request, cancel } = moviesService.search(query);
     request
       .then((res) => {
         setMovieList(res.data);
@@ -55,7 +56,6 @@ function Search() {
     request
       .then((res) => {
         setTvShowList(res.data);
-        setIsLoading(false);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -73,35 +73,53 @@ function Search() {
       {isSearchTerm && (
         <div className={styles.searchRes}>
           <h2>Movies</h2>
-          <List
-            type="movie"
-            items={movieList}
-            renderItem={(movie) => (
-              <Link to={`/movie/${movie.id}`} key={movie.id}>
-                <MovieCard movie={movie} isLoading={isLoading} />
-              </Link>
+          <div className={styles.resContainer}>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <List
+                type="movie"
+                items={movieList}
+                renderItem={(movie) => (
+                  <Link to={`/movie/${movie.id}`} key={movie.id}>
+                    <MovieCard movie={movie} />
+                  </Link>
+                )}
+              />
             )}
-          />
+          </div>
           <h2>TV Shows</h2>
-          <List
-            type="movie"
-            items={tvShowList}
-            renderItem={(tvShow) => (
-              <Link to={`/tv/${tvShow.id}`} key={tvShow.id}>
-                <MovieCard movie={tvShow} isLoading={isLoading} />
-              </Link>
+          <div className={styles.resContainer}>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <List
+                type="movie"
+                items={tvShowList}
+                renderItem={(tvShow) => (
+                  <Link to={`/tv/${tvShow.id}`} key={tvShow.id}>
+                    <MovieCard movie={tvShow} />
+                  </Link>
+                )}
+              />
             )}
-          />
+          </div>
           <h2>Posts</h2>
-          <List
-            type="post"
-            items={postList}
-            renderItem={(post) => (
-              <Link to={`/post/${post._id}`} key={post._id}>
-                <PostCard post={post} />
-              </Link>
+          <div className={styles.resContainer}>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <List
+                type="post"
+                items={postList}
+                renderItem={(post) => (
+                  <Link to={`/post/${post._id}`} key={post._id}>
+                    <PostCard post={post} />
+                  </Link>
+                )}
+              />
             )}
-          />
+          </div>
         </div>
       )}
     </div>

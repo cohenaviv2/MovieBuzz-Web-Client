@@ -56,3 +56,21 @@ export interface ITvShow {
   genre_ids: number[];
   language: string;
 }
+
+export interface ITvShowDetails extends ITvShow {
+  backdrop_path?: string;
+  created_by?: string;
+  production_company?: string;
+  logo_path?: string;
+  seasons?: ITvShowSeason[];
+}
+
+interface ITvShowSeason {
+  id: number;
+  air_date: string;
+  episode_count: number;
+  name: string;
+  overview: string;
+  poster_path: string;
+  season_number: number;
+}

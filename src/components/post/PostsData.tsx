@@ -20,7 +20,7 @@ export const PostFilters = [
     label: "Most Commented",
     onClick: () => null,
     cName: styles.postFilterBtn,
-    icon: <FaIcons.FaComment className={iconStyle.filterIcon} />,
+    icon: <FaIcons.FaCommentDots className={iconStyle.filterIcon} />,
   },
 ];
 

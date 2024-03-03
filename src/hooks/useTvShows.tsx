@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
-import { tvShowsService, tvShowFilters, CanceledError } from "../services/MovieService";
+import { tvShowsService, tvShowFilters, CanceledError, AxiosError } from "../services/MovieService";
 import { ITvShow } from "../services/Types";
 
-function useTvShows(initialPage = 1) {
+function useTvShows() {
   const [tvShows, setTvShows] = useState<ITvShow[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<AxiosError>();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(tvShowFilters[0]);
-  const [page, setPage] = useState(initialPage);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     setIsLoading(true);
-    console.log("filter changed: " + selectedFilter);
-
     const { request, cancel } = tvShowsService.get(selectedFilter, page);
     request
       .then((res) => {
@@ -30,12 +28,27 @@ function useTvShows(initialPage = 1) {
     return () => cancel();
   }, [selectedFilter, page]);
 
+  const handleFilterSelection = (filter: string) => {
+    setSelectedFilter(filter);
+    setPage(1);
+  };
+
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
   return {
     tvShows,
     error,
     isLoading,
-    setPage,
-    setSelectedFilter,
+    handleFilterSelection,
+    page,
+    handleNextPage,
+    handlePrevPage,
   };
 }
 

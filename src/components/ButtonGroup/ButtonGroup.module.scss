@@ -16,7 +16,7 @@
 }
 
 .filterBtn {
-  gap: 0.5rem;
+  gap: 1rem;
   border-radius: 16px;
   font-size: 1.4rem;
   height: 3.3rem;
@@ -26,14 +26,14 @@
   // border: 3px solid $nav-bg-primary;
 
   &:hover {
-    background: $btn-secondary;
-    box-shadow: 0 0 8px $text-tertiary;
+    background: $header-bg;
+    box-shadow: 0 0 6px $text-tertiary;
   }
 }
 
 .filterIcon {
   font-size: 20px;
-  color: $logo-bg;
+  // color: $logo-bg;
 }
 
 .genreBtnGroup {
@@ -42,7 +42,7 @@
   // background-color: $nav-bg-secondary;
   background: $group-bg;
   border-radius: 16px;
-  height: 43%;
+  height: 4.3rem;
   width: 30vw;
   padding: 8px 8px;
   border: 3px solid #2525259a;

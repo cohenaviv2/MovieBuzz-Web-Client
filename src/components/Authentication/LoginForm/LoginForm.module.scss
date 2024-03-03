@@ -4,12 +4,13 @@
 .loginContainer {
   @extend .VBox;
   @extend .StyledBox;
-  margin-bottom: -1rem;
+  margin-bottom: 1rem;
   gap: 1rem;
   width: 24rem;
+  padding: 2rem;
 
   h3 {
-    margin-top: -0.5rem
+    margin-top: -0.5rem;
   }
 }
 
@@ -24,7 +25,7 @@
   margin-top: 1rem;
   font-weight: bold;
   &:hover {
-    background: $btn-secondary-hover;
+    background: $header-bg;
   }
 }
 
@@ -38,6 +39,7 @@
   @extend .VBox;
   @extend .StyledBox;
   margin-top: -1rem;
+  padding: 2rem;
   gap: 1rem;
   width: 24rem;
 }
@@ -54,7 +56,7 @@
 .googleBtn {
   background: linear-gradient(to right, #03830a, #037009);
   width: 16rem;
-  height:3rem;
+  height: 3rem;
   font-size: 1.1rem;
   &:hover {
     background: linear-gradient(to right, #007506, #006905);

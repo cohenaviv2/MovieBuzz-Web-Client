@@ -1059,14 +1059,14 @@ export const MovieFilterButton: Button[] = [
     label: "Now Playing",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaClapperboard />,
+    icon: <FaIcons.FaVideo />, // <FaClapperboard />
     path: "now-playing",
   },
   {
     label: "Upcoming",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaSquareArrowUpRight />,
+    icon: <FaIcons.FaRegCircleUp />,
     path: "upcoming",
   },
 ];
@@ -1090,7 +1090,7 @@ export const TvShowFilterButton: Button[] = [
     label: "Top Rated",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaFireFlameSimple />,
+    icon: <FaIcons.FaRankingStar />,
     path: "top-rated",
   },
 ];
