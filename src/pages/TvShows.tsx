@@ -7,11 +7,11 @@ import Pagination from "../components/Pagination/Pagination.tsx";
 import Error from "../components/Error/Error.tsx";
 
 function TvShows() {
-  const { tvShows, error, isLoading, handleFilterSelection, page, handleNextPage, handlePrevPage } = useTvShows();
+  const { tvShows, error, loading, handleFilterSelection, page, handleNextPage, handlePrevPage } = useTvShows();
 
   return (
     <div className="tv-shows">
-      <MovieToolbar type="tv" handleFilterSelection={handleFilterSelection} loading={isLoading} />
+      <MovieToolbar type="tv" handleFilterSelection={handleFilterSelection} loading={loading} />
       {error ? (
         <Error error={error} />
       ) : (
@@ -26,7 +26,7 @@ function TvShows() {
               </Link>
             )}
           />
-          <Pagination page={page} handlePrevPage={handlePrevPage} handleNextPage={handleNextPage} loading={isLoading} />
+          <Pagination page={page} handlePrevPage={handlePrevPage} handleNextPage={handleNextPage} loading={loading} />
         </>
       )}
     </div>

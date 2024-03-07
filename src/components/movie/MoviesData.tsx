@@ -1066,7 +1066,7 @@ export const MovieFilterButton: Button[] = [
     label: "Upcoming",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaRegCircleUp />,
+    icon: <FaIcons.FaCircleArrowUp />,
     path: "upcoming",
   },
 ];

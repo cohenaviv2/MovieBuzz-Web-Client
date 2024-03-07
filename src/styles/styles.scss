@@ -130,7 +130,7 @@ button {
 .login,
 .movie,
 .tv,
-.signup {
+.signup,.movie-posts,.new-post {
   @extend .VBox;
   justify-content: center;
   gap: 1rem;
@@ -182,7 +182,7 @@ button {
   .login,
   .movie,
   .tv,
-  .signup {
+  .signup,.movie-posts,.new-post {
     margin-left: 0;
     width: 100vw;
   }

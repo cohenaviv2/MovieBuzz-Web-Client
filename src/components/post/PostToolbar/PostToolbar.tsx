@@ -39,12 +39,12 @@ function PostToolbar() {
         ))}
       </div>
       {/* <ButtonGroup buttons={filterButtons} type="filter" /> */}
-      <Link to="/search">
+      {/* <Link to="/search">
         <button className={styles.newPostBtn}>
           <FaPlus size="20px" />
           New Post
         </button>
-      </Link>
+      </Link> */}
     </div>
   );
 }

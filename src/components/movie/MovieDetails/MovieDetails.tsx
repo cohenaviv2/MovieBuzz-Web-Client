@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { BsFillPostcardFill } from "react-icons/bs";
@@ -7,6 +7,8 @@ import useMovieDetails from "../../../hooks/useMovieDetails";
 import Error from "../../Error/Error";
 import Spinner from "../../Spinner/Spinner";
 import { IMovieDetails } from "../../../services/Types";
+import { TMDB_NULL_IMG_URL } from "../MovieCard/MovieCard";
+import noImageAvailable from "../../../assets/no-img-availbale.png";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -14,7 +16,7 @@ function MovieDetails() {
   const currentPath = useLocation().pathname;
   const movieId = id!;
 
-  const { movieDetails, isLoading, error } = useMovieDetails<IMovieDetails>(movieId, currentPath);
+  const { movieDetails, loading, error } = useMovieDetails<IMovieDetails>(movieId, currentPath);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -22,7 +24,7 @@ function MovieDetails() {
 
   return (
     <div className="movie">
-      {isLoading ? (
+      {loading ? (
         <Spinner />
       ) : error ? (
         <Error error={error} />
@@ -32,7 +34,7 @@ function MovieDetails() {
             <div className={styles.backdropImage} style={{ backgroundImage: `url(${movieDetails.backdrop_path})` }} />
             <div className={styles.detailsCard}>
               <div className={styles.imgContainer}>
-                <img src={movieDetails.poster_path} alt={movieDetails.title} />
+                <img src={movieDetails.poster_path === TMDB_NULL_IMG_URL ? noImageAvailable : movieDetails.poster_path} alt={movieDetails.title} />
               </div>
               <div className={styles.detailsContainer}>
                 <div className={styles.titleContainer}>
@@ -53,15 +55,19 @@ function MovieDetails() {
                   <h6>{movieDetails.overview}</h6>
                 </div>
                 <div className={styles.buttonsContainer}>
-                  <button className={styles.newPostBtn} onClick={handleGoBack}>
-                    <FaPlus />
-                    Create Post
-                  </button>
+                  <Link to={`/new-post`}>
+                    <button className={styles.newPostBtn}>
+                      <FaPlus />
+                      Create Post
+                    </button>
+                  </Link>
                   <label>You can create post about this content</label>
-                  <button className={styles.getPostsBtn} onClick={handleGoBack}>
-                    <BsFillPostcardFill className={styles.postIcon} />
-                    Show Posts
-                  </button>
+                  <Link to={`/movie/${movieId}/posts`}>
+                    <button className={styles.getPostsBtn}>
+                      <BsFillPostcardFill className={styles.postIcon} />
+                      View Posts
+                    </button>
+                  </Link>
                   <label>You can see posts related to this content</label>
                 </div>
               </div>

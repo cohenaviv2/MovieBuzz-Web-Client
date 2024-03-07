@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { BsFillPostcardFill } from "react-icons/bs";
@@ -7,6 +7,8 @@ import useMovieDetails from "../../../hooks/useMovieDetails";
 import Error from "../../Error/Error";
 import Spinner from "../../Spinner/Spinner";
 import { ITvShowDetails } from "../../../services/Types";
+import { TMDB_NULL_IMG_URL } from "../MovieCard/MovieCard";
+import noImageAvailable from "../../../assets/no-img-availbale.png";
 
 function TvShowDetails() {
   const { id } = useParams();
@@ -15,7 +17,7 @@ function TvShowDetails() {
   const tvShowId = id!.trim();
 
   // Use the custom hook for TV show details
-  const { movieDetails, isLoading, error } = useMovieDetails<ITvShowDetails>(tvShowId, currentPath);
+  const { movieDetails, loading, error } = useMovieDetails<ITvShowDetails>(tvShowId, currentPath);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -23,7 +25,7 @@ function TvShowDetails() {
 
   return (
     <div className="movie">
-      {isLoading ? (
+      {loading ? (
         <Spinner />
       ) : error ? (
         <Error error={error} />
@@ -35,7 +37,7 @@ function TvShowDetails() {
             <div className={styles.detailsCard}>
               {/* Customize the content based on TV show details */}
               <div className={styles.imgContainer}>
-                <img src={movieDetails.poster_path} alt={movieDetails.title} />
+                <img src={movieDetails.poster_path === TMDB_NULL_IMG_URL ? noImageAvailable : movieDetails.poster_path} alt={movieDetails.title} />
               </div>
               <div className={styles.detailsContainer}>
                 <div className={styles.titleContainer}>
@@ -56,15 +58,19 @@ function TvShowDetails() {
                   <h6>{movieDetails.overview}</h6>
                 </div>
                 <div className={styles.buttonsContainer}>
-                  <button className={styles.newPostBtn} onClick={handleGoBack}>
-                    <FaPlus />
-                    Create Post
-                  </button>
+                  <Link to={`/new-post`}>
+                    <button className={styles.newPostBtn}>
+                      <FaPlus />
+                      Create Post
+                    </button>
+                  </Link>
                   <label>You can create post about this content</label>
-                  <button className={styles.getPostsBtn} onClick={handleGoBack}>
-                    <BsFillPostcardFill className={styles.postIcon} />
-                    Show Posts
-                  </button>
+                  <Link to={`/tv/${tvShowId}/posts`}>
+                    <button className={styles.getPostsBtn}>
+                      <BsFillPostcardFill className={styles.postIcon} />
+                      View Posts
+                    </button>
+                  </Link>
                   <label>You can see posts related to this content</label>
                 </div>
               </div>

@@ -3,6 +3,8 @@ import PostCard from "../components/Post/PostCard/PostCard";
 import Grid from "../components/Grid/Grid";
 import { Link } from "react-router-dom";
 import { frozenPostsSearchRes } from "../components/Movie/MoviesData";
+import { FaPlus } from "react-icons/fa";
+import styles from "../components/Post/PostToolbar/PostToolbar.module.scss";
 
 function Home() {
   return (
@@ -17,6 +19,11 @@ function Home() {
           </Link>
         )}
       />
+      <Link to="/search">
+        <button className={styles.newPostBtn}>
+          <FaPlus size="20px" />
+        </button>
+      </Link>
     </div>
   );
 }

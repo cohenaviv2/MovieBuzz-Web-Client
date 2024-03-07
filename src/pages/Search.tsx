@@ -8,6 +8,7 @@ import PostCard from "../components/Post/PostCard/PostCard";
 import styles from "../components/SearchBar/SearchBar.module.scss";
 import { moviesService, tvShowsService, CanceledError } from "../services/MovieService";
 import Spinner from "../components/Spinner/Spinner";
+import Error from "../components/Error/Error";
 
 function Search() {
   const [isSearchTerm, setIsSearchTerms] = useState(false);
@@ -15,15 +16,15 @@ function Search() {
   const [movieList, setMovieList] = useState<IMovie[]>([]);
   const [tvShowList, setTvShowList] = useState<ITvShow[]>([]);
   const [postList, setPostList] = useState<IPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
 
   useEffect(() => {
     if (query !== "") {
-      setIsLoading(true);
+      setLoading(true);
       searchMovies();
       searchTvShows();
-      setIsLoading(false);
+      // setLoading(false);
     }
   }, [query]);
 
@@ -42,7 +43,7 @@ function Search() {
         setMovieList(res.data);
       })
       .catch((err) => {
-        setIsLoading(false);
+        setLoading(false);
         if (err instanceof CanceledError) return;
         setError(err);
         console.log(err);
@@ -56,9 +57,10 @@ function Search() {
     request
       .then((res) => {
         setTvShowList(res.data);
+        setLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false);
+        setLoading(false);
         if (err instanceof CanceledError) return;
         setError(err);
         console.log(err);
@@ -74,8 +76,10 @@ function Search() {
         <div className={styles.searchRes}>
           <h2>Movies</h2>
           <div className={styles.resContainer}>
-            {isLoading ? (
+            {loading ? (
               <Spinner />
+            ) : error ? (
+              <Error error={error} />
             ) : (
               <List
                 type="movie"
@@ -90,8 +94,10 @@ function Search() {
           </div>
           <h2>TV Shows</h2>
           <div className={styles.resContainer}>
-            {isLoading ? (
+            {loading ? (
               <Spinner />
+            ) : error ? (
+              <Error error={error} />
             ) : (
               <List
                 type="movie"
@@ -106,8 +112,10 @@ function Search() {
           </div>
           <h2>Posts</h2>
           <div className={styles.resContainer}>
-            {isLoading ? (
+            {loading ? (
               <Spinner />
+            ) : error ? (
+              <Error error={error} />
             ) : (
               <List
                 type="post"

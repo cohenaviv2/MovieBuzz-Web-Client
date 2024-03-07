@@ -1,16 +1,17 @@
 export interface IUser {
   fullName: string;
   email: string;
-  role: string;
   password: string;
   imageUrl: string;
+  role?: string;
   googleId?: string;
-  tokens: string[];
+  socketId?: string;
+  tokens?: string[];
   _id?: string;
 }
 
 export interface IPost {
-  _id?:string;
+  _id?: string;
   ownerId: string;
   ownerName?: string;
   ownerImageUrl?: string;

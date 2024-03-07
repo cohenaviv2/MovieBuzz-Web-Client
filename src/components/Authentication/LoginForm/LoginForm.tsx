@@ -26,6 +26,7 @@ function LoginForm({ setProfile }: LoginProps) {
   } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
 
   function onSubmit(data: FieldValues) {
+    console.log("onSubmit")
     console.log(data);
     setProfile(tempProfile);
   }

@@ -7,11 +7,11 @@ import Pagination from "../components/Pagination/Pagination";
 import Error from "../components/Error/Error";
 
 function Movies() {
-  const { movies, error, isLoading, handleFilterSelection, page, handleNextPage, handlePrevPage } = useMovies();
+  const { movies, error, loading, handleFilterSelection, page, handleNextPage, handlePrevPage } = useMovies();
 
   return (
     <div className="movies">
-      <MovieToolbar type="movies" handleFilterSelection={handleFilterSelection} loading={isLoading} />
+      <MovieToolbar type="movies" handleFilterSelection={handleFilterSelection} loading={loading} />
       {error ? (
         <Error error={error} />
       ) : (
@@ -25,7 +25,7 @@ function Movies() {
               </Link>
             )}
           />
-          <Pagination page={page} handlePrevPage={handlePrevPage} handleNextPage={handleNextPage} loading={isLoading} />
+          <Pagination page={page} handlePrevPage={handlePrevPage} handleNextPage={handleNextPage} loading={loading} />
         </>
       )}
     </div>

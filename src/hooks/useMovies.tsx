@@ -5,21 +5,21 @@ import { IMovie } from "../services/Types";
 function useMovies() {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [error, setError] = useState<AxiosError>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(movieFilters[0]);
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     const { request, cancel } = moviesService.get(selectedFilter, page);
     request
       .then((res) => {
         const movies = res.data as IMovie[];
         setMovies(movies);
-        setIsLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false);
+        setLoading(false);
         if (err instanceof CanceledError) return;
         setError(err);
         console.log(err);
@@ -44,7 +44,7 @@ function useMovies() {
   return {
     movies,
     error,
-    isLoading,
+    loading,
     handleFilterSelection,
     page,
     handleNextPage,

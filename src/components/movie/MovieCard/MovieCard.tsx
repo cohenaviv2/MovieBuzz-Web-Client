@@ -1,5 +1,5 @@
 import { IMovie, ITvShow } from "../../../services/Types";
-import noImageAvailable from "../../../assets/no_image_avaliable.png";
+import noImageAvailable from "../../../assets/no-img-availbale.png";
 import styles from "./MovieCard.module.scss";
 
 export const TMDB_NULL_IMG_URL = "https://image.tmdb.org/t/p/w500null";

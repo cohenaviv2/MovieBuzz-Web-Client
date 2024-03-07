@@ -5,21 +5,21 @@ import { ITvShow } from "../services/Types";
 function useTvShows() {
   const [tvShows, setTvShows] = useState<ITvShow[]>([]);
   const [error, setError] = useState<AxiosError>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(tvShowFilters[0]);
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     const { request, cancel } = tvShowsService.get(selectedFilter, page);
     request
       .then((res) => {
         const tvShows = res.data as ITvShow[];
         setTvShows(tvShows);
-        setIsLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false);
+        setLoading(false);
         if (err instanceof CanceledError) return;
         setError(err);
         console.log(err);
@@ -44,7 +44,7 @@ function useTvShows() {
   return {
     tvShows,
     error,
-    isLoading,
+    loading,
     handleFilterSelection,
     page,
     handleNextPage,

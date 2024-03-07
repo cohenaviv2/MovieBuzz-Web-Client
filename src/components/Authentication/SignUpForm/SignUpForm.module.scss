@@ -2,14 +2,19 @@
 @import "../../../styles/containers.scss";
 
 .signupContainer {
-  @extend .HBox;
+  @extend .VBox;
   @extend .StyledBox;
-  width: 55%;
+  padding: 2rem 2rem;
+
+  label {
+    margin-bottom: -0.5rem;
+  }
 }
 
 .formContainer {
   @extend .FormBox;
   height: auto;
+  padding: 2rem;
 
   h6 {
     margin: 0;
@@ -23,12 +28,6 @@
 
 .detailsContainer {
   @extend .VBox;
-  height: 90%;
-  padding: 16px 16px;
-
-  label {
-    margin-bottom: -0.5rem;
-  }
 }
 
 .submitContainer {
@@ -78,6 +77,8 @@
   min-width: 12.5rem;
   height: 1.5rem;
   font-size: 1.2rem;
+  background-color: $bg-secondary;
+  border: 2px solid $logo-bg;
 }
 
 .inputFile {
@@ -102,20 +103,18 @@
   fill: $logo-bg;
 }
 
-.favTitle {
-  margin-top: 1rem;
-  color: $logo-bg;
-}
-
 .favInput {
-  border: 2px solid $text-primary;
+  min-width: 18rem;
+  height: 1.5rem;
+  font-size: 1.2rem;
   background-color: $bg-secondary;
-  color: $logo-bg;
+  border: 2px solid $logo-bg;
+  box-shadow: 0 0 14px rgba(175, 175, 175, 0.589);
 }
 
 .error {
   color: red;
   margin-top: -0.5rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 100;
 }

@@ -7,21 +7,21 @@ type DetailsType = IMovieDetails | ITvShowDetails;
 
 function useMovieDetails<T extends DetailsType>(id: string, path: string) {
   const [movieDetails, setMovieDetails] = useState<T>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<AxiosError>();
 
   useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     if (path.startsWith("/movie")) {
       const { request, cancel } = moviesService.getById(id);
       request
         .then((res) => {
           const details = res.data as T;
           setMovieDetails(details);
-          setIsLoading(false);
+          setLoading(false);
         })
         .catch((err) => {
-          setIsLoading(false);
+          setLoading(false);
           if (err instanceof CanceledError) return;
           setError(err);
           console.log(err);
@@ -35,10 +35,10 @@ function useMovieDetails<T extends DetailsType>(id: string, path: string) {
           const details = res.data as T;
           console.log(details);
           setMovieDetails(details);
-          setIsLoading(false);
+          setLoading(false);
         })
         .catch((err) => {
-          setIsLoading(false);
+          setLoading(false);
           if (err instanceof CanceledError) return;
           setError(err);
           console.log(err);
@@ -48,7 +48,7 @@ function useMovieDetails<T extends DetailsType>(id: string, path: string) {
     }
   }, [id, path]);
 
-  return { movieDetails, isLoading, error };
+  return { movieDetails, loading, error };
 }
 
 export default useMovieDetails;

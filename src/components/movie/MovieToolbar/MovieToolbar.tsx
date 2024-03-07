@@ -10,7 +10,7 @@ interface ToolbarProps {
   loading: boolean;
 }
 
-function MovieToolbar({ type, handleFilterSelection, loading: isLoading }: ToolbarProps) {
+function MovieToolbar({ type, handleFilterSelection, loading }: ToolbarProps) {
   const title = type === "movies" ? "Movies" : "TV Shows";
 
   const filterBtnList = type === "movies" ? MovieFilterButton : TvShowFilterButton;
@@ -21,7 +21,7 @@ function MovieToolbar({ type, handleFilterSelection, loading: isLoading }: Toolb
 
   return (
     <div className={styles.toolbar}>
-      <div className={styles.spinnerContainer}>{isLoading && <Spinner />}</div>
+      <div className={styles.spinnerContainer}>{loading && <Spinner />}</div>
       <h3>{title}</h3>
       <ButtonGroup type="filter" buttons={filterButtons} />
       <ButtonGroup type="genre" buttons={genreButtons} />
