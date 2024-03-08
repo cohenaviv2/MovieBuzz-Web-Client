@@ -24,6 +24,7 @@ function Search() {
       setLoading(true);
       searchMovies();
       searchTvShows();
+      setPostList([]);
       // setLoading(false);
     }
   }, [query]);
@@ -79,7 +80,7 @@ function Search() {
             {loading ? (
               <Spinner />
             ) : error ? (
-              <Error error={error} />
+              <Error message={error} />
             ) : (
               <List
                 type="movie"
@@ -97,7 +98,7 @@ function Search() {
             {loading ? (
               <Spinner />
             ) : error ? (
-              <Error error={error} />
+              <Error message={error} />
             ) : (
               <List
                 type="movie"
@@ -115,7 +116,7 @@ function Search() {
             {loading ? (
               <Spinner />
             ) : error ? (
-              <Error error={error} />
+              <Error message={error} />
             ) : (
               <List
                 type="post"

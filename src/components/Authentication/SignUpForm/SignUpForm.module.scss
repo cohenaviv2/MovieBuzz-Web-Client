@@ -4,11 +4,17 @@
 .signupContainer {
   @extend .VBox;
   @extend .StyledBox;
-  padding: 2rem 2rem;
+  padding: 0 2rem;
+  margin-top: -1rem;
 
   label {
     margin-bottom: -0.5rem;
   }
+}
+
+.errorContainer {
+  // margin-bottom: 1rem;
+  height: 2rem;
 }
 
 .formContainer {
@@ -36,6 +42,18 @@
   background: transparent;
   width: 24rem;
   gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btnContainer {
+  @extend .HBox;
+  margin-right: 3rem;
+  gap: 1rem;
+  height: 4rem;
+}
+
+.spinnerContainer {
+  width: 2rem;
 }
 
 .imgNameContainer {
@@ -56,8 +74,9 @@
   height: 100%;
 }
 
+
 .signupBtn {
-  margin-top: 2rem;
+  // margin-top: 2rem;
   background: $btn-primary;
   padding: 0 6rem;
   min-height: 3rem;
@@ -91,7 +110,7 @@
   background-color: $bg-secondary;
   // background-color: $text-secondary;
   background-size: cover;
-  min-width: 95%;
+  min-width: 100%;
   min-height: 100%;
   border-radius: 100%;
   cursor: pointer;
@@ -114,7 +133,15 @@
 
 .error {
   color: red;
-  margin-top: -0.5rem;
+  height: 1rem;
+  margin-top: -1rem;
   font-size: 0.8rem;
   font-weight: 100;
+}
+
+.imgError {
+  position: absolute;
+  margin-right: 6rem;
+  color: $logo-bg;
+  font-size: 2rem;
 }

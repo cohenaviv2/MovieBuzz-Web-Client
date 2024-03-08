@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import styles from "./LoginForm.module.scss";
 import { IUser } from "../../../services/Types";
 import { profile as tempProfile } from "../../Post/PostsData";
+import useAuthentication from "../../../hooks/useAuthentication";
 
 export interface LoginProps {
   setProfile: (value: React.SetStateAction<IUser | null>) => void;
@@ -19,6 +20,7 @@ const loginSchema = z.object({
 type FormData = z.infer<typeof loginSchema>;
 
 function LoginForm({ setProfile }: LoginProps) {
+  const { login, error, tokens} = useAuthentication();
   const {
     register,
     handleSubmit,

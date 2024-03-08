@@ -1,50 +1,34 @@
-import { Link } from "react-router-dom";
-import ButtonGroup from "../../ButtonGroup/ButtonGroup";
-import { Button } from "../../ButtonGroup/ButtonUtils";
 import { PostFilters } from "../PostsData";
-import { FaPlus } from "react-icons/fa";
-import { GiFallingStar } from "react-icons/gi";
 import styles from "./PostToolbar.module.scss";
-import { DiVim } from "react-icons/di";
+import { PostFilter } from "../../../services/PostService";
+import { createButton } from "../../ButtonGroup/ButtonUtils";
+import Spinner from "../../Spinner/Spinner";
 
-function PostToolbar() {
-  function createButton(label: string, onClick: () => void, cName: string, icon: JSX.Element): Button {
-    return {
-      label,
-      onClick,
-      cName,
-      icon,
-    };
-  }
+interface PostToolbarProps {
+  handleFilterSelection: (value: PostFilter) => void;
+  selectedFilter:PostFilter;
+  loading: boolean;
+}
 
-  function handleFilterClick(filter: string) {
-    console.log(filter);
-  }
+function PostToolbar({ loading,selectedFilter, handleFilterSelection }: PostToolbarProps) {
 
-  const filterButtons = PostFilters.map((filter) => createButton(filter.label, () => handleFilterClick(filter.label), filter.cName, filter.icon));
+  const filterButtons = PostFilters.map((filter) => {
+    const isSelected = selectedFilter === filter.path;
+    const buttonClassName = isSelected ? styles.filterBtnSelected : styles.filterBtn;
+    return createButton(filter.label, () => handleFilterSelection(filter.path as PostFilter), buttonClassName, filter.path, filter.icon);
+  });
 
   return (
     <div className={styles.postToolbar}>
-      {/* <h3>Home</h3>
-      <div className={styles.textContainer}>
-        <GiFallingStar />
-        Explore user-rated movies & TV posts
-      </div> */}
+      <div className={styles.spinnerContainer}>{loading && <Spinner />}</div>
       <div className={styles.filterBtnContainer}>
-        {filterButtons.map((button) => (
-          <button className={button.cName} onClick={button.onClick}>
+        {filterButtons.map((button, index) => (
+          <button className={button.cName} onClick={button.onClick} key={index}>
             {button.icon}
-            {button.label}
+            {/* {button.label} */}
           </button>
         ))}
       </div>
-      {/* <ButtonGroup buttons={filterButtons} type="filter" /> */}
-      {/* <Link to="/search">
-        <button className={styles.newPostBtn}>
-          <FaPlus size="20px" />
-          New Post
-        </button>
-      </Link> */}
     </div>
   );
 }

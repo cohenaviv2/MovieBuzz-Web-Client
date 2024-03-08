@@ -27,7 +27,7 @@ function MovieDetails() {
       {loading ? (
         <Spinner />
       ) : error ? (
-        <Error error={error} />
+        <Error message={error.message} />
       ) : (
         movieDetails && (
           <>

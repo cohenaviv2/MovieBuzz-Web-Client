@@ -66,7 +66,7 @@ export interface ITvShowDetails extends ITvShow {
   seasons?: ITvShowSeason[];
 }
 
-interface ITvShowSeason {
+export interface ITvShowSeason {
   id: number;
   air_date: string;
   episode_count: number;
@@ -74,4 +74,14 @@ interface ITvShowSeason {
   overview: string;
   poster_path: string;
   season_number: number;
+}
+
+export interface Tokens {
+  accessToken: string;
+  refreshToken: string;
+  accessTokenExpirationTime: string;
+}
+
+export interface UserId {
+  _id: string;
 }

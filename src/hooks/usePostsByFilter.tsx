@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
-import { moviesService, movieFilters, CanceledError, AxiosError } from "../services/MovieService";
-import { IMovie } from "../services/Types";
+import PostService, { AxiosError, CanceledError } from "../services/PostService";
+import { IPost } from "../services/Types";
+import { PostFilter } from "../services/PostService";
 
-function useMovies() {
-  const [movies, setMovies] = useState<IMovie[]>([]);
+function usePostsByFilter() {
+  const [posts, setPosts] = useState<IPost[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState(movieFilters[0]);
+  const [selectedFilter, setSelectedFilter] = useState<PostFilter>("recent");
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     setLoading(true);
-    const { request, cancel } = moviesService.get(selectedFilter, page);
+    const { request, cancel } = PostService.get(selectedFilter, page);
     request
       .then((res) => {
-        const movies = res.data as IMovie[];
-        setMovies(movies);
+        const posts = res.data as IPost[];
+        setPosts(posts);
         setLoading(false);
       })
       .catch((err) => {
@@ -28,7 +29,7 @@ function useMovies() {
     return () => cancel();
   }, [selectedFilter, page]);
 
-  const handleFilterSelection = (filter: string) => {
+  const handleFilterSelection = (filter: PostFilter) => {
     setSelectedFilter(filter);
     setPage(1);
   };
@@ -42,9 +43,10 @@ function useMovies() {
   };
 
   return {
-    movies,
+    posts,
     error,
     loading,
+    selectedFilter,
     handleFilterSelection,
     page,
     handleNextPage,
@@ -52,4 +54,4 @@ function useMovies() {
   };
 }
 
-export default useMovies;
+export default usePostsByFilter;

@@ -13,16 +13,16 @@ function TvShows() {
     <div className="tv-shows">
       <MovieToolbar type="tv" handleFilterSelection={handleFilterSelection} loading={loading} />
       {error ? (
-        <Error error={error} />
+        <Error message={error.message} />
       ) : (
         <>
-          {error && <Error error={error} />}
+          {error && <Error message={error} />}
           <Grid
             type="movie"
             items={tvShows}
             renderItem={(tvShow) => (
               <Link to={`/tv/${tvShow.id}`} key={tvShow.id}>
-                <MovieCard movie={tvShow}/>
+                <MovieCard movie={tvShow} />
               </Link>
             )}
           />

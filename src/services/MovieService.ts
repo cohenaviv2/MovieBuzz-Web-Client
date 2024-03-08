@@ -9,7 +9,7 @@ export const tvShowFilters = ["on-the-air", "popular", "top-rated"];
 export type movieFilter = "popular" | "now-playing" | "upcoming";
 
 class MovieService {
-  path: ServicePath;
+  private path: ServicePath;
   constructor(servicePath: ServicePath) {
     this.path = servicePath;
   }

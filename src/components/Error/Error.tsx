@@ -1,16 +1,15 @@
-import { AxiosError } from "../../services/api-client";
 import styles from "./Error.module.scss";
 import { MdOutlineError } from "react-icons/md";
 
 interface ErrorProps {
-  error: AxiosError;
+  message: string;
 }
 
-function Error({ error }: ErrorProps) {
+function Error({ message }: ErrorProps) {
   return (
     <div className={styles.errorMsg}>
       <MdOutlineError className={styles.errorIcon} />
-      {error.message}
+      {message}
     </div>
   );
 }

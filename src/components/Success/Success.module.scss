@@ -1,7 +1,7 @@
 @import "../../styles/styles.scss";
 @import "../../styles/containers.scss";
 
-.errorMsg {
+.successMsg {
     @extend .HBox;
     gap: 0.3rem;
     color: $text-secondary;
@@ -9,7 +9,7 @@
     height: 100%;
 }
 
-.errorIcon {
-    fill:$bg-secondary;
+.successIcon {
+    fill:#07eb13;
     font-size: 2.5rem;
 }

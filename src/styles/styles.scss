@@ -24,6 +24,8 @@ $btn-trinary: linear-gradient(to right, #72188d, #700c8f);
 $btn-trinary-hover: linear-gradient(to right, #680f83, #5c0e74);
 $header-bg: linear-gradient(to left, $bg-secondary, #8e11b4);
 $post-bg: linear-gradient(to top, $nav-bg-secondary, $nav-bg-primary);
+$btn-logo: linear-gradient(to left, #FFCF37,#f7be05 );
+$btn-logo-hover: linear-gradient(to left, rgb(0, 119, 255), rgb(14, 89, 252));
 
 #root {
   max-width: 1280px;

@@ -4,6 +4,7 @@ export interface Button {
   label: movieFilter | string;
   onClick: () => void;
   cName: string;
+  cNameSelected?:string,
   icon?: JSX.Element;
   path?:string;
 }

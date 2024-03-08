@@ -4,13 +4,13 @@ import Spinner from "../../Spinner/Spinner";
 import { MovieFilterButton, MovieGenreButtons, TvShowFilterButton, TvShowGenreButtons } from "../MoviesData";
 import styles from "./MovieToolbar.module.scss";
 
-interface ToolbarProps {
+interface MovieToolbarProps {
   type: "movies" | "tv";
   handleFilterSelection: (value: string) => void;
   loading: boolean;
 }
 
-function MovieToolbar({ type, handleFilterSelection, loading }: ToolbarProps) {
+function MovieToolbar({ type, handleFilterSelection, loading }: MovieToolbarProps) {
   const title = type === "movies" ? "Movies" : "TV Shows";
 
   const filterBtnList = type === "movies" ? MovieFilterButton : TvShowFilterButton;

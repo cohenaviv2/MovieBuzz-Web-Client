@@ -10,5 +10,6 @@
 .postGrid {
   @extend .GridBox;
   grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  background-color: transparent;
   gap: 2rem;
 }

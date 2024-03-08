@@ -1,19 +1,20 @@
 import { IUser } from "./Types";
 import apiClient, { CanceledError, AxiosError } from "./api-client";
 export { CanceledError, AxiosError}
+import { Tokens, UserId } from "./Types";
 
 class AuthService {
-  path = "auth/";
+  private path = "auth/";
 
   register(user:IUser) {
     const controller = new AbortController();
-    const request = apiClient.post(this.path + "register", { user, signal: controller.signal });
+    const request = apiClient.post<UserId>(this.path + "register",  user , { signal: controller.signal });
     return { request, cancel: () => controller.abort() };
   }
 
   login(email: string, password: string) {
     const controller = new AbortController();
-    const request = apiClient.post(this.path + "login", { email, password, signal:controller.signal});
+    const request = apiClient.post<Tokens>(this.path + "login", { email, password }, { signal: controller.signal });
     return { request, cancel: () => controller.abort() };
   }
 
@@ -25,9 +26,9 @@ class AuthService {
 
   refreshTokens(refreshToken: string) {
     const controller = new AbortController();
-    const request = apiClient.post(this.path + "refresh", { refreshToken, signal: controller.signal });
+    const request = apiClient.post<Tokens>(this.path + "refresh", { headers: { Authorization: `JWT ${refreshToken}` }, signal: controller.signal });
     return { request, cancel: () => controller.abort() };
   }
 }
 
-export default AuthService;
+export default new AuthService();

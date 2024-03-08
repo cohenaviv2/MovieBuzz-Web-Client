@@ -1,6 +1,5 @@
 import * as FaIcons from "react-icons/fa6";
 import styles from "../Post/PostToolbar/PostToolbar.module.scss";
-import iconStyle from "../ButtonGroup/ButtonGroup.module.scss";
 import { IUser } from "../../services/Types";
 
 export const PostFilters = [
@@ -8,19 +7,25 @@ export const PostFilters = [
     label: "Top Rated",
     onClick: () => null,
     cName: styles.postFilterBtn,
-    icon: <FaIcons.FaStar className={iconStyle.filterIcon} />,
+    cNameSelected: styles.abcd,
+    icon: <FaIcons.FaStar className={styles.filterIcon} />,
+    path: "top-rated",
   },
   {
     label: "Recent",
     onClick: () => null,
     cName: styles.postFilterBtn,
-    icon: <FaIcons.FaNewspaper className={iconStyle.filterIcon} />,
+    cNameSelected: styles.abcd,
+    icon: <FaIcons.FaNewspaper className={styles.filterIcon} />,
+    path: "recent",
   },
   {
     label: "Most Commented",
     onClick: () => null,
     cName: styles.postFilterBtn,
-    icon: <FaIcons.FaCommentDots className={iconStyle.filterIcon} />,
+    cNameSelected: styles.abcd,
+    icon: <FaIcons.FaCommentDots className={styles.filterIcon} />,
+    path: "most-commented",
   },
 ];
 

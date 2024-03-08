@@ -21,7 +21,7 @@ function PostCard({ post }: PostCardProps) {
         <div className={styles.rateContainer}>
           <div className={styles.rateBox}>
             <FaStar className={styles.rateIcon} />
-            {post.rating}
+            <div className={styles.rateLabel}>{post.rating}</div>
           </div>
           <div className={styles.commentsBox}>
             <FaCommentAlt className={styles.commentIcon} />
