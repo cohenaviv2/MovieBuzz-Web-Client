@@ -1059,14 +1059,14 @@ export const MovieFilterButton: Button[] = [
     label: "Now Playing",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaVideo />, // <FaClapperboard />
+    icon: <FaIcons.FaFilm />, // <FaClapperboard />
     path: "now-playing",
   },
   {
     label: "Upcoming",
     onClick: () => null,
     cName: styles.filterBtn,
-    icon: <FaIcons.FaCircleArrowUp />,
+    icon: <FaIcons.FaRegCalendarCheck />,
     path: "upcoming",
   },
 ];

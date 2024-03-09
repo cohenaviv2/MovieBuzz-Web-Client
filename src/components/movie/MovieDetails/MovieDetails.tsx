@@ -19,7 +19,7 @@ function MovieDetails() {
   const { movieDetails, loading, error } = useMovieDetails<IMovieDetails>(movieId, currentPath);
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate("/movies");
   };
 
   return (
@@ -55,14 +55,14 @@ function MovieDetails() {
                   <h6>{movieDetails.overview}</h6>
                 </div>
                 <div className={styles.buttonsContainer}>
-                  <Link to={`/new-post`}>
+                  <Link to={`/new-post`} state={{ movieDetails }}>
                     <button className={styles.newPostBtn}>
                       <FaPlus />
                       Create Post
                     </button>
                   </Link>
                   <label>You can create post about this content</label>
-                  <Link to={`/movie/${movieId}/posts`}>
+                  <Link to={`/movie/${movieId}/posts`} state={{ movieDetails }}>
                     <button className={styles.getPostsBtn}>
                       <BsFillPostcardFill className={styles.postIcon} />
                       View Posts

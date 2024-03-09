@@ -52,6 +52,7 @@
   @extend .HBox;
   justify-content: center;
   flex-wrap: wrap;
+  width: auto;
   overflow: auto;
   scroll-behavior: smooth;
   gap: 0.5rem;

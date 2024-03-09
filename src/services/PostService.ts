@@ -13,22 +13,22 @@ class PostService {
     return { request, cancel: () => controller.abort() };
   }
 
-  createPost(postData: IPost, token: string) {
+  createPost(postData: IPost, accessToken: string) {
     const controller = new AbortController();
     const request = apiClient.post<IPost>(this.path, postData, {
       headers: {
-        Authorization: `JWT ${token}`,
+        Authorization: `JWT ${accessToken}`,
       },
       signal: controller.signal,
     });
     return { request, cancel: () => controller.abort() };
   }
 
-  getUserPosts(token: string) {
+  getUserPosts(accessToken: string) {
     const controller = new AbortController();
-    const request = apiClient.get<IPost[]>(this.path + "/posts/user", {
+    const request = apiClient.get<IPost[]>(this.path + "find", {
       headers: {
-        Authorization: `JWT ${token}`,
+        Authorization: `JWT ${accessToken}`,
       },
     });
     return { request, cancel: () => controller.abort() };
@@ -36,7 +36,7 @@ class PostService {
 
   searchPosts(query: string) {
     const controller = new AbortController();
-    const request = apiClient.get<IPost[]>(this.path + `/posts/search?query=${query}`);
+    const request = apiClient.get<IPost[]>(this.path + `search?query=${query}`);
     return { request, cancel: () => controller.abort() };
   }
 }

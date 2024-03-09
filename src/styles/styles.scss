@@ -22,6 +22,8 @@ $btn-secondary: linear-gradient(to left, $bg-tertiary, rgb(187, 0, 224));
 $btn-secondary-hover: linear-gradient(to right, rgb(182, 2, 218), rgb(172, 2, 214));
 $btn-trinary: linear-gradient(to right, #72188d, #700c8f);
 $btn-trinary-hover: linear-gradient(to right, #680f83, #5c0e74);
+$btn-err: linear-gradient(to right, rgb(240, 6, 6), rgb(248, 41, 41));
+$btn-err-hover: linear-gradient(to right, rgb(192, 12, 12), rgb(199, 29, 29));
 $header-bg: linear-gradient(to left, $bg-secondary, #8e11b4);
 $post-bg: linear-gradient(to top, $nav-bg-secondary, $nav-bg-primary);
 $btn-logo: linear-gradient(to left, #FFCF37,#f7be05 );

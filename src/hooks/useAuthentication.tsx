@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
-import AuthService, { AxiosError } from "../services/AuthService";
-import { Tokens, UserId } from "../services/Types";
+import AuthService from "../services/AuthService";
+import { Auth } from "../services/Types";
 import { IUser } from "../services/Types";
 
-interface AuthError {
-  message: string;
-}
-
-interface ExtendedTokens extends Tokens {
+interface ExtendedAuth extends Auth {
   expirationNumber: number;
 }
 
@@ -30,120 +26,131 @@ const calculateExpirationTime = (accessTokenExpirationTime: string): number => {
 };
 
 const useAuthentication = () => {
-  const [tokens, setTokens] = useState<ExtendedTokens>();
-  const [profile,setProfile] = useState<IUser>({
-    fullName: "",
-    email:"",
-    password:"",
-    imageUrl:"",
-  });
-  const [userId, setUserId] = useState<UserId | null>(null);
+  const [auth, setAuth] = useState<Auth | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<AuthError | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    const storedTokens = localStorage.getItem("tokens");
+    const storedTokens = localStorage.getItem("auth");
     if (storedTokens) {
-      setTokens(JSON.parse(storedTokens));
+      console.log("Stored auth!");
+      setAuth(getAuth());
     }
   }, []);
 
-  const register = async (user: IUser) => {
+  function getAuth(): ExtendedAuth | null {
+    const storedTokens = localStorage.getItem("auth");
+    if (storedTokens) {
+      const parsedTokens: ExtendedAuth = JSON.parse(storedTokens);
+      return parsedTokens;
+    } else return null;
+  }
+  const register = (user: IUser) => {
     setIsLoading(true);
-    try {
-      const { request } = AuthService.register(user);
-      const response = await request;
-      setProfile((prevProfile)=>({
-        ...prevProfile,
-        _id: response.data._id
-      }));
-    } catch (err) {
-      if (err instanceof AxiosError) {
-        setError({ message: err.response?.data });
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    setError(null);
+    const { request } = AuthService.register(user);
+    request
+      .then(() => {})
+      .catch((err) => {
+        setError(err.response ? err.response.data : err.message);
+      })
+      .finally(() => setIsLoading(false));
   };
 
-  const login = async (email: string, password: string) => {
+  const login = (email: string, password: string) => {
     setIsLoading(true);
-    try {
-      const { request } = AuthService.login(email, password);
-      const response = await request;
-      const expirationNumber = calculateExpirationTime(response.data.accessTokenExpirationTime); // Assuming the expiration is 1 hour
-      setTokens({ ...response.data, expirationNumber: expirationNumber });
-      // Store tokens in local storage
-      localStorage.setItem("tokens", JSON.stringify({ ...response.data, expirationNumber: expirationNumber }));
-      
-    } catch (err) {
-      if (err instanceof AxiosError) {
-        setError({ message: err.response?.data });
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    setError(null);
+    const { request } = AuthService.login(email, password);
+    request
+      .then((response) => {
+        const { accessToken, refreshToken, accessTokenExpirationTime, user } = response.data;
+        const receivedAuth: ExtendedAuth = {
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          accessTokenExpirationTime: accessTokenExpirationTime,
+          expirationNumber: calculateExpirationTime(accessTokenExpirationTime),
+          user: user,
+        };
+        setLoggedIn(true);
+        console.log(receivedAuth);
+        setAuth(receivedAuth);
+        console.log("Auth: ", receivedAuth);
+        // Store auth in local storage
+        localStorage.setItem("auth", JSON.stringify(receivedAuth));
+      })
+      .catch((err) => {
+        console.error("Login error:", err.response.data);
+        setError(err.response.data);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const logout = () => {
-    localStorage.removeItem("tokens");
-    setTokens(null);
-    setUserId(null);
+    localStorage.removeItem("auth");
+    setLoggedIn(false);
+    setAuth(null);
   };
 
   const refreshToken = async () => {
     setIsLoading(true);
-    try {
-      const refreshToken = tokens?.refreshToken;
-      if (!refreshToken) return;
+    setError(null);
+    if (!auth || !auth.refreshToken) return;
+    const refreshToken = auth.refreshToken;
 
-      const { request } = AuthService.refreshTokens(refreshToken);
-      const response = await request;
-      const expirationNumber = calculateExpirationTime(response.data.accessTokenExpirationTime); // Assuming the expiration is 1 hour
-      setTokens({ ...response.data, expirationNumber: expirationNumber });
-      // Update tokens in local storage
-      localStorage.setItem("tokens", JSON.stringify({ ...response.data, expirationNumber: expirationNumber }));
-    } catch (error) {
-      // Handle error
-      console.error("Refresh token error:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    const { request } = AuthService.refreshTokens(refreshToken);
+    request
+      .then((response) => {
+        const { accessToken: newAccessToken, refreshToken: newRefreshToken, accessTokenExpirationTime: newAccessTokenExpirationTime, user } = response.data;
+        const newAuth: ExtendedAuth = {
+          accessToken: newAccessToken,
+          refreshToken: newRefreshToken,
+          accessTokenExpirationTime: newAccessTokenExpirationTime,
+          expirationNumber: calculateExpirationTime(newAccessTokenExpirationTime),
+          user: user,
+        };
+
+        setAuth(newAuth);
+        console.log(newAuth);
+        // Store auth in local storage
+        localStorage.removeItem("auth");
+        localStorage.setItem("auth", JSON.stringify(newAuth));
+      })
+      .catch((err) => {
+        console.error("Refresh error:", err.response.data);
+        setError(err.response.data);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
-    const storedTokens = localStorage.getItem("tokens");
-    if (storedTokens) {
-      const parsedTokens: ExtendedTokens = JSON.parse(storedTokens);
-      setTokens(parsedTokens);
-      // Check if access token has expired and refresh it if needed
-      const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-      if (parsedTokens.expirationNumber <= currentTime) {
-        refreshToken();
-      }
-    }
-  }, []);
-
-  useEffect(() => {
     const checkTokenExpiration = () => {
-      const expirationTime = tokens?.expirationNumber;
-      const currentTime = new Date().getTime() / 1000; // Convert to seconds
-      if (expirationTime && expirationTime < currentTime) {
-        refreshToken(); // Refresh token if expired
+      console.log("Check token expiration...");
+      const auth = getAuth();
+      if (auth) {
+        const expirationTime = auth.expirationNumber;
+        const currentTime = new Date().getTime() / 1000; // Convert to seconds
+        if (expirationTime && expirationTime < currentTime) {
+          console.log("Refreshing tokens...");
+          refreshToken(); // Refresh token if expired
+        }
       }
     };
 
-    const intervalId = setInterval(checkTokenExpiration, 60000*3); // Check expiration every 3 minute
-    checkTokenExpiration(); // Check immediately when component mounts
+    if (loggedIn) {
+      const intervalId = setInterval(checkTokenExpiration, 60000 * 3); // Check expiration every 3 minute
+      checkTokenExpiration(); // Check immediately when component mounts
 
-    return () => clearInterval(intervalId); // Cleanup on unmount
-  }, [tokens]);
+      return () => clearInterval(intervalId); // Cleanup on unmount
+    }
+  }, [loggedIn]);
 
   return {
-    tokens,
-    userId,
+    auth,
     isLoading,
     error,
+    loggedIn,
+    getAuth,
     register,
     login,
     logout,

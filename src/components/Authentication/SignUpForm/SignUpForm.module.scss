@@ -6,6 +6,7 @@
   @extend .StyledBox;
   padding: 0 2rem;
   margin-top: -1rem;
+  height: auto;
 
   label {
     margin-bottom: -0.5rem;
@@ -19,13 +20,13 @@
 
 .formContainer {
   @extend .FormBox;
-  height: auto;
   padding: 2rem;
+  height: auto;
 
   h6 {
-    margin: 0;
     // margin-top: -0.9rem;
     width: 85%;
+    height: auto;
     font-size: 0.9rem;
     color: $bg-secondary;
     font-weight: 100;
@@ -66,14 +67,14 @@
 .nameContainer {
   @extend .FormBox;
   justify-content: center;
+  margin-top: 1rem;
 }
 
 .imgContainer {
-  @extend .VBox;
-  width: 40%;
+  @extend .HBox;
+  width: 50%;
   height: 100%;
 }
-
 
 .signupBtn {
   // margin-top: 2rem;
@@ -110,14 +111,15 @@
   background-color: $bg-secondary;
   // background-color: $text-secondary;
   background-size: cover;
-  min-width: 100%;
-  min-height: 100%;
-  border-radius: 100%;
+  height: 85px;
+  width: 90px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .imgIcon {
   font-size: 30px;
+  margin-bottom: 4px;
   // fill: #333;
   fill: $logo-bg;
 }
@@ -132,16 +134,17 @@
 }
 
 .error {
-  color: red;
+  color: $logo-bg;
   height: 1rem;
   margin-top: -1rem;
+  margin-bottom: -0.5rem;
   font-size: 0.8rem;
-  font-weight: 100;
+  // font-weight: 100;
 }
 
 .imgError {
-  position: absolute;
-  margin-right: 6rem;
+  height: 100%;
+  width: 0.5rem;
   color: $logo-bg;
-  font-size: 2rem;
+  font-size: 1.1rem;
 }

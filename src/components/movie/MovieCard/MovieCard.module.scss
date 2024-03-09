@@ -9,11 +9,11 @@
   padding: 10px;
   border-radius: 16px;
   color: $text-secondary;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s, box-shadow 0.2s;
 
   &:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 18px $text-secondary;
+  box-shadow: 0 4px 14px $text-secondary;
   color: $text-primary;
   }
 }

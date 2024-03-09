@@ -1,15 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import z from "zod";
 import { useState } from "react";
 import styles from "./SignUpForm.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MdOutlineAddAPhoto } from "react-icons/md";
-import { TbSquareAsteriskFilled } from "react-icons/tb";
+import { FaAsterisk } from "react-icons/fa";
 import { IUser } from "../../../services/Types";
 import Spinner from "../../Spinner/Spinner";
 import Error from "../../Error/Error";
 import useRegisteration from "../../../hooks/useRegisteration";
 import Success from "../../Success/Success";
+import { SingUpProps } from "../../../pages/SignUp";
+
+interface SingUpFormProps {
+  signUpProps: SingUpProps;
+}
 
 const userSchema = z.object({
   fullName: z.string().nonempty({ message: "Full name is required" }),
@@ -17,7 +23,6 @@ const userSchema = z.object({
   password: z.string({ required_error: "Password is required" }).min(8, { message: "Password must be at least 8 characters long" }),
   confirmPassword: z.string({ required_error: "Please confirm password" }).nonempty({ message: "Please confirm password" }),
 });
-
 userSchema.refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
   path: ["confirmPassword"],
@@ -25,10 +30,12 @@ userSchema.refine((data) => data.password === data.confirmPassword, {
 
 type FormData = z.infer<typeof userSchema>;
 
-function SignUpForm() {
+function SignUpForm({signUpProps}:SingUpFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imgSrcUrl, setImgSrcUrl] = useState<string>();
   const { success, loading, error, uploadImageAndRegister } = useRegisteration();
+  const navigate = useNavigate();
+  const { register:regesterUser } = signUpProps;
 
   const {
     register,
@@ -59,7 +66,14 @@ function SignUpForm() {
         password: data.password,
         imageUrl: "",
       };
-      await uploadImageAndRegister(user, imageFile);
+      const registerRes = await uploadImageAndRegister(user, imageFile);
+          setTimeout(() => {
+            if (!registerRes.error) {
+              navigate("/profile");
+            } else {
+              console.log("Not Logged In");
+            }
+          }, 2000);
     }
   }
 
@@ -70,21 +84,20 @@ function SignUpForm() {
 
   return (
     <>
-      <h3>Sign Up</h3>
       <div className={styles.signupContainer}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.detailsContainer}>
             <div className={styles.submitContainer}>
               <div className={styles.imgNameContainer}>
                 <div className={styles.imgContainer}>
+                  {!imageFile && (
+                    <div className={styles.imgError}>
+                      <FaAsterisk />
+                    </div>
+                  )}
                   <label htmlFor="image" className={styles.customFileInput} style={{ backgroundImage: `url(${imgSrcUrl})` }}>
                     {imgSrcUrl == null && <MdOutlineAddAPhoto className={styles.imgIcon} />}
                   </label>
-                  {!imageFile && (
-                    <div className={styles.imgError}>
-                      <TbSquareAsteriskFilled />
-                    </div>
-                  )}
                   <input id="image" type="file" accept="image/jpeg, image/png, image/gif" className={styles.inputFile} onChange={handleImageChange} />
                 </div>
                 <div className={styles.nameContainer}>
@@ -104,11 +117,9 @@ function SignUpForm() {
             <div className={styles.error}>{errors.password && errors.password.message}</div>
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input {...register("confirmPassword")} id="confirmPassword" type="password" autoComplete="new-password" onClick={() => errors.confirmPassword && handleInputClick("confirmPassword")} />
-            {<h6>Password must contains at least 8 characters, including letters and numbers.</h6>}
             <div className={styles.error}>{errors.confirmPassword && errors.confirmPassword.message}</div>
-            <label htmlFor="favorite" >
-              Favorite Movie or TV Show
-            </label>
+            {<h6>Password must contains at least 8 characters, including letters and numbers.</h6>}
+            <label htmlFor="favorite">Favorite Movie or TV Show</label>
             <input id="favorite" type="text" className={styles.favInput} />
             <div className={styles.errorContainer}>{error && <Error message={error} />}</div>
             <div className={styles.btnContainer}>

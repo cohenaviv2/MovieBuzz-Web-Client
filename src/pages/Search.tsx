@@ -9,6 +9,7 @@ import styles from "../components/SearchBar/SearchBar.module.scss";
 import { moviesService, tvShowsService, CanceledError } from "../services/MovieService";
 import Spinner from "../components/Spinner/Spinner";
 import Error from "../components/Error/Error";
+import PostService, { AxiosError } from "../services/PostService";
 
 function Search() {
   const [isSearchTerm, setIsSearchTerms] = useState(false);
@@ -17,21 +18,25 @@ function Search() {
   const [tvShowList, setTvShowList] = useState<ITvShow[]>([]);
   const [postList, setPostList] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+  const [moviesError, setMoviesError] = useState<AxiosError | null>(null);
+  const [tvError, setTvError] = useState<AxiosError | null>(null);
+  const [postsError, setPostsError] = useState<AxiosError | null>(null);
 
   useEffect(() => {
     if (query !== "") {
       setLoading(true);
       searchMovies();
       searchTvShows();
-      setPostList([]);
-      // setLoading(false);
+      searchPosts();
+      setLoading(false);
     }
   }, [query]);
 
   const handleSearch = (query: string) => {
     if (query != "") {
-      console.log(query);
+      setMoviesError(null);
+      setTvError(null);
+      setPostsError(null);
       setQuery(query);
       setIsSearchTerms(true);
     }
@@ -44,10 +49,11 @@ function Search() {
         setMovieList(res.data);
       })
       .catch((err) => {
-        setLoading(false);
-        if (err instanceof CanceledError) return;
-        setError(err);
         console.log(err);
+        if (err instanceof CanceledError) return;
+        setMoviesError(err);
+        console.log(err);
+        setLoading(false);
       });
 
     return () => cancel();
@@ -58,13 +64,29 @@ function Search() {
     request
       .then((res) => {
         setTvShowList(res.data);
-        setLoading(false);
       })
       .catch((err) => {
-        setLoading(false);
         if (err instanceof CanceledError) return;
-        setError(err);
+        setTvError(err);
         console.log(err);
+        setLoading(false);
+      });
+
+    return () => cancel();
+  }
+
+  function searchPosts() {
+    const { request, cancel } = PostService.searchPosts(query);
+    request
+      .then((res) => {
+        console.log(res.data);
+        setPostList(res.data);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) return;
+        setPostsError(err);
+        console.log(err);
+        setLoading(false);
       });
 
     return () => cancel();
@@ -79,8 +101,8 @@ function Search() {
           <div className={styles.resContainer}>
             {loading ? (
               <Spinner />
-            ) : error ? (
-              <Error message={error} />
+            ) : moviesError ? (
+              <Error message={moviesError.response ? (moviesError.response.data as string) : moviesError.message} />
             ) : (
               <List
                 type="movie"
@@ -97,8 +119,8 @@ function Search() {
           <div className={styles.resContainer}>
             {loading ? (
               <Spinner />
-            ) : error ? (
-              <Error message={error} />
+            ) : tvError ? (
+              <Error message={tvError.response ? (tvError.response.data as string) : tvError.message} />
             ) : (
               <List
                 type="movie"
@@ -115,8 +137,8 @@ function Search() {
           <div className={styles.resContainer}>
             {loading ? (
               <Spinner />
-            ) : error ? (
-              <Error message={error} />
+            ) : postsError ? (
+              <Error message={postsError.response ? (postsError.response.data as string) : postsError.message} />
             ) : (
               <List
                 type="post"

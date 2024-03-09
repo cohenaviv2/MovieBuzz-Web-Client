@@ -1,9 +1,15 @@
 import SignUpForm from "../components/Authentication/SignUpForm/SignUpForm";
+import { IUser } from "../services/Types";
 
-function SignUp() {
+export interface SingUpProps {
+  register: (user: IUser) => void;
+}
+
+function SignUp({register}:SingUpProps) {
   return (
     <div className="signup">
-      <SignUpForm />
+      <h3>Sign Up</h3>
+      <SignUpForm signUpProps={{register}}/>
     </div>
   );
 }

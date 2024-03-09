@@ -1,10 +1,16 @@
-import LoginForm, { LoginProps } from "../components/Authentication/LoginForm/LoginForm";
+import LoginForm from "../components/Authentication/LoginForm/LoginForm";
 
+export interface LoginProps {
+  login: (email: string, password: string) => void;
+  loggedIn:boolean;
+  error: string | null;
+  isLoading: boolean;
+}
 
-function Login({ setProfile }: LoginProps) {
+function Login({ login, loggedIn, error, isLoading }: LoginProps) {
   return (
     <div className="login">
-      <LoginForm setProfile={setProfile} />
+      <LoginForm loginProps={{ login, loggedIn, error, isLoading }} />
     </div>
   );
 }

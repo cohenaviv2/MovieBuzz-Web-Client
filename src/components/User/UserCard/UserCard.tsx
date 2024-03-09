@@ -1,13 +1,10 @@
 // import { Link } from "react-router-dom";
+import { IUserDetails } from "../../../services/Types";
 import styles from "./UserCard.module.scss";
 
-interface UserProps {
-  userId: string;
-  fullName: string;
-  imageUrl: string;
-}
 
-function UserCard({ fullName, imageUrl }: UserProps) {
+function UserCard({ fullName, imageUrl }: IUserDetails
+  ) {
   return (
     // <Link to={`/users/${userId}`}>
     <div className={styles.userCard}>

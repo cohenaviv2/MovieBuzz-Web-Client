@@ -76,11 +76,19 @@ export interface ITvShowSeason {
   season_number: number;
 }
 
-export interface Tokens {
+export interface Auth {
   accessToken: string;
   refreshToken: string;
   accessTokenExpirationTime: string;
+  user:IUserDetails;
 }
+
+export interface IUserDetails {
+  userId: string;
+  fullName: string;
+  imageUrl: string;
+}
+
 
 export interface UserId {
   _id: string;

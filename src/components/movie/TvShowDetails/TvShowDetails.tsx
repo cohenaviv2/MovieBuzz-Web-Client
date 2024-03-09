@@ -20,7 +20,7 @@ function TvShowDetails() {
   const { movieDetails, loading, error } = useMovieDetails<ITvShowDetails>(tvShowId, currentPath);
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate("/tv");
   };
 
   return (
@@ -58,14 +58,14 @@ function TvShowDetails() {
                   <h6>{movieDetails.overview}</h6>
                 </div>
                 <div className={styles.buttonsContainer}>
-                  <Link to={`/new-post`}>
+                  <Link to={`/new-post`} state={{ movieDetails }}>
                     <button className={styles.newPostBtn}>
                       <FaPlus />
                       Create Post
                     </button>
                   </Link>
                   <label>You can create post about this content</label>
-                  <Link to={`/tv/${tvShowId}/posts`}>
+                  <Link to={`/tv/${tvShowId}/posts`} state={{ movieDetails }}>
                     <button className={styles.getPostsBtn}>
                       <BsFillPostcardFill className={styles.postIcon} />
                       View Posts

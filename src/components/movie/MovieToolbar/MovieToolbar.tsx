@@ -22,7 +22,7 @@ function MovieToolbar({ type, handleFilterSelection, loading }: MovieToolbarProp
   return (
     <div className={styles.toolbar}>
       <div className={styles.spinnerContainer}>{loading && <Spinner />}</div>
-      <h3>{title}</h3>
+      <h3 className={styles.title}>{title}</h3>
       <ButtonGroup type="filter" buttons={filterButtons} />
       <ButtonGroup type="genre" buttons={genreButtons} />
     </div>

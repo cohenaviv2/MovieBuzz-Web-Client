@@ -3,7 +3,7 @@ import { moviesService, tvShowsService, AxiosError, CanceledError } from "../ser
 import { IMovieDetails, ITvShowDetails } from "../services/Types";
 
 // Define a generic type for the details
-type DetailsType = IMovieDetails | ITvShowDetails;
+export type DetailsType = IMovieDetails | ITvShowDetails;
 
 function useMovieDetails<T extends DetailsType>(id: string, path: string) {
   const [movieDetails, setMovieDetails] = useState<T>();
@@ -33,7 +33,6 @@ function useMovieDetails<T extends DetailsType>(id: string, path: string) {
       request
         .then((res) => {
           const details = res.data as T;
-          console.log(details);
           setMovieDetails(details);
           setLoading(false);
         })

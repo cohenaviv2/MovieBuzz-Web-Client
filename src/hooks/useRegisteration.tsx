@@ -1,24 +1,18 @@
 import { useState } from "react";
-import useImageUpload from "./useImageUpload";
+import useImageUpload, { ImageUploadResult } from "./useImageUpload";
 import useAuthentication from "./useAuthentication";
 import { IUser } from "../services/Types";
 import { AxiosError } from "../services/AuthService";
 
-interface ImageUploadResult {
-  imageUrl: string;
-  error: string | null;
-}
-
 interface RegistrationResult {
-  userId: string | null;
   error: string | null;
 }
 
 const useRegisteration = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>();
   const [success, setSuccess] = useState<boolean>(false);
-  const {register, error: registerErr, userId } = useAuthentication();
+  const { register, error: registerErr } = useAuthentication();
   const { uploadImage } = useImageUpload("users");
 
   const uploadImageAndRegister = async (user: IUser, imageFile: File): Promise<RegistrationResult> => {
@@ -26,32 +20,33 @@ const useRegisteration = () => {
     try {
       const { imageUrl, error: uploadError }: ImageUploadResult = await uploadImage(imageFile);
       if (uploadError) {
-        console.log("uploadError"+uploadError);
-        setError(uploadError);
-        throw new Error(uploadError);
+        setError(uploadError.response?.data as string);
       }
 
       user.imageUrl = imageUrl; // Add the image URL to the user object
-      await register(user);
-      setLoading(false);
-      if (registerErr && !userId) {
-        console.log("registerErr"+registerErr.message);
-        setError(registerErr.message);
-        return { userId: null, error: error };
+
+      register(user);
+      if (registerErr) {
+        setError(registerErr);
+        return { error: registerErr };
       } else {
         setSuccess(true);
-        return { userId: userId as string | null, error: null };
+        return { error: null };
       }
     } catch (err) {
       if (err instanceof AxiosError) {
-        setError(err.message || "Failed to upload image and register.");
+        setError(err.response?.data as string);
+        return { error: err.response?.data as string };
+      } else {
+        console.log("Register err (not Axios): ", err);
+        return { error: null };
       }
+    } finally {
       setLoading(false);
-      return { userId: null, error: error };
     }
   };
 
-  return { success,loading, error, uploadImageAndRegister };
+  return { success, loading, error, uploadImageAndRegister };
 };
 
 export default useRegisteration;

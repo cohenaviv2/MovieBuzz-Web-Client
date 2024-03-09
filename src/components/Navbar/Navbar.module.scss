@@ -39,6 +39,7 @@
   color: $text-secondary;
   text-decoration: none;
   filter: grayscale(100%) brightness(110%);
+
   transition: 250ms;
 
   &:hover {
@@ -51,6 +52,28 @@
     min-height: 2rem;
   }
 }
+
+.navLinkFirst {
+  @extend .HBox;
+  height: 5rem;
+  border-radius: 18px;
+  color: $text-secondary;
+  text-decoration: none;
+  filter: grayscale(50%) brightness(110%);
+
+  transition: 250ms;
+
+  &:hover {
+    filter: grayscale(0%) opacity(1);
+    color: $text-primary;
+    background-color: rgb(19, 19, 19);
+  }
+
+  &:hover .navIcon {
+    min-height: 2rem;
+  }
+}
+
 
 .navText {
   display: none;
