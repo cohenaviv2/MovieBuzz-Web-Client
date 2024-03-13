@@ -4,10 +4,6 @@ import useAuthentication from "./useAuthentication";
 import { IUser } from "../services/Types";
 import { AxiosError } from "../services/AuthService";
 
-interface RegistrationResult {
-  error: string | null;
-}
-
 const useRegisteration = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>();
@@ -15,7 +11,7 @@ const useRegisteration = () => {
   const { register, error: registerErr } = useAuthentication();
   const { uploadImage } = useImageUpload("users");
 
-  const uploadImageAndRegister = async (user: IUser, imageFile: File): Promise<RegistrationResult> => {
+  const uploadImageAndRegister = async (user: IUser, imageFile: File) => {
     setLoading(true);
     try {
       const { imageUrl, error: uploadError }: ImageUploadResult = await uploadImage(imageFile);
@@ -27,13 +23,14 @@ const useRegisteration = () => {
 
       register(user);
       if (registerErr) {
-        setError(registerErr);
+        // setError(registerErr);
         return { error: registerErr };
       } else {
         setSuccess(true);
         return { error: null };
       }
     } catch (err) {
+      console.log(err);
       if (err instanceof AxiosError) {
         setError(err.response?.data as string);
         return { error: err.response?.data as string };

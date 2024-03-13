@@ -4,7 +4,6 @@
 .loginContainer {
   @extend .VBox;
   @extend .StyledBox;
-  margin-bottom: 1rem;
   gap: 1rem;
   width: 24rem;
   padding: 2rem;
@@ -49,10 +48,13 @@
 .signupContainer {
   @extend .VBox;
   @extend .StyledBox;
-  margin-top: -1rem;
   padding: 2rem;
   gap: 1rem;
   width: 24rem;
+
+  h6{
+    margin: 0;
+  }
 }
 
 .signupBtn {

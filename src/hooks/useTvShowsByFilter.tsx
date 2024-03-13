@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { tvShowsService, tvShowFilters, CanceledError, AxiosError } from "../services/MovieService";
 import { ITvShow } from "../services/Types";
 
-function useTvShows() {
+function useTvShowsByFilter() {
   const [tvShows, setTvShows] = useState<ITvShow[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(false);
@@ -52,4 +52,4 @@ function useTvShows() {
   };
 }
 
-export default useTvShows;
+export default useTvShowsByFilter;

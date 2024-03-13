@@ -2,12 +2,12 @@ import MovieToolbar from "../components/Movie/MovieToolbar/MovieToolbar";
 import Grid from "../components/Grid/Grid";
 import MovieCard from "../components/Movie/MovieCard/MovieCard";
 import { Link } from "react-router-dom";
-import useTvShows from "../hooks/useTvShows.tsx";
+import useTvShowsByFilter from "../hooks/useTvShowsByFilter.tsx";
 import Pagination from "../components/Pagination/Pagination.tsx";
 import Error from "../components/Error/Error.tsx";
 
 function TvShows() {
-  const { tvShows, error, loading, handleFilterSelection, page, handleNextPage, handlePrevPage } = useTvShows();
+  const { tvShows, error, loading, handleFilterSelection, page, handleNextPage, handlePrevPage } = useTvShowsByFilter();
 
   return (
     <div className="tv-shows">

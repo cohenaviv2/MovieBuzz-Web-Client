@@ -6,8 +6,13 @@ import { FaPlus } from "react-icons/fa";
 import styles from "../components/Post/PostToolbar/PostToolbar.module.scss";
 import usePostsByFilter from "../hooks/usePostsByFilter";
 import Error from "../components/Error/Error";
+import { Auth } from "../services/Types";
 
-function Home() {
+interface HomeProps {
+  auth:Auth|null;
+}
+
+function Home({auth}:HomeProps) {
   const { posts, error, loading, selectedFilter, handleFilterSelection } = usePostsByFilter(); // ,page, handleNextPage, handlePrevPage
 
   return (
@@ -26,11 +31,13 @@ function Home() {
               </Link>
             )}
           />
-          <Link to="/search">
-            <button className={styles.newPostBtn}>
-              <FaPlus size="20px" />
-            </button>
-          </Link>
+          {auth && (
+            <Link to="/search">
+              <button className={styles.newPostBtn}>
+                <FaPlus size="20px" />
+              </button>
+            </Link>
+          )}
         </>
       )}
     </div>

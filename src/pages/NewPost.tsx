@@ -1,8 +1,12 @@
+import Error from "../components/Error/Error";
+import { Auth } from "../services/Types";
 
-function NewPost() {
-  return (
-    <div className='new-post'>NewPost</div>
-  )
+interface NewPostProps {
+  auth:Auth|null;
+}
+
+function NewPost({auth}:NewPostProps) {
+  return <div className="new-post">{auth ? <h3>New Post</h3> : <Error message="Please sign in" />}</div>;
 }
 
 export default NewPost

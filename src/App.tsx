@@ -14,9 +14,11 @@ import TvShowDetails from "./components/Movie/TvShowDetails/TvShowDetails";
 import ViewPosts from "./pages/ViewPosts";
 import NewPost from "./pages/NewPost";
 import useAuthentication from "./hooks/useAuthentication";
+// import useRegisteration from "./hooks/useRegisteration";
 
 function App() {
-  const { auth, isLoading, error,loggedIn, register, login, logout } = useAuthentication();
+  const { auth, isLoading, error, loggedIn, login, logout, register } = useAuthentication();
+  // const { success: RegSuccess, loading: RegLoading, error: RegError, uploadImageAndRegister } = useRegisteration();(user: IUser) => void
 
   return (
     <>
@@ -24,18 +26,18 @@ function App() {
         <Header />
         <Navbar auth={auth} />
         <Routes>
-          <Route path="/" Component={Home} />
+          <Route path="/" element={<Home auth={auth} />} />
           <Route path="/search" Component={Search} />
           <Route path="/movies" Component={Movies} />
           <Route path="/tv" Component={TvShows} />
-          <Route path="/chat" Component={Chat} />
+          <Route path="/chat" element={<Chat auth={auth} />} />
           <Route path="/profile" element={auth ? <Profile auth={auth} logout={logout} /> : <Login login={login} error={error} isLoading={isLoading} loggedIn={loggedIn} />} />
-          <Route path="/signup" element={<SignUp register={register} />} />
+          <Route path="/signup" element={<SignUp error={error} register={register} />} />
           <Route path="/movie/:id" Component={MovieDetails} />
           <Route path="/tv/:id" Component={TvShowDetails} />
           <Route path="/movie/:id/posts" Component={ViewPosts} />
           <Route path="/tv/:id/posts" Component={ViewPosts} />
-          <Route path="/new-post" Component={NewPost} />
+          <Route path="/new-post" element={<NewPost auth={auth} />} />
         </Routes>
       </Router>
     </>

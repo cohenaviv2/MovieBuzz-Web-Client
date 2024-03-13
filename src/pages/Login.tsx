@@ -1,9 +1,10 @@
+import { AxiosError } from "axios";
 import LoginForm from "../components/Authentication/LoginForm/LoginForm";
 
 export interface LoginProps {
   login: (email: string, password: string) => void;
   loggedIn:boolean;
-  error: string | null;
+  error: AxiosError | null;
   isLoading: boolean;
 }
 

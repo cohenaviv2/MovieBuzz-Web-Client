@@ -63,7 +63,7 @@ function ViewPosts() {
           <Link to={`${basePath}/${movie.id}`} key={movie.id}>
             <MovieCard movie={movie} />
           </Link>
-          <h6>Check out what others are saying about this movie!</h6>
+          {/* <h6>Check out what others are saying about this movie!</h6> */}
         </div>
       </div>
     </div>

@@ -86,7 +86,7 @@ function Search() {
         if (err instanceof CanceledError) return;
         setPostsError(err);
         console.log(err);
-        setLoading(false);
+        // setLoading(false);
       });
 
     return () => cancel();

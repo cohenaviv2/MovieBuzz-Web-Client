@@ -33,7 +33,7 @@
   border-radius: 8px;
   font-size: 1.4rem;
   height: 3.3rem;
-  padding: 0 10rem;
+  padding: 0 8vw;
   background: $post-bg;
   white-space: nowrap;
 
@@ -47,7 +47,7 @@
   border-radius: 8px;
   font-size: 1.4rem;
   height: 3.3rem;
-  padding: 0 10rem;
+  padding: 0 8vw;
   background: $header-bg;
   white-space: nowrap;
 
@@ -94,7 +94,7 @@
 .viewPostsTitle {
   @extend .VBox;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   width: 20%;
   height: 100%;
 }

@@ -9,12 +9,13 @@ import { FaAsterisk } from "react-icons/fa";
 import { IUser } from "../../../services/Types";
 import Spinner from "../../Spinner/Spinner";
 import Error from "../../Error/Error";
-import useRegisteration from "../../../hooks/useRegisteration";
 import Success from "../../Success/Success";
 import { SingUpProps } from "../../../pages/SignUp";
+import { AxiosError } from "axios";
+import UploadService from "../../../services/UploadService";
 
 interface SingUpFormProps {
-  signUpProps: SingUpProps;
+  signupProps: SingUpProps;
 }
 
 const userSchema = z.object({
@@ -30,12 +31,15 @@ userSchema.refine((data) => data.password === data.confirmPassword, {
 
 type FormData = z.infer<typeof userSchema>;
 
-function SignUpForm({signUpProps}:SingUpFormProps) {
+function SignUpForm({ signupProps }: SingUpFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imgSrcUrl, setImgSrcUrl] = useState<string>();
-  const { success, loading, error, uploadImageAndRegister } = useRegisteration();
+  const [error, setError] = useState<AxiosError | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const { register: userRegister, error: regError } = signupProps;
   const navigate = useNavigate();
-  const { register:regesterUser } = signUpProps;
 
   const {
     register,
@@ -60,20 +64,34 @@ function SignUpForm({signUpProps}:SingUpFormProps) {
 
   async function onSubmit(data: FieldValues) {
     if (imageFile) {
-      const user: IUser = {
-        fullName: data.fullName,
-        email: data.email,
-        password: data.password,
-        imageUrl: "",
-      };
-      const registerRes = await uploadImageAndRegister(user, imageFile);
-          setTimeout(() => {
-            if (!registerRes.error) {
-              navigate("/profile");
-            } else {
-              console.log("Not Logged In");
-            }
-          }, 2000);
+      setLoading(true);
+      const { request } = UploadService.uploadImage(imageFile, "users");
+      request
+        .then((response) => {
+          const imageUrl = response.data.imageUrl;
+
+          const user: IUser = {
+            fullName: data.fullName,
+            email: data.email,
+            password: data.password,
+            imageUrl: imageUrl,
+          };
+
+          userRegister(user);
+
+          if (!regError) {
+            setLoading(false);
+            setSuccess(true);
+            setTimeout(()=>navigate("/profile"),1000)
+          } else {
+            setError(regError);
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          setError(err);
+          setLoading(false);
+        });
     }
   }
 
@@ -121,7 +139,7 @@ function SignUpForm({signUpProps}:SingUpFormProps) {
             {<h6>Password must contains at least 8 characters, including letters and numbers.</h6>}
             <label htmlFor="favorite">Favorite Movie or TV Show</label>
             <input id="favorite" type="text" className={styles.favInput} />
-            <div className={styles.errorContainer}>{error && <Error message={error} />}</div>
+            <div className={styles.errorContainer}>{error && <Error message={error.response ? (error.response.data as string) : error.message} />}</div>
             <div className={styles.btnContainer}>
               <div className={styles.spinnerContainer}>{loading && <Spinner />}</div>
               <button type="submit" className={styles.signupBtn} disabled={loading} hidden={success}>

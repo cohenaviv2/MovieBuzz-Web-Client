@@ -2,7 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.scss";
 import Error from "../../Error/Error";
 import Spinner from "../../Spinner/Spinner";
@@ -14,7 +14,7 @@ interface LoginFormProps {
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters long" }),
+  password: z.string(),
 });
 type FormData = z.infer<typeof loginSchema>;
 
@@ -27,12 +27,16 @@ function LoginForm({ loginProps }: LoginFormProps) {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
   const { login, error, isLoading } = loginProps;
+  const navigate = useNavigate();
 
   function onSubmit(data: FieldValues) {
     const email = data.email;
     const password = data.password;
     console.log("logging in...");
     login(email, password);
+    if (!error) {
+      navigate("/");
+    }
     // if (auth && loggedIn) {
     //   setSuccess(true);
     // } else console.log("no auth & loggedIn");
@@ -54,9 +58,9 @@ function LoginForm({ loginProps }: LoginFormProps) {
   return (
     <>
       <div className={styles.loginContainer}>
-        <h3>Login</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formContainer}>
+            <h3>Login</h3>
             <input {...register("email")} id="email" type="email" placeholder="Email Address" autoComplete="email" onClick={() => errors.email && handleInputClick("email")} />
             <div className={styles.error}>{errors.email && errors.email.message}</div>
             <input {...register("password")} id="password" type="password" placeholder="Password" autoComplete="current-password" onClick={() => errors.password && handleInputClick("password")} />
@@ -66,8 +70,8 @@ function LoginForm({ loginProps }: LoginFormProps) {
         </form>
         <div className={styles.statusContainer}>{isLoading ? <Spinner /> : error ? <Error message={error} /> : null}</div>
       </div>
-      <h6>Don't have an account?</h6>
       <div className={styles.signupContainer}>
+        <h6>Don't have an account?</h6>
         <Link to="/signup">
           <button className={styles.signupBtn}>Sign Up</button>
         </Link>

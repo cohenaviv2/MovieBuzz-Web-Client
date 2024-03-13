@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AuthService from "../services/AuthService";
+import AuthService, { AxiosError } from "../services/AuthService";
 import { Auth } from "../services/Types";
 import { IUser } from "../services/Types";
 
@@ -28,7 +28,7 @@ const calculateExpirationTime = (accessTokenExpirationTime: string): number => {
 const useAuthentication = () => {
   const [auth, setAuth] = useState<Auth | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<AxiosError | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {

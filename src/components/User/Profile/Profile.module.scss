@@ -36,19 +36,19 @@
 .nameContainer {
   @extend .VBox;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   width: 70%;
   height: 100%;
 
   h5 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin: 0;
     color: $bg-secondary;
   }
 
   h6 {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: $text-tertiary;
   }
 }

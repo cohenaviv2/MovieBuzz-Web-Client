@@ -4,7 +4,7 @@ import { IMovie } from "../services/Types";
 
 function useMoviesByFilter() {
   const [movies, setMovies] = useState<IMovie[]>([]);
-  const [error, setError] = useState<AxiosError>();
+  const [error, setError] = useState<AxiosError|null>(null);
   const [loading, setLoading] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(movieFilters[0]);
   const [page, setPage] = useState<number>(1);

@@ -39,7 +39,7 @@ function Navbar({auth}:NavbarProps) {
         <ul className={styles.navbarList}>
           {navbarItems.map((item, index) => (
             <li key={index} className={item.cName} onClick={() => handlePathClick(item.path)}>
-              <Link to={item.path} className={index == 0 ? styles.navLinkFirst:styles.navLink}>
+              <Link to={item.path} className={(index == 0 && auth) ? styles.navLinkFirst:styles.navLink}>
                 {item.path === selectedPath ? item.selectedIcon : item.icon}
                 <span className={item.cNameTxt}>{item.title}</span>
               </Link>
