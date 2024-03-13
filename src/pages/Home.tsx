@@ -6,10 +6,10 @@ import { FaPlus } from "react-icons/fa";
 import styles from "../components/Post/PostToolbar/PostToolbar.module.scss";
 import usePostsByFilter from "../hooks/usePostsByFilter";
 import Error from "../components/Error/Error";
-import { Auth } from "../services/Types";
+import { IAuth } from "../services/Types";
 
 interface HomeProps {
-  auth:Auth|null;
+  auth:IAuth|null;
 }
 
 function Home({auth}:HomeProps) {

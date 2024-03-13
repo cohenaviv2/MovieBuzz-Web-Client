@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,7 +27,7 @@ function LoginForm({ loginProps }: LoginFormProps) {
     clearErrors,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
-  const { login, error, isLoading } = loginProps;
+  const { auth, login, error, isLoading } = loginProps;
   const navigate = useNavigate();
 
   function onSubmit(data: FieldValues) {
@@ -34,21 +35,14 @@ function LoginForm({ loginProps }: LoginFormProps) {
     const password = data.password;
     console.log("logging in...");
     login(email, password);
-    if (!error) {
+  }
+
+  useEffect(() => {
+    if (auth) {
+      // Navigate to home page on successful login
       navigate("/");
     }
-    // if (auth && loggedIn) {
-    //   setSuccess(true);
-    // } else console.log("no auth & loggedIn");
-    // const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-    // delay(5000).then(() => {
-    //   if (auth) {
-    //     console.log("theres auth");
-    //     setSuccess(true);
-    //     delay(1000).then(() => navigate("/"));
-    //   } else console.log("no stored auth");
-    // });
-  }
+  }, [auth, navigate]);
 
   const handleInputClick = (fieldName: "email" | "password") => {
     setValue(fieldName, "");
@@ -65,10 +59,12 @@ function LoginForm({ loginProps }: LoginFormProps) {
             <div className={styles.error}>{errors.email && errors.email.message}</div>
             <input {...register("password")} id="password" type="password" placeholder="Password" autoComplete="current-password" onClick={() => errors.password && handleInputClick("password")} />
             <div className={styles.error}>{errors.password && errors.password.message}</div>
-            <button className={styles.loginBtn}>Login</button>
+            <button className={styles.loginBtn} disabled={isLoading}>
+              Login
+            </button>
           </div>
         </form>
-        <div className={styles.statusContainer}>{isLoading ? <Spinner /> : error ? <Error message={error} /> : null}</div>
+        <div className={styles.statusContainer}>{isLoading ? <Spinner /> : error ? <Error message={error.response ? (error.response.data as string) : error.message} /> : null}</div>
       </div>
       <div className={styles.signupContainer}>
         <h6>Don't have an account?</h6>

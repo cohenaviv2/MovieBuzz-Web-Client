@@ -1,4 +1,4 @@
-import { IUser } from "./Types";
+import { IUser, IUserUpdate } from "./Types";
 import apiClient from "./api-client";
 
 class UserService {
@@ -14,9 +14,9 @@ class UserService {
     return { request, cancel: () => controller.abort() };
   }
 
-  updateUserById(accessToken: string, userData: IUser) {
+  updateUserById(accessToken: string, userUpdate: IUserUpdate) {
     const controller = new AbortController();
-    const request = apiClient.put(this.path + "profile", userData, {
+    const request = apiClient.put<IUser>(this.path + "profile", userUpdate, {
       headers: {
         Authorization: `JWT ${accessToken}`,
       },

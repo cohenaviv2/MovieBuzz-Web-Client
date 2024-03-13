@@ -2,6 +2,7 @@ import { IPost } from "../../../services/Types";
 import UserCard from "../../User/UserCard/UserCard";
 import { FaStar } from "react-icons/fa6";
 import { FaCommentAlt } from "react-icons/fa";
+import noImageAvailable from "../../../assets/no-img-availbale.png"
 import styles from "./PostCard.module.scss";
 
 interface PostCardProps {
@@ -30,7 +31,7 @@ function PostCard({ post }: PostCardProps) {
         </div>
       </div>
       <div className={styles.postImgContainer}>
-        <img src={post.imageUrl} alt={post.ownerName} />
+        <img src={post.imageUrl === "no-img" ? noImageAvailable :post.imageUrl} alt={post.ownerName} />
       </div>
     </div>
   );

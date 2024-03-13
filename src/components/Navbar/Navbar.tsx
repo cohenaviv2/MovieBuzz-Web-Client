@@ -5,10 +5,10 @@ import { IconContext } from "react-icons";
 import { NavbarData } from "./NavbarData";
 import styles from "./Navbar.module.scss";
 import ProfileIcon from "./NavbarData";
-import { Auth } from "../../services/Types";
+import { IAuth } from "../../services/Types";
 
 interface NavbarProps {
-  auth:Auth|null;
+  auth:IAuth|null;
 }
 
 

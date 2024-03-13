@@ -1,12 +1,13 @@
 import Error from "../components/Error/Error";
-import { Auth } from "../services/Types";
+import NewPostForm from "../components/Post/NewPostForm/NewPostForm";
+import { IAuth } from "../services/Types";
 
-interface NewPostProps {
-  auth:Auth|null;
+export interface NewPostProps {
+  auth: IAuth | null;
 }
 
-function NewPost({auth}:NewPostProps) {
-  return <div className="new-post">{auth ? <h3>New Post</h3> : <Error message="Please sign in" />}</div>;
+function NewPost({ auth }: NewPostProps) {
+  return <div className="new-post">{auth ? <NewPostForm newPostProps={{ auth }} /> : <Error message="Please sign in" />}</div>;
 }
 
-export default NewPost
+export default NewPost;

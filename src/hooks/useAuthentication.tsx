@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import AuthService, { AxiosError } from "../services/AuthService";
-import { Auth } from "../services/Types";
+import { IAuth } from "../services/Types";
 import { IUser } from "../services/Types";
 
-interface ExtendedAuth extends Auth {
+interface ExtendedAuth extends IAuth {
   expirationNumber: number;
 }
 
@@ -26,7 +26,7 @@ const calculateExpirationTime = (accessTokenExpirationTime: string): number => {
 };
 
 const useAuthentication = () => {
-  const [auth, setAuth] = useState<Auth | null>(null);
+  const [auth, setAuth] = useState<IAuth | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<AxiosError | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -53,7 +53,7 @@ const useAuthentication = () => {
     request
       .then(() => {})
       .catch((err) => {
-        setError(err.response ? err.response.data : err.message);
+        setError(err);
       })
       .finally(() => setIsLoading(false));
   };
@@ -80,8 +80,8 @@ const useAuthentication = () => {
         localStorage.setItem("auth", JSON.stringify(receivedAuth));
       })
       .catch((err) => {
+        setError(err);
         console.error("Login error:", err.response.data);
-        setError(err.response.data);
       })
       .finally(() => setIsLoading(false));
   };
@@ -118,7 +118,7 @@ const useAuthentication = () => {
       })
       .catch((err) => {
         console.error("Refresh error:", err.response.data);
-        setError(err.response.data);
+        setError(err);
       })
       .finally(() => setIsLoading(false));
   };

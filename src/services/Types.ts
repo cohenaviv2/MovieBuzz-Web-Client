@@ -76,7 +76,7 @@ export interface ITvShowSeason {
   season_number: number;
 }
 
-export interface Auth {
+export interface IAuth {
   accessToken: string;
   refreshToken: string;
   accessTokenExpirationTime: string;
@@ -90,6 +90,12 @@ export interface IUserDetails {
 }
 
 
-export interface UserId {
+export interface IUserId {
   _id: string;
+}
+
+export interface IUserUpdate {
+  newFullName:string;
+  newPassword:string;
+  newImageUrl:string;
 }

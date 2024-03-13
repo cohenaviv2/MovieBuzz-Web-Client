@@ -18,16 +18,17 @@ interface SingUpFormProps {
   signupProps: SingUpProps;
 }
 
-const userSchema = z.object({
-  fullName: z.string().nonempty({ message: "Full name is required" }),
-  email: z.string().email({ message: "Invalid email format" }),
-  password: z.string({ required_error: "Password is required" }).min(8, { message: "Password must be at least 8 characters long" }),
-  confirmPassword: z.string({ required_error: "Please confirm password" }).nonempty({ message: "Please confirm password" }),
-});
-userSchema.refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-});
+const userSchema = z
+  .object({
+    fullName: z.string({ required_error: "Full name is required" }),
+    email: z.string().email({ message: "Invalid email format" }),
+    password: z.string({ required_error: "Password is required" }).min(8, { message: "Password must be at least 8 characters long" }),
+    confirmPassword: z.string({ required_error: "Please confirm password" }),
+  })
+  .refine((data) => data.password == data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 type FormData = z.infer<typeof userSchema>;
 
@@ -82,7 +83,7 @@ function SignUpForm({ signupProps }: SingUpFormProps) {
           if (!regError) {
             setLoading(false);
             setSuccess(true);
-            setTimeout(()=>navigate("/profile"),1000)
+            setTimeout(() => navigate("/profile"), 1000);
           } else {
             setError(regError);
             setLoading(false);

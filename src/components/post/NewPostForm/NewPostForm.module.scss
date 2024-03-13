@@ -1,0 +1,170 @@
+@import "../../../styles/styles.scss";
+@import "../../../styles/containers.scss";
+
+.newPostContainer {
+  @extend .HBox;
+  position: absolute;
+  background-color: $nav-bg-secondary;
+  border-radius: 16px;
+  height: 50%;
+  width: 60%;
+  margin-left: 5rem;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 18px $text-tertiary;
+  padding: 16px 16px;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.movieContainer {
+  @extend .VBox;
+  justify-content: center;
+  height: 90%;
+  width: 25%;
+  gap: 1rem;
+
+  h5 {
+    margin: 0;
+    color: $text-secondary;
+    text-align: center;
+  }
+
+  img {
+    width: 65%;
+    height: auto;
+    border-radius: 16px;
+  }
+}
+
+.postContainer {
+  @extend .VBox;
+  gap: 3rem;
+  align-items: start;
+  height: 90%;
+  width: 40%;
+
+  h3 {
+    font-size: 3.5rem;
+    width: 95%;
+  }
+}
+
+.textArea {
+  @extend .VBox;
+  width: 95%;
+  min-height: 11rem;
+  font-size: 1.5rem;
+  padding: 10px;
+  outline: none;
+  resize: none;
+
+  &::placeholder {
+    font-size: 1.3rem;
+  }
+}
+
+.errContainer {
+  @extend .VBox;
+  width:110%;
+  margin-top: -2rem;
+  margin-bottom: -2rem;
+}
+
+.rateContainer {
+  @extend .VBox;
+  //   background-color: red;
+  justify-content: center;
+  gap: 2rem;
+  height: 90%;
+  width: 25%;
+}
+
+.rateInputContainer {
+  @extend .HBox;
+  gap: 0.5rem;
+}
+
+.rateInput {
+  width: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rateIcon {
+  color: $bg-secondary;
+  font-size: 60px;
+}
+
+.customFileInput {
+  @extend .VBox;
+  //   margin-top: -5rem;
+  justify-content: center;
+  background-color: $bg-secondary;
+  border-radius: 16px;
+  background-size: cover;
+  min-height: 13rem;
+  width: 13rem;
+  cursor: pointer;
+}
+
+.imgIcon {
+  font-size: 30px;
+  margin-bottom: 4px;
+  // fill: #333;
+  fill: $logo-bg;
+}
+
+.postBtnContainer {
+  @extend .HBox;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+}
+
+.inputFile {
+  display: none;
+}
+
+.postBtn {
+  @extend .HBox;
+  margin-top: auto;
+  background: $btn-secondary;
+  padding: 1rem 6rem;
+  font-size: 1.5rem;
+  gap: 0.5rem;
+  min-height: 3rem;
+  &:hover {
+    background: $btn-secondary-hover;
+    box-shadow: 0 0 6px $text-tertiary;
+  }
+}
+
+.postIcon {
+  font-size: 30px;
+}
+
+.spinnerContainer {
+  @extend .VBox;
+  width: 4rem;
+}
+
+.closeBtnContainer {
+  @extend .VBox;
+  height: 100%;
+  width: 10%;
+}
+
+.closeBtn {
+  background: transparent;
+  margin-top: 2rem;
+  font-size: 45px;
+  padding: 8px 8px;
+
+  &:hover {
+    background-color: rgb(49, 48, 48);
+    border-radius: 15px;
+    // box-shadow: 0 0 8px $text-tertiary;
+  }
+}

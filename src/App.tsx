@@ -31,7 +31,7 @@ function App() {
           <Route path="/movies" Component={Movies} />
           <Route path="/tv" Component={TvShows} />
           <Route path="/chat" element={<Chat auth={auth} />} />
-          <Route path="/profile" element={auth ? <Profile auth={auth} logout={logout} /> : <Login login={login} error={error} isLoading={isLoading} loggedIn={loggedIn} />} />
+          <Route path="/profile" element={auth ? <Profile auth={auth} logout={logout} /> : <Login login={login} auth={auth} error={error} isLoading={isLoading} loggedIn={loggedIn} />} />
           <Route path="/signup" element={<SignUp error={error} register={register} />} />
           <Route path="/movie/:id" Component={MovieDetails} />
           <Route path="/tv/:id" Component={TvShowDetails} />

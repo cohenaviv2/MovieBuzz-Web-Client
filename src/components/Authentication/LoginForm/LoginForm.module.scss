@@ -67,11 +67,11 @@
 }
 
 .googleBtn {
-  background: linear-gradient(to right, #03830a, #037009);
+  background:$btn-google;
   width: 16rem;
   height: 3rem;
   font-size: 1.1rem;
   &:hover {
-    background: linear-gradient(to right, #007506, #006905);
+    background: $btn-google-hover;
   }
 }
