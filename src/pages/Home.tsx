@@ -26,18 +26,20 @@ function Home({auth}:HomeProps) {
             type="post"
             items={posts}
             renderItem={(post) => (
-              <Link to={`/movie/${post._id}`} key={post._id}>
+              <Link to={`/post/${post._id}`} key={post._id}>
                 <PostCard post={post} />
               </Link>
             )}
           />
-          {auth && (
-            <Link to="/search">
-              <button className={styles.newPostBtn}>
-                <FaPlus size="20px" />
-              </button>
-            </Link>
-          )}
+          <div className={styles.newPostBtnContainer}>
+            {auth && (
+              <Link to="/search">
+                <button className={styles.newPostBtn}>
+                  <FaPlus size="20px" />
+                </button>
+              </Link>
+            )}
+          </div>
         </>
       )}
     </div>

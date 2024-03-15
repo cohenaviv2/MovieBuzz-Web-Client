@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AuthService, { AxiosError } from "../services/AuthService";
 import { IAuth } from "../services/Types";
 import { IUser } from "../services/Types";
+import { CredentialResponse } from "@react-oauth/google";
 
 interface ExtendedAuth extends IAuth {
   expirationNumber: number;
@@ -32,10 +33,12 @@ const useAuthentication = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    const storedTokens = localStorage.getItem("auth");
+    const storedTokens = getAuth();
     if (storedTokens) {
-      console.log("Stored auth!");
-      setAuth(getAuth());
+      setAuth(storedTokens);
+      // console.log("Stored auth!");
+      // console.log("stored: ",storedTokens);
+      // console.log("auth state: ", auth);
     }
   }, []);
 
@@ -46,7 +49,8 @@ const useAuthentication = () => {
       return parsedTokens;
     } else return null;
   }
-  const register = (user: IUser) => {
+
+  function register(user: IUser) {
     setIsLoading(true);
     setError(null);
     const { request } = AuthService.register(user);
@@ -56,9 +60,9 @@ const useAuthentication = () => {
         setError(err);
       })
       .finally(() => setIsLoading(false));
-  };
+  }
 
-  const login = (email: string, password: string) => {
+  function login(email: string, password: string) {
     setIsLoading(true);
     setError(null);
     const { request } = AuthService.login(email, password);
@@ -73,7 +77,6 @@ const useAuthentication = () => {
           user: user,
         };
         setLoggedIn(true);
-        console.log(receivedAuth);
         setAuth(receivedAuth);
         console.log("Auth: ", receivedAuth);
         // Store auth in local storage
@@ -84,15 +87,51 @@ const useAuthentication = () => {
         console.error("Login error:", err.response.data);
       })
       .finally(() => setIsLoading(false));
-  };
+  }
 
-  const logout = () => {
-    localStorage.removeItem("auth");
-    setLoggedIn(false);
-    setAuth(null);
-  };
+  function googleSignin(credentialResponse: CredentialResponse) {
+    setIsLoading(true);
+    setError(null);
+    const { request } = AuthService.googleSignin(credentialResponse);
+    request
+      .then((response) => {
+        const { accessToken, refreshToken, accessTokenExpirationTime, user } = response.data;
+        const receivedAuth: ExtendedAuth = {
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          accessTokenExpirationTime: accessTokenExpirationTime,
+          expirationNumber: calculateExpirationTime(accessTokenExpirationTime),
+          user: user,
+        };
+        setLoggedIn(true);
+        setAuth(receivedAuth);
+        console.log("Auth: ", receivedAuth);
+        // Store auth in local storage
+        localStorage.setItem("auth", JSON.stringify(receivedAuth));
+      })
+      .catch((err) => {
+        setError(err);
+        console.error("Login error:", err.response.data);
+      })
+      .finally(() => setIsLoading(false));
+  }
 
-  const refreshToken = async () => {
+  function logout() {
+    setIsLoading(true);
+    const { request } = AuthService.logout(auth!.refreshToken);
+    request
+      .then((response) => {
+        if (response.status === 200) {
+          localStorage.removeItem("auth");
+          setLoggedIn(false);
+          setAuth(null);
+        }
+      })
+      .catch((err) => setError(err))
+      .finally(() => setIsLoading(false));
+  }
+
+  function refreshToken() {
     setIsLoading(true);
     setError(null);
     if (!auth || !auth.refreshToken) return;
@@ -101,27 +140,27 @@ const useAuthentication = () => {
     const { request } = AuthService.refreshTokens(refreshToken);
     request
       .then((response) => {
-        const { accessToken: newAccessToken, refreshToken: newRefreshToken, accessTokenExpirationTime: newAccessTokenExpirationTime, user } = response.data;
-        const newAuth: ExtendedAuth = {
-          accessToken: newAccessToken,
-          refreshToken: newRefreshToken,
-          accessTokenExpirationTime: newAccessTokenExpirationTime,
-          expirationNumber: calculateExpirationTime(newAccessTokenExpirationTime),
-          user: user,
+        const newAuth: IAuth = response.data;
+        const newExtendedAuth: ExtendedAuth = {
+          accessToken: newAuth.accessToken,
+          refreshToken: newAuth.refreshToken,
+          accessTokenExpirationTime: newAuth.accessTokenExpirationTime,
+          expirationNumber: calculateExpirationTime(newAuth.accessTokenExpirationTime),
+          user: newAuth.user,
         };
 
-        setAuth(newAuth);
-        console.log(newAuth);
+        setAuth(newExtendedAuth);
+        console.log("New Auth: ", auth);
         // Store auth in local storage
         localStorage.removeItem("auth");
-        localStorage.setItem("auth", JSON.stringify(newAuth));
+        localStorage.setItem("auth", JSON.stringify(newExtendedAuth));
       })
       .catch((err) => {
         console.error("Refresh error:", err.response.data);
         setError(err);
       })
       .finally(() => setIsLoading(false));
-  };
+  }
 
   useEffect(() => {
     const checkTokenExpiration = () => {
@@ -137,13 +176,13 @@ const useAuthentication = () => {
       }
     };
 
-    if (loggedIn) {
+    if (auth) {
       const intervalId = setInterval(checkTokenExpiration, 60000 * 3); // Check expiration every 3 minute
       checkTokenExpiration(); // Check immediately when component mounts
 
       return () => clearInterval(intervalId); // Cleanup on unmount
     }
-  }, [loggedIn]);
+  }, [auth]);
 
   return {
     auth,
@@ -153,6 +192,7 @@ const useAuthentication = () => {
     getAuth,
     register,
     login,
+    googleSignin,
     logout,
     refreshToken,
   };

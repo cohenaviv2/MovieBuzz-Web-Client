@@ -8,6 +8,7 @@ import styles from "./LoginForm.module.scss";
 import Error from "../../Error/Error";
 import Spinner from "../../Spinner/Spinner";
 import { LoginProps } from "../../../pages/Login";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 
 interface LoginFormProps {
   loginProps: LoginProps;
@@ -27,13 +28,12 @@ function LoginForm({ loginProps }: LoginFormProps) {
     clearErrors,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
-  const { auth, login, error, isLoading } = loginProps;
+  const { auth, login, googleSignin, error, isLoading } = loginProps;
   const navigate = useNavigate();
 
   function onSubmit(data: FieldValues) {
     const email = data.email;
     const password = data.password;
-    console.log("logging in...");
     login(email, password);
   }
 
@@ -47,6 +47,15 @@ function LoginForm({ loginProps }: LoginFormProps) {
   const handleInputClick = (fieldName: "email" | "password") => {
     setValue(fieldName, "");
     clearErrors(fieldName);
+  };
+
+  const onGoogleLoginSuccess = async (credentialResponse: CredentialResponse) => {
+    console.log(credentialResponse);
+    googleSignin(credentialResponse);
+  };
+
+  const onGoogleLoginFailure = () => {
+    console.log("Google login failed");
   };
 
   return (
@@ -71,11 +80,12 @@ function LoginForm({ loginProps }: LoginFormProps) {
         <Link to="/signup">
           <button className={styles.signupBtn}>Sign Up</button>
         </Link>
-        <button className={styles.googleBtn}>
+        {/* <button className={styles.googleBtn}>
           Continue with
           <FcGoogle size="25px" style={{ margin: "0 10px" }} />
           Google
-        </button>
+        </button> */}
+        <GoogleLogin theme="filled_black" locale="en" logo_alignment="center" text="continue_with" onSuccess={onGoogleLoginSuccess} onError={onGoogleLoginFailure} />
       </div>
     </>
   );

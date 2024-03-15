@@ -28,8 +28,11 @@ export interface IPost {
 
 export interface IComment {
   ownerId: string;
+  ownerName?: string;
+  ownerImageUrl?: string;
   postId: string;
   text: string;
+  _id?:string;
 }
 
 export interface IMovie {
@@ -98,4 +101,18 @@ export interface IUserUpdate {
   newFullName:string;
   newPassword:string;
   newImageUrl:string;
+}
+
+export interface IMessage {
+  senderId: string;
+  receiverId: string;
+  text: string;
+}
+
+
+export interface IUserChat {
+  _id: string;
+  socketId: string;
+  fullName: string;
+  imageUrl: string;
 }

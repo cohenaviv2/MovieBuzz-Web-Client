@@ -49,7 +49,7 @@ function ViewPosts() {
                 type="post"
                 items={posts}
                 renderItem={(post) => (
-                  <Link to={`/movie/${post._id}`} key={post._id}>
+                  <Link to={`/post/${post._id}`} key={post._id}>
                     <PostCard post={post} />
                   </Link>
                 )}

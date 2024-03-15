@@ -1,7 +1,7 @@
 @import "../../../styles/styles.scss";
 @import "../../../styles/containers.scss";
 
-.userCard {
+.userCardSmall {
   @extend .HBox;
   gap: 0.7rem;
   height: 3rem;
@@ -11,6 +11,20 @@
   img {
     width: 2rem;
     height: 2rem;
+    border-radius: 100%;
+  }
+}
+
+.userCardBig {
+  @extend .HBox;
+  gap: 0.7rem;
+  height: 5rem;
+  width: 15rem;
+  font-size: 1.8rem;
+
+  img {
+    width: 3rem;
+    height: 3rem;
     border-radius: 100%;
   }
 }

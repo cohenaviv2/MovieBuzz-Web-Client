@@ -52,6 +52,7 @@ function SignUpForm({ signupProps }: SingUpFormProps) {
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
+      setError(null);
       const file = event.target.files?.[0];
       setImageFile(file);
       const reader = new FileReader();
@@ -93,6 +94,8 @@ function SignUpForm({ signupProps }: SingUpFormProps) {
           setError(err);
           setLoading(false);
         });
+    } else {
+      setError(new AxiosError("Please select image"));
     }
   }
 

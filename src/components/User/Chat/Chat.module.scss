@@ -1,0 +1,101 @@
+@import "../../../styles/styles.scss";
+@import "../../../styles/containers.scss";
+
+.chatContainer {
+  @extend .HBox;
+  justify-content: center;
+  height: 80%;
+  width: 70%;
+  gap: 4rem;
+}
+
+.messageContainer {
+  @extend .StyledBox;
+  @extend .VBox;
+  height: 80%;
+  width: 55%;
+}
+
+.userCardContainer {
+  @extend .StyledBox;
+  @extend .VBox;
+  height: 80%;
+  width: 15%;
+}
+
+.userCard {
+  @extend .HBox;
+  justify-content: center;
+  width: 90%;
+  gap: 1rem;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $bg-secondary;
+  }
+}
+
+.userCardIcon {
+  font-size: 15px;
+  color: rgb(68, 248, 23);
+}
+
+
+.sendMsgContainer {
+    @extend .HBox;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 95%;
+    margin-top: auto;
+}
+
+.newMsgInput {
+    width: 100%;
+    border-radius: 16px;
+    font-size: 1.3rem;
+}
+
+.newMsgBtn {
+    //   margin-left: 0.5rem;
+    padding: 1rem 1rem;
+    background-color: $bg-secondary;
+    border-radius: 100%;
+    
+    &:hover {
+        background: $btn-secondary-hover;
+        box-shadow: 0 0 8px $text-secondary;
+    }
+}
+
+.newMsgBtnIcon {
+    color: $logo-bg;
+}
+
+.conversationContainer {
+  @extend .VBox;
+  padding: 1rem 1rem;
+  gap: 1rem;
+  height: 80%;
+  width: 90%;
+  overflow: auto;
+}
+
+.sentMsgBar {
+    padding: 1rem 1rem;
+    width: 85%;
+    margin-right: 4rem;
+    background-color: $bg-secondary;
+    border-radius: 16px;
+    font-size: 1.2rem;
+}
+
+.receiveMsgBar {
+    padding: 1rem 1rem;
+    width: 85%;
+  margin-left: 4rem;
+  background-color: $bg-primary;
+  border-radius: 16px;
+  font-size: 1.2rem;
+}

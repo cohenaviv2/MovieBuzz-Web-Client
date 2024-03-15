@@ -24,6 +24,7 @@ function Navbar({auth}:NavbarProps) {
     if (index === 0 && auth) {
       return {
         ...item,
+        path: "/profile",
         title: auth.user.fullName,
         icon: ProfileIcon(auth.user.imageUrl),
         selectedIcon: ProfileIcon(auth.user.imageUrl),

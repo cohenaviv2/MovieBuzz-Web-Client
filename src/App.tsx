@@ -14,11 +14,10 @@ import TvShowDetails from "./components/Movie/TvShowDetails/TvShowDetails";
 import ViewPosts from "./pages/ViewPosts";
 import NewPost from "./pages/NewPost";
 import useAuthentication from "./hooks/useAuthentication";
-// import useRegisteration from "./hooks/useRegisteration";
+import PostDetails from "./components/Post/PostDetails/PostDetails";
 
 function App() {
-  const { auth, isLoading, error, loggedIn, login, logout, register } = useAuthentication();
-  // const { success: RegSuccess, loading: RegLoading, error: RegError, uploadImageAndRegister } = useRegisteration();(user: IUser) => void
+  const { auth, isLoading, error, loggedIn, login, googleSignin, logout, register } = useAuthentication();
 
   return (
     <>
@@ -27,17 +26,19 @@ function App() {
         <Navbar auth={auth} />
         <Routes>
           <Route path="/" element={<Home auth={auth} />} />
+          <Route path="/signup" element={<SignUp error={error} register={register} />} />
+          <Route path="/login" element={<Login login={login} googleSignin={googleSignin} auth={auth} error={error} isLoading={isLoading} loggedIn={loggedIn} />} />
+          <Route path="/profile" element={<Profile auth={auth} logout={logout} isLoading={isLoading} />} />
           <Route path="/search" Component={Search} />
           <Route path="/movies" Component={Movies} />
-          <Route path="/tv" Component={TvShows} />
-          <Route path="/chat" element={<Chat auth={auth} />} />
-          <Route path="/profile" element={auth ? <Profile auth={auth} logout={logout} /> : <Login login={login} auth={auth} error={error} isLoading={isLoading} loggedIn={loggedIn} />} />
-          <Route path="/signup" element={<SignUp error={error} register={register} />} />
           <Route path="/movie/:id" Component={MovieDetails} />
-          <Route path="/tv/:id" Component={TvShowDetails} />
           <Route path="/movie/:id/posts" Component={ViewPosts} />
+          <Route path="/tv" Component={TvShows} />
+          <Route path="/tv/:id" Component={TvShowDetails} />
           <Route path="/tv/:id/posts" Component={ViewPosts} />
           <Route path="/new-post" element={<NewPost auth={auth} />} />
+          <Route path="/post/:id" element={<PostDetails auth={auth} />} />
+          <Route path="/chat" element={<Chat auth={auth} />} />
         </Routes>
       </Router>
     </>

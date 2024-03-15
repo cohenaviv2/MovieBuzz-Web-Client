@@ -1,4 +1,4 @@
-import { IUser, IUserUpdate } from "./Types";
+import { IUser, IUserChat, IUserUpdate } from "./Types";
 import apiClient from "./api-client";
 
 class UserService {
@@ -26,7 +26,7 @@ class UserService {
 
   getOnlineUsers(accessToken: string) {
     const controller = new AbortController();
-    const request = apiClient.get<IUser[]>(this.path + "online", {
+    const request = apiClient.get<IUserChat[]>(this.path + "online", {
       headers: {
         Authorization: `JWT ${accessToken}`,
       },

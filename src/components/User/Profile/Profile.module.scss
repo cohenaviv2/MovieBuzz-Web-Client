@@ -22,16 +22,16 @@
   @extend .VBox;
   justify-content: center;
   margin-left: 2rem;
-  min-width: 15rem;
-  min-height: 15rem;
+  min-width: 20%;
+  min-height: 60%;
   background-color: $bg-primary;
   background-size: cover;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 
 .imgContainer img {
   height: auto;
-  width: 20rem;
+  width: 90%;
 }
 
 .nameContainer {
@@ -83,7 +83,6 @@
   font-size: 1.4rem;
   gap: 0.5rem;
   padding: 0.5rem 2rem;
-  margin-top: 1rem;
   font-weight: bold;
   &:hover {
     background: $btn-err-hover;
@@ -95,7 +94,6 @@
   font-size: 1.4rem;
   gap: 0.5rem;
   padding: 0.5rem 2rem;
-  margin-top: 1rem;
   font-weight: bold;
   &:hover {
     background: $btn-trinary-hover;
@@ -107,7 +105,6 @@
   font-size: 1.4rem;
   gap: 0.5rem;
   padding: 0.6rem 5rem;
-  margin-top: 1rem;
   font-weight: bold;
   &:hover {
     background: $btn-trinary-hover;
@@ -126,9 +123,16 @@
 
 .btnContainer {
   @extend .HBox;
+  justify-content: center;
   gap: 1rem;
   margin-left: auto;
 }
+
+.spinnerContainer {
+  @extend .VBox;
+  width: 2rem;
+}
+
 
 .saveContainer {
   @extend .VBox;

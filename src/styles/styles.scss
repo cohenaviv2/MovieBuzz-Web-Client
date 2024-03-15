@@ -7,12 +7,14 @@ $text-tertiary: rgb(105, 98, 98);
 $bg-primary: #551a50;
 $bg-secondary: #8f25af;
 $bg-tertiary: #cf3dfc;
+$bg-primary-dark: #551a5081;
 $nav-bg-primary: rgb(5, 5, 5);
 $nav-bg-secondary: rgb(0, 0, 0);
 $page-bg: rgb(27, 27, 27);
 $page-bg-2: rgb(184, 184, 184);
 $group-bg: rgb(24, 24, 24);
 $logo-bg: #FFCF37;
+$logo-bg-dark: #c29a17;
 $logo-bg-hover: #75673a;
 $ph-bg: #b0b0b0;
 /* gradients */
@@ -136,7 +138,7 @@ button {
 .login,
 .movie,
 .tv,
-.signup,.movie-posts,.new-post {
+.signup,.movie-posts,.new-post,.post-details {
   @extend .VBox;
   justify-content: center;
   gap: 1rem;
@@ -188,7 +190,7 @@ button {
   .login,
   .movie,
   .tv,
-  .signup,.movie-posts,.new-post {
+  .signup,.movie-posts,.new-post,.post-details {
     margin-left: 0;
     width: 100vw;
   }

@@ -55,22 +55,26 @@ function NewPostForm({ newPostProps }: NewPostFormProps) {
     }
   };
 
-  function handleCreatePost() {
-    console.log("create post");
+  async function handleCreatePost() {
     setLoading(true);
-    let imageUrl = "no-img";
+    let postImageUrl = "no-img";
+
+    // Check if an image file has been selected
     if (imageFile) {
       const { request } = UploadService.uploadImage(imageFile, "posts");
-      request
-        .then((response) => {
-          imageUrl = response.data.imageUrl;
-        })
-        .catch((err) => {
+      try {
+        const response = await request;
+        postImageUrl = response.data.imageUrl;
+      } catch (err) {
+        if (err instanceof AxiosError) {
           setError(err);
           setLoading(false);
           return;
-        });
+        }
+      }
     }
+
+    console.log(postImageUrl);
 
     const post: IPost = {
       ownerId: auth!.user.userId,
@@ -78,7 +82,7 @@ function NewPostForm({ newPostProps }: NewPostFormProps) {
       ownerImageUrl: auth!.user.imageUrl,
       text: textRef.current!.value,
       rating: rateRef.current!.valueAsNumber,
-      imageUrl: imageUrl,
+      imageUrl: postImageUrl, // Use the imageUrl variable
       tmdbId: movie.id.toString(),
       tmdbTitle: movie.title,
       tmdbImageUrl: movie.poster_path,
@@ -92,7 +96,7 @@ function NewPostForm({ newPostProps }: NewPostFormProps) {
         const newPost = response.data;
         setTimeout(() => {
           console.log(newPost);
-          navigate("/"); // TODO TODO TODO TODO TODO TODO TODO TODO
+          navigate("/");
         }, 1000);
       })
       .catch((err) => {

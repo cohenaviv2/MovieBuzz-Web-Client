@@ -5,7 +5,7 @@ import styles from "./Navbar.module.scss"
 export const NavbarData = [
   {
     title: "Login",
-    path: "/profile",
+    path: "/login",
     icon: <PiIcons.PiUserBold />,
     selectedIcon: <PiIcons.PiUserFill />,
     cName: styles.navItem,

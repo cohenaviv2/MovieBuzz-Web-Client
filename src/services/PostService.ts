@@ -13,6 +13,12 @@ class PostService {
     return { request, cancel: () => controller.abort() };
   }
 
+  getById(id:string) {
+    const controller = new AbortController();
+    const request = apiClient.get<IPost>(this.path + id, { signal: controller.signal });
+    return { request, cancel: () => controller.abort() };
+  }
+
   createPost(postData: IPost, accessToken: string) {
     const controller = new AbortController();
     const request = apiClient.post<IPost>(this.path, postData, {

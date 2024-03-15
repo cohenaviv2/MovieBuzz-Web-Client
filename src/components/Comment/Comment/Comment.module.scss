@@ -1,0 +1,94 @@
+@import "../../../styles/styles.scss";
+@import "../../../styles/containers.scss";
+
+.commentContainer {
+  @extend .HBox;
+  //   justify-content: center;
+  width: 90%;
+  padding: 0.3rem 1.5rem;
+  height: 3rem;
+  gap: 0.5rem;
+  background-color: $text-tertiary;
+  border-radius: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $bg-secondary;
+
+    .commentText {
+      color: $logo-bg;
+    }
+
+    h5 {
+      color: $bg-primary;
+    }
+  }
+
+  h5 {
+    margin: 0;
+    margin-left: -1rem;
+    font-size: 1rem;
+    color: $text-secondary;
+  }
+}
+
+.commentText {
+  @extend .VBox;
+  align-items: start;
+  justify-content: center;
+  margin-left: 2rem;
+  width: 70%;
+  height: 80%;
+  color: $text-primary;
+  font-size: 1.3rem;
+}
+
+.btnContainer {
+  @extend .HBox;
+  justify-content: center;
+  margin-left: auto;
+  gap: 0.5rem;
+}
+
+.editInput {
+  width: 100%;
+  margin-left: -1rem;
+  font-size: 1.3rem;
+  border-radius: 16px;
+}
+
+.editBtn {
+  background: $btn-primary;
+  font-size: 1.4rem;
+  padding: 0.5rem 0.8rem;
+  &:hover {
+    background: $btn-primary-hover;
+  }
+}
+
+.deleteBtn {
+  background: $btn-err;
+  font-size: 1.4rem;
+  padding: 0.5rem 0.8rem;
+  &:hover {
+    background: $btn-err-hover;
+  }
+}
+
+.saveBtn {
+  background: $btn-primary;
+  font-size: 1.4rem;
+  padding: 0.4rem 0.8rem;
+  &:hover {
+    background: $btn-primary-hover;
+  }
+}
+
+.closeBtn {
+  background: $btn-trinary;
+  font-size: 1.9rem;
+  padding: 0.3rem 0.5rem;
+  &:hover {
+    background: $btn-trinary-hover;
+  }
+}

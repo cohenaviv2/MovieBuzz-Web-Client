@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
 import PostService, { AxiosError } from "../services/PostService";
 import { IAuth, IPost, IUser, IUserUpdate } from "../services/Types";
@@ -12,22 +12,26 @@ import { FaSignOutAlt, FaPen } from "react-icons/fa";
 
 interface ProfileProps {
   auth: IAuth | null;
+  isLoading: boolean;
   logout: () => void;
 }
 
-function Profile({ auth, logout }: ProfileProps) {
+function Profile({ auth, isLoading, logout }: ProfileProps) {
   const [user, setUser] = useState<IUser>();
   const [posts, setPosts] = useState<IPost[]>();
   const [loading, setLoading] = useState(false);
   const [userError, setUserError] = useState<AxiosError>();
   const [postsError, setPostsError] = useState<AxiosError>();
   const [edit, setEdit] = useState(false);
+  const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setLoading(true);
-    const { accessToken } = auth!;
+    const { accessToken } = auth || {};
+    if (!accessToken) return; // Return early if accessToken is null
+
     const { request: requestUserDetails, cancel: cancelUser } = UserService.getUserById(accessToken);
     const { request: requestUserPosts, cancel: cancelPosts } = PostService.getUserPosts(accessToken);
 
@@ -41,10 +45,19 @@ function Profile({ auth, logout }: ProfileProps) {
       cancelUser();
       cancelPosts();
     };
-  }, []);
+  }, [auth]);
+
+    useEffect(() => {
+      if (!auth) {
+        // Navigate to home page on successful login
+        navigate("/");
+      }
+    }, [auth, navigate]);
+
 
   function handleLogout() {
     logout();
+    // setTimeout(() => navigate("/"), 500);
   }
 
   function handleUpdateUser() {
@@ -76,6 +89,7 @@ function Profile({ auth, logout }: ProfileProps) {
       <div className={styles.titleContainer}>
         <h5>My Profile</h5>
         <div className={styles.btnContainer}>
+          <div className={styles.spinnerContainer}>{isLoading && <Spinner />}</div>
           {!edit && (
             <button className={styles.editBtn} onClick={() => setEdit(true)}>
               <FaPen /> Edit
@@ -105,7 +119,7 @@ function Profile({ auth, logout }: ProfileProps) {
                   <h5>{user.email}</h5>
                   {edit && (
                     <>
-                      <h6>New Password</h6>
+                      <h6>New Password:</h6>
                       <input type="password" ref={passwordRef}></input>
                     </>
                   )}
@@ -135,7 +149,7 @@ function Profile({ auth, logout }: ProfileProps) {
               type="post"
               items={posts}
               renderItem={(post) => (
-                <Link to={`/movie/${post._id}`} key={post._id}>
+                <Link to={`/post/${post._id}`} key={post._id}>
                   <PostCard post={post} />
                 </Link>
               )}
