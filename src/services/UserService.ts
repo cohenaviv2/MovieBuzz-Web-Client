@@ -1,5 +1,11 @@
-import { IUser, IUserChat, IUserUpdate } from "./Types";
+import { IUser, IUserChat } from "./Types";
 import apiClient from "./api-client";
+
+export interface IUserUpdate {
+  newFullName:string;
+  newPassword:string;
+  newImageUrl:string;
+}
 
 class UserService {
   private path = "users/";

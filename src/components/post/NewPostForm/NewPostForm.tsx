@@ -16,27 +16,29 @@ import PostService from "../../../services/PostService";
 import { IPost } from "../../../services/Types";
 import Error from "../../Error/Error";
 import Success from "../../Success/Success";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 
 interface NewPostFormProps {
   newPostProps: NewPostProps;
 }
-
+  const placeholders = ["What's the buzz?", "Share the buzz...", "Spread the buzz..."];
+  const randomIndex = Math.floor(Math.random() * placeholders.length);
+  
 function NewPostForm({ newPostProps }: NewPostFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imgSrcUrl, setImgSrcUrl] = useState<string>();
   const [error, setError] = useState<AxiosError | null>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [rating, setRating] = useState(1);
   const textRef = useRef<HTMLTextAreaElement>(null);
-  const rateRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { auth } = newPostProps;
   const { movieDetails } = location.state;
   const movie = movieDetails as DetailsType;
 
-  const placeholders = ["What's the buzz?", "Share the buzz...", "Spread the buzz..."];
-  const randomIndex = Math.floor(Math.random() * placeholders.length);
+
 
   const handleGoBack = () => {
     navigate(-1);
@@ -58,7 +60,6 @@ function NewPostForm({ newPostProps }: NewPostFormProps) {
   async function handleCreatePost() {
     setLoading(true);
     let postImageUrl = "no-img";
-
     // Check if an image file has been selected
     if (imageFile) {
       const { request } = UploadService.uploadImage(imageFile, "posts");
@@ -73,21 +74,17 @@ function NewPostForm({ newPostProps }: NewPostFormProps) {
         }
       }
     }
-
-    console.log(postImageUrl);
-
     const post: IPost = {
       ownerId: auth!.user.userId,
       ownerName: auth!.user.fullName,
       ownerImageUrl: auth!.user.imageUrl,
       text: textRef.current!.value,
-      rating: rateRef.current!.valueAsNumber,
+      rating: rating,
       imageUrl: postImageUrl, // Use the imageUrl variable
       tmdbId: movie.id.toString(),
       tmdbTitle: movie.title,
       tmdbImageUrl: movie.poster_path,
     };
-
     const { request } = PostService.createPost(post, auth!.accessToken);
     request
       .then((response) => {
@@ -105,6 +102,18 @@ function NewPostForm({ newPostProps }: NewPostFormProps) {
       });
   }
 
+  function handleRatingUp() {
+    if (rating != 10) {
+      setRating((prev) => prev + 1);
+    }
+  }
+
+  function handleRatingDown() {
+    if (rating != 1) {
+      setRating((prev) => prev - 1);
+    }
+  }
+
   return (
     <div className={styles.newPostContainer}>
       <div className={styles.movieContainer}>
@@ -112,7 +121,15 @@ function NewPostForm({ newPostProps }: NewPostFormProps) {
         <h5>{movie.title}</h5>
         <div className={styles.rateInputContainer}>
           <FaStar className={styles.rateIcon} />
-          <input className={styles.rateInput} type="number" id="rating" name="rating" min="1" max="10" defaultValue={1} ref={rateRef} />
+          <div className={styles.rateNumberContainer}>{rating}</div>
+          <div className={styles.rateBtnContainer}>
+            <button className={styles.rateBtn} onClick={handleRatingUp}>
+              <FaCaretUp />
+            </button>
+            <button className={styles.rateBtn} onClick={handleRatingDown}>
+              <FaCaretDown />
+            </button>
+          </div>
         </div>
       </div>
       <div className={styles.postContainer}>

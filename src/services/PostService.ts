@@ -1,3 +1,4 @@
+import { IPostUpdate } from "../components/Post/PostDetails/PostDetails";
 import { IPost } from "./Types";
 import apiClient, { CanceledError, AxiosError } from "./api-client";
 export { CanceledError, AxiosError };
@@ -13,7 +14,7 @@ class PostService {
     return { request, cancel: () => controller.abort() };
   }
 
-  getById(id:string) {
+  getById(id: string) {
     const controller = new AbortController();
     const request = apiClient.get<IPost>(this.path + id, { signal: controller.signal });
     return { request, cancel: () => controller.abort() };
@@ -43,6 +44,26 @@ class PostService {
   searchPosts(query: string) {
     const controller = new AbortController();
     const request = apiClient.get<IPost[]>(this.path + `search?query=${query}`);
+    return { request, cancel: () => controller.abort() };
+  }
+
+  updateById(accessToken: string, postId: string, newDetails: IPostUpdate) {
+    const controller = new AbortController();
+    const request = apiClient.put<IPost>(this.path + postId, newDetails, {
+      headers: {
+        Authorization: `JWT ${accessToken}`,
+      },
+    });
+    return { request, cancel: () => controller.abort() };
+  }
+
+  deleteById(accessToken: string, postId: string) {
+    const controller = new AbortController();
+    const request = apiClient.delete(this.path + postId, {
+      headers: {
+        Authorization: `JWT ${accessToken}`,
+      },
+    });
     return { request, cancel: () => controller.abort() };
   }
 }

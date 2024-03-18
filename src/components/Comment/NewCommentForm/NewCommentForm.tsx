@@ -49,23 +49,34 @@ function NewCommentForm({ auth, postId, setCommentChange }: NewCommentFormProps)
       });
   }
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault(); // Prevent default behavior of Enter key
+      handleCreateComment(); // Call sendMessage function when Enter key is pressed
+    }
+  };
+
   return (
     <div className={styles.newCommentContainer}>
-      <UserCard userDetails={{ userId: auth!.user.userId, fullName: auth!.user.fullName, imageUrl: auth!.user.imageUrl }} size="small" />
-      <input type="text" className={styles.newCommentInput} ref={textRef} />
-      <div className={styles.btnContainer}>
-        {loading ? (
-          <Spinner />
-        ) : error ? (
-          <Error message={error.response ? (error.response.data as string) : error.message} />
-        ) : success ? (
-          <Success message="" />
-        ) : (
-          <button className={styles.newCommentBtn} onClick={handleCreateComment}>
-            <IoSend className={styles.newCommentBtnIcon} />
-          </button>
-        )}
-      </div>
+      {auth && (
+        <>
+          <UserCard userDetails={{ userId: auth!.user.userId, fullName: auth!.user.fullName, imageUrl: auth!.user.imageUrl }} size="small" />
+          <input type="text" className={styles.newCommentInput} ref={textRef} onKeyDown={handleKeyPress} />
+          <div className={styles.btnContainer}>
+            {loading ? (
+              <Spinner />
+            ) : error ? (
+              <Error message={error.response ? (error.response.data as string) : error.message} />
+            ) : success ? (
+              <Success message="" />
+            ) : (
+              <button className={styles.newCommentBtn} onClick={handleCreateComment}>
+                <IoSend className={styles.newCommentBtnIcon} />
+              </button>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

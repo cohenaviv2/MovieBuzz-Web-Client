@@ -13,7 +13,7 @@ $nav-bg-secondary: rgb(0, 0, 0);
 $page-bg: rgb(27, 27, 27);
 $page-bg-2: rgb(184, 184, 184);
 $group-bg: rgb(24, 24, 24);
-$logo-bg: #FFCF37;
+$logo-bg: #ffcf37;
 $logo-bg-dark: #c29a17;
 $logo-bg-hover: #75673a;
 $ph-bg: #b0b0b0;
@@ -28,10 +28,10 @@ $btn-err: linear-gradient(to right, rgb(240, 6, 6), rgb(248, 41, 41));
 $btn-err-hover: linear-gradient(to right, rgb(192, 12, 12), rgb(199, 29, 29));
 $header-bg: linear-gradient(to left, $bg-secondary, #8e11b4);
 $post-bg: linear-gradient(to top, $nav-bg-secondary, $nav-bg-primary);
-$btn-logo: linear-gradient(to left, #FFCF37,#f7be05 );
+$btn-logo: linear-gradient(to left, #ffcf37, #f7be05);
 $btn-logo-hover: linear-gradient(to left, rgb(0, 119, 255), rgb(14, 89, 252));
 $btn-google: linear-gradient(to right, #03830a, #037009);
-$btn-google-hover:linear-gradient(to right, #007506, #006905);
+$btn-google-hover: linear-gradient(to right, #007506, #006905);
 
 #root {
   max-width: 1280px;
@@ -43,6 +43,8 @@ $btn-google-hover:linear-gradient(to right, #007506, #006905);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 a {
@@ -90,7 +92,8 @@ div {
   }
 }
 
-input,textarea {
+input,
+textarea {
   font-family: "Lato", sans-serif;
   font-weight: bold;
   border: none;
@@ -138,7 +141,10 @@ button {
 .login,
 .movie,
 .tv,
-.signup,.movie-posts,.new-post,.post-details {
+.signup,
+.movie-posts,
+.new-post,
+.post-details {
   @extend .VBox;
   justify-content: center;
   gap: 1rem;
@@ -150,9 +156,8 @@ button {
   color: $text-primary;
   overflow: auto;
 
-
   &:first-child {
-   top: 0;
+    top: 0;
   }
 }
 
@@ -190,7 +195,10 @@ button {
   .login,
   .movie,
   .tv,
-  .signup,.movie-posts,.new-post,.post-details {
+  .signup,
+  .movie-posts,
+  .new-post,
+  .post-details {
     margin-left: 0;
     width: 100vw;
   }

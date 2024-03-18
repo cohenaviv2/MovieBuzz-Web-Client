@@ -90,17 +90,11 @@ export interface IUserDetails {
   userId: string;
   fullName: string;
   imageUrl: string;
+  googleId?:string;
 }
-
 
 export interface IUserId {
   _id: string;
-}
-
-export interface IUserUpdate {
-  newFullName:string;
-  newPassword:string;
-  newImageUrl:string;
 }
 
 export interface IMessage {

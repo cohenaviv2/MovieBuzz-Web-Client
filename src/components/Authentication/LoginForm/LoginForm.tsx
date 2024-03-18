@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.scss";
 import Error from "../../Error/Error";

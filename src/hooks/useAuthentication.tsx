@@ -5,25 +5,43 @@ import { IUser } from "../services/Types";
 import { CredentialResponse } from "@react-oauth/google";
 
 interface ExtendedAuth extends IAuth {
-  expirationNumber: number;
+  expirationDate: Date;
 }
 
-const calculateExpirationTime = (accessTokenExpirationTime: string): number => {
-  const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-  const [value, unit] = accessTokenExpirationTime.match(/\d+|[a-zA-Z]+/g)!; // Split value and unit
-  let expirationTime = currentTime;
+// const calculateExpirationTime = (accessTokenExpirationTime: string): number => {
+//   const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+//   const [value, unit] = accessTokenExpirationTime.match(/\d+|[a-zA-Z]+/g)!; // Split value and unit
+//   let expirationTime = currentTime;
 
+//   if (unit === "s") {
+//     expirationTime += parseInt(value);
+//   } else if (unit === "m") {
+//     expirationTime += parseInt(value) * 60;
+//   } else if (unit === "h") {
+//     expirationTime += parseInt(value) * 60 * 60;
+//   } else if (unit === "d") {
+//     expirationTime += parseInt(value) * 60 * 60 * 24;
+//   }
+
+//   return expirationTime;
+// };
+
+const calculateExpirationDate = (accessTokenExpirationTime: string): Date => {
+  const [value, unit] = accessTokenExpirationTime.match(/\d+|[a-zA-Z]+/g)!; // Split value and unit
+
+  // eslint-disable-next-line prefer-const
+  let expirationDate = new Date();
   if (unit === "s") {
-    expirationTime += parseInt(value);
+    expirationDate.setSeconds(expirationDate.getSeconds() + parseInt(value));
   } else if (unit === "m") {
-    expirationTime += parseInt(value) * 60;
+    expirationDate.setMinutes(expirationDate.getMinutes() + parseInt(value));
   } else if (unit === "h") {
-    expirationTime += parseInt(value) * 60 * 60;
+    expirationDate.setHours(expirationDate.getHours() + parseInt(value));
   } else if (unit === "d") {
-    expirationTime += parseInt(value) * 60 * 60 * 24;
+    expirationDate.setDate(expirationDate.getDate() + parseInt(value));
   }
 
-  return expirationTime;
+  return expirationDate;
 };
 
 const useAuthentication = () => {
@@ -73,7 +91,7 @@ const useAuthentication = () => {
           accessToken: accessToken,
           refreshToken: refreshToken,
           accessTokenExpirationTime: accessTokenExpirationTime,
-          expirationNumber: calculateExpirationTime(accessTokenExpirationTime),
+          expirationDate: calculateExpirationDate(accessTokenExpirationTime),
           user: user,
         };
         setLoggedIn(true);
@@ -100,7 +118,7 @@ const useAuthentication = () => {
           accessToken: accessToken,
           refreshToken: refreshToken,
           accessTokenExpirationTime: accessTokenExpirationTime,
-          expirationNumber: calculateExpirationTime(accessTokenExpirationTime),
+          expirationDate: calculateExpirationDate(accessTokenExpirationTime),
           user: user,
         };
         setLoggedIn(true);
@@ -145,12 +163,14 @@ const useAuthentication = () => {
           accessToken: newAuth.accessToken,
           refreshToken: newAuth.refreshToken,
           accessTokenExpirationTime: newAuth.accessTokenExpirationTime,
-          expirationNumber: calculateExpirationTime(newAuth.accessTokenExpirationTime),
+          expirationDate: calculateExpirationDate(newAuth.accessTokenExpirationTime),
           user: newAuth.user,
         };
 
-        setAuth(newExtendedAuth);
         console.log("New Auth: ", auth);
+        console.log(auth.accessToken === newExtendedAuth.accessToken);
+        console.log(auth.refreshToken === newExtendedAuth.refreshToken);
+        setAuth(newExtendedAuth);
         // Store auth in local storage
         localStorage.removeItem("auth");
         localStorage.setItem("auth", JSON.stringify(newExtendedAuth));
@@ -164,20 +184,18 @@ const useAuthentication = () => {
 
   useEffect(() => {
     const checkTokenExpiration = () => {
-      console.log("Check token expiration...");
-      const auth = getAuth();
-      if (auth) {
-        const expirationTime = auth.expirationNumber;
-        const currentTime = new Date().getTime() / 1000; // Convert to seconds
-        if (expirationTime && expirationTime < currentTime) {
-          console.log("Refreshing tokens...");
+      const tokens = getAuth();
+      if (tokens) {
+        const expirationTime = new Date(tokens.expirationDate);
+        const currentTime = new Date(); // Convert to seconds
+        if (expirationTime < currentTime) {
           refreshToken(); // Refresh token if expired
         }
       }
     };
 
     if (auth) {
-      const intervalId = setInterval(checkTokenExpiration, 60000 * 3); // Check expiration every 3 minute
+      const intervalId = setInterval(checkTokenExpiration, 60000*5); // Check expiration every 5 minute
       checkTokenExpiration(); // Check immediately when component mounts
 
       return () => clearInterval(intervalId); // Cleanup on unmount

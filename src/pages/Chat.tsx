@@ -13,15 +13,21 @@ interface ChatProps {
   auth: IAuth | null;
 }
 
+interface IOClient {
+  _id: string;
+  socketId: string;
+  fullName: string;
+}
+
 function Chat({ auth }: ChatProps) {
   const [onlineUsers, setOnlineUsers] = useState<IUserChat[]>([]);
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [message, setMessage] = useState("");
   const [receiverUserChat, setReceiverUserChat] = useState<IUserChat | null>(null);
   const [senderUserChat, setSenderUserChat] = useState<IUserChat | null>(null);
-  const [connected, setConnected] = useState(false);
   const socketRef = useRef<Socket>();
   const textRef = useRef<HTMLInputElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!auth) return;
@@ -33,9 +39,11 @@ function Chat({ auth }: ChatProps) {
     });
     socketRef.current.emit("connect_user", userId);
 
-    socketRef.current.on("private_message_received", (data: { message: IMessage }) => {
+    socketRef.current.on("private_message_received", (data: { message: IMessage; sender: IOClient }) => {
       console.log("received message:");
       console.log(data);
+      const { _id, fullName, socketId } = data.sender;
+      setReceiverUserChat({ _id: _id, fullName: fullName, socketId: socketId, imageUrl: "" });
       setMessages((prevMessages) => [...prevMessages, data.message]);
     });
 
@@ -43,26 +51,46 @@ function Chat({ auth }: ChatProps) {
       console.log("User disconnected:", data.disconnectedUserId);
     });
 
-    setConnected(true);
-
     return () => {
-      socketRef.current?.disconnect();
+      socketRef.current!.disconnect();
     };
   }, [auth]);
 
   useEffect(() => {
     if (!auth) return;
-    const { request } = UserService.getOnlineUsers(auth.accessToken);
+
+    const timeoutId = setTimeout(refreshOnlineUsers, 2000);
+    // refreshOnlineUsers();
+
+    return () => clearTimeout(timeoutId);
+  }, [auth, senderUserChat, receiverUserChat,message,onlineUsers]);
+
+  function refreshOnlineUsers() {
+    const { request } = UserService.getOnlineUsers(auth!.accessToken);
     request.then((response) => {
-      console.log(response.data);
-      const myUserChat = response.data.find((uc) => uc._id === auth.user.userId)!;
-      setSenderUserChat(myUserChat);
-      console.log(senderUserChat);
-      const filteredOnlineUsers = response.data.filter((uc) => uc._id !== auth.user.userId);
+      const onlineUsers: IUserChat[] = response.data;
+      const myId = auth!.user.userId;
+      const senderId = senderUserChat?._id;
+      const receiverId = receiverUserChat?._id;
+
+      if (!senderId) {
+        const myUserChat = onlineUsers.find((uc) => uc._id === myId)!;
+        setSenderUserChat(myUserChat);
+      }
+      if (receiverId) {
+        const newReceiverChat = onlineUsers.find((uc) => uc.fullName === receiverUserChat.fullName)!;
+        if (receiverUserChat.socketId !== newReceiverChat.socketId) {
+          setReceiverUserChat(newReceiverChat);
+          console.log("receiver new details: ", newReceiverChat);
+        }
+      }
+
+      const filteredOnlineUsers = response.data.filter((uc) => uc._id !== myId);
       setOnlineUsers(filteredOnlineUsers);
-      console.log(receiverUserChat);
+
+      console.log("users refreshed !");
     });
-  }, [auth]);
+  }
 
   useEffect(() => {
     if (!auth || !receiverUserChat) return;
@@ -80,18 +108,41 @@ function Chat({ auth }: ChatProps) {
   }, [receiverUserChat]);
 
   const sendMessage = () => {
-    if (auth && receiverUserChat) {
-      if (message && receiverUserChat && connected) {
-        socketRef.current!.emit("send_private_message", senderUserChat, receiverUserChat, message);
-        setMessage("");
-        textRef.current!.value = "";
-      }
+    if (auth && socketRef && receiverUserChat && message && senderUserChat) {
+      socketRef.current!.emit("send_private_message", senderUserChat, receiverUserChat, message);
+      setMessage("");
+      textRef.current!.value = "";
+
+      // Append the sent message to the conversation
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          senderId: senderUserChat._id,
+          receiverId: receiverUserChat._id,
+          text: message,
+        },
+      ]);
+    } else {
+      console.log("no auth && socketRef && receiverUserChat && message && senderUserChat");
     }
   };
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   function handleUserClick(userChat: IUserChat) {
     setReceiverUserChat(userChat);
   }
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault(); // Prevent default behavior of Enter key
+      sendMessage(); // Call sendMessage function when Enter key is pressed
+    }
+  };
 
   if (!auth) {
     return (
@@ -103,29 +154,45 @@ function Chat({ auth }: ChatProps) {
 
   return (
     <div className="chat">
-      <h2>Chat</h2>
+      <h2 style={{ margin: "0" }}>Chat</h2>
       <div className={styles.chatContainer}>
         <div className={styles.userCardContainer}>
           {onlineUsers &&
-            onlineUsers.map((user, index) => (
-              <div className={styles.userCard} key={index} onClick={() => handleUserClick(user)}>
-                <FaCircle className={styles.userCardIcon} />
-                <UserCard userDetails={{ userId: user._id!, fullName: user.fullName, imageUrl: user.imageUrl }} size="small" />
+            (onlineUsers.length > 0 ? (
+              onlineUsers.map((user, index) => (
+                <div className={receiverUserChat && user._id == receiverUserChat._id ? styles.userCardSelected : styles.userCard} key={index} onClick={() => handleUserClick(user)}>
+                  <FaCircle className={styles.userCardIcon} />
+                  <UserCard userDetails={{ userId: user._id!, fullName: user.fullName, imageUrl: user.imageUrl }} size="small" />
+                </div>
+              ))
+            ) : (
+              <div className={styles.userErrContainer}>
+                <Error message="no users online" />
               </div>
             ))}
         </div>
         <div className={styles.messageContainer}>
-          <div className={styles.conversationContainer}>
+          <div className={styles.conversationContainer} ref={chatContainerRef}>
             {messages &&
               auth &&
               messages.map((msg, index) => (
-                <div key={index} className={auth.user.userId == msg.senderId ? styles.sentMsgBar : styles.receiveMsgBar}>
-                  {msg.text}
+                <div key={index} className={styles.msgBarContainer}>
+                  {auth.user.userId === msg.senderId ? (
+                    <>
+                      <h3 className={styles.sentMsgBar}>{msg.text}</h3>
+                      <img className={styles.imgMsgBar} src={senderUserChat?.imageUrl} alt="user" />
+                    </>
+                  ) : (
+                    <>
+                      <img className={styles.imgMsgBar} src={receiverUserChat?.imageUrl} alt="user" />
+                      <h3 className={styles.receiveMsgBar}>{msg.text}</h3>
+                    </>
+                  )}
                 </div>
               ))}
           </div>
           <div className={styles.sendMsgContainer}>
-            <input type="text" className={styles.newMsgInput} onChange={(e) => setMessage(e.target.value)} ref={textRef} placeholder="Type something..." />
+            <input type="text" className={styles.newMsgInput} onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyPress} ref={textRef} placeholder="Type something..." />
             <button className={styles.newMsgBtn} onClick={sendMessage}>
               <IoSend className={styles.newMsgBtnIcon} />
             </button>

@@ -84,7 +84,7 @@ function SignUpForm({ signupProps }: SingUpFormProps) {
           if (!regError) {
             setLoading(false);
             setSuccess(true);
-            setTimeout(() => navigate("/profile"), 1000);
+            setTimeout(() => navigate("/login"), 1000);
           } else {
             setError(regError);
             setLoading(false);

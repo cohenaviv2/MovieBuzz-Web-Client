@@ -10,10 +10,11 @@
   gap: 0.5rem;
   background-color: $text-tertiary;
   border-radius: 16px;
-  cursor: pointer;
+  // cursor: pointer;
 
   &:hover {
-    background-color: $bg-secondary;
+    background: $header-bg;
+    background-color: none;
 
     .commentText {
       color: $logo-bg;

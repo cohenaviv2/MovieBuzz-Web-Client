@@ -17,7 +17,7 @@ import useAuthentication from "./hooks/useAuthentication";
 import PostDetails from "./components/Post/PostDetails/PostDetails";
 
 function App() {
-  const { auth, isLoading, error, loggedIn, login, googleSignin, logout, register } = useAuthentication();
+  const { auth, isLoading, error, loggedIn, login, googleSignin, logout, register,refreshToken } = useAuthentication();
 
   return (
     <>
@@ -28,7 +28,7 @@ function App() {
           <Route path="/" element={<Home auth={auth} />} />
           <Route path="/signup" element={<SignUp error={error} register={register} />} />
           <Route path="/login" element={<Login login={login} googleSignin={googleSignin} auth={auth} error={error} isLoading={isLoading} loggedIn={loggedIn} />} />
-          <Route path="/profile" element={<Profile auth={auth} logout={logout} isLoading={isLoading} />} />
+          <Route path="/profile" element={<Profile auth={auth} logout={logout} isLoading={isLoading} refreshToken={refreshToken} />} />
           <Route path="/search" Component={Search} />
           <Route path="/movies" Component={Movies} />
           <Route path="/movie/:id" Component={MovieDetails} />

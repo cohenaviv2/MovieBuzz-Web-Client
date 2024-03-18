@@ -97,7 +97,7 @@
 .rateLabel {
   margin: 0;
   width: 30px;
-  margin-left: -53px;
+  margin-left: -51px;
   text-align: center;
   font-size: 1.8rem;
   color: $logo-bg;
@@ -133,7 +133,8 @@
 .closeBtnContainer {
   @extend .VBox;
   height: 100%;
-  width: 10%;
+  width: 15%;
+  gap: 0.5rem;
 }
 
 .closeBtn {
@@ -149,11 +150,109 @@
   }
 }
 
+.editBtn {
+  background: $btn-primary;
+  font-size: 1.4rem;
+  padding: 0.5rem 0.8rem;
+
+  &:hover {
+    background: $btn-primary-hover;
+  }
+}
+
+.deleteBtn {
+  background: $btn-err;
+  font-size: 1.4rem;
+  padding: 0.5rem 0.8rem;
+  margin-left: -1rem;
+  &:hover {
+    background: $btn-err-hover;
+  }
+}
+
+.saveBtn {
+  background: $btn-primary;
+  font-size: 1.4rem;
+  padding: 0.4rem 0.8rem;
+    margin-left: -1rem;
+  &:hover {
+    background: $btn-primary-hover;
+  }
+}
+
+.closeEditBtn {
+  background: $btn-trinary;
+  font-size: 1.9rem;
+  padding: 0.3rem 0.5rem;
+
+
+  &:hover {
+    background: $btn-trinary-hover;
+  }
+}
+
+.textArea {
+  @extend .VBox;
+  justify-content: center;
+  width: 95%;
+  min-height: 8rem;
+  font-size: 1.5rem;
+  padding: 10px;
+  outline: none;
+  resize: none;
+
+  &::placeholder {
+    font-size: 1.3rem;
+  }
+}
+
 .commentsContainer {
   @extend .VBox;
-//   justify-content: center;
+  //   justify-content: center;
   height: 20%;
   gap: 0.5rem;
   overflow: auto;
   width: 70%;
+}
+
+.inputFile {
+  display: none;
+}
+
+.customFileInput {
+  @extend .VBox;
+  justify-content: center;
+  background-color: $bg-secondary;
+  // background-color: $text-secondary;
+  background-size: cover;
+  height: 300px;
+  width: 300px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.imgIcon {
+  font-size: 45px;
+  margin-bottom: 4px;
+  // fill: #333;
+  fill: $logo-bg;
+}
+
+.rateBtnContainer {
+  @extend .VBox;
+  justify-content: center;
+  width: 30px;
+  margin-right: 5px;
+  height: 60px;
+}
+
+.rateBtn {
+  min-width: 30px;
+  min-height: 27px;
+  background-color: $nav-bg-primary;
+  color: $text-primary;
+
+  &:hover {
+    background-color: $page-bg;
+  }
 }

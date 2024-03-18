@@ -70,7 +70,7 @@ function Comment({ comment, auth, setCommentChange }: CommentProps) {
       <UserCard userDetails={{ userId: comment.ownerId, fullName: comment.ownerName!, imageUrl: comment.ownerImageUrl! }} size="small" />
       {/* <h5>:</h5> */}
       <div className={styles.commentText}>{!edit ? comment.text : <input type="text" className={styles.editInput} ref={textRef} defaultValue={comment.text} />}</div>
-      {auth && (
+      {(auth && auth.user.userId === comment.ownerId) && (
         <div className={styles.btnContainer}>
           {!edit ? (
             <>
